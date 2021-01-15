@@ -1,2 +1,2 @@
-# Tasks
+# tasks
 Store your repeated tasks.
