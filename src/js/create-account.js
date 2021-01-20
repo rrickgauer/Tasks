@@ -1,7 +1,7 @@
-
-const inputEmail = $('#new-email');
-const inputPassword1 = $('#new-password-1');
-const inputPassword2 = $('#new-password-2');
+// local variables
+const inputEmail       = $('#new-email');
+const inputPassword1   = $('#new-password-1');
+const inputPassword2   = $('#new-password-2');
 const btnCreateAccount = $('#btn-create-account');
 
 
@@ -10,10 +10,6 @@ const btnCreateAccount = $('#btn-create-account');
  */
 $(document).ready(function() {
     addEventListeners();
-
-
-   
-
 });
 
 /**
@@ -29,17 +25,61 @@ function addEventListeners() {
  * Create a new account
  */
 function createAccount() {
-
     $(btnCreateAccount).on('click', function() {
 
-        // verify inputs
+        // disable the 'create account' button
+        enableLoginLoadingButton();
+
+        // verify inputs are filled in and matching
         if (!areInputsValid()) {
+            disableLoginLoadingButton();
             return;
         }
 
+        // retrieve the input values
+        const email = $(inputEmail).val();
+        const password = $(inputPassword1).val();
 
+        // send the request to the api
+        $.ajax({
+            url: m_API + '/users',
+            type: "post",
+            data: {
+                email: email,
+                password: password,
+            },
+
+            success: loginSuccessful,
+            error: loginUnsuccessful,
+        });
+
+        // clear the loading spinner and enable the 'create account' button
+        disableLoginLoadingButton();
     });
 }
+
+
+
+/**
+ * Disables the login button and shows the spinner.
+ */
+function enableLoginLoadingButton() {
+    const btnHtml = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> &nbsp;Loading...';
+
+    $(btnCreateAccount).html(btnHtml);
+
+    $(btnCreateAccount).prop('disabled', true);
+}
+
+/**
+ * Returns the login button back to its normal state.
+ */
+function disableLoginLoadingButton() {
+    $(btnCreateAccount).html('Create account');
+
+    $(btnCreateAccount).prop('disabled', false);
+}
+
 
 /**
  * validates all the inputs before sending data to the api.
@@ -81,8 +121,6 @@ function areInputsValid() {
         return false;
     }
 
-
-
     return true;
 }
 
@@ -92,20 +130,38 @@ function areInputsValid() {
  * the user starts typing on it.
  */
 function clearInvalidFeedbackClasses() {
-    $('.form-group input').on('keydown', function() {
+    $('.new-account-input').on('keydown', function() {
         $(this).removeClass('is-invalid');
     });
 }
 
 
+/**
+ * Steps to take when a log in attempt was successful
+ */
+function loginSuccessful(apiResponse) {
+    window.localStorage.setItem('userID', apiResponse.id);
+    window.location.href = 'home.php';
+}
 
+/**
+ * Steps to take when a log in attempt was not successful
+ */
+function loginUnsuccessful(apiResponse) {
 
+    // default error message
+    let errorMessage = 'Error. Your account was not created. Please try again.';
 
+    // email has already been taken
+    if (apiResponse.responseJSON.errorNumber == API_RETURN_CODES.Email_Is_Taken) {
+        errorMessage = 'The email you have entered has already been taken.';
+    }
 
+    $(inputPassword2).closest('.form-group').find('.invalid-feedback').text(errorMessage);
+    $('.new-account-input').addClass('is-invalid');
 
-
-
-
+    console.log(apiResponse.responseJSON);
+}
 
 
 

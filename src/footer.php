@@ -15,3 +15,9 @@
 
 <!-- Constants -->
 <script src="js/Constants.js"></script>
+
+<!-- common functions -->
+<script src="js/Common.js"></script>
+
+<!-- User class -->
+<script src="js/User.js"></script>
