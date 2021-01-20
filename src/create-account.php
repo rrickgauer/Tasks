@@ -1,10 +1,3 @@
-<?php
-
-require_once('DB.php');
-
-?>
-
-
 <!DOCTYPE html>
 <html>
 
@@ -27,7 +20,7 @@ require_once('DB.php');
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class='bx bx-envelope'></i></span>
                     </div>
-                    <input type="email" class="form-control" id="new-email">
+                    <input type="email" class="form-control new-account-input" id="new-email">
                     <div class="invalid-feedback"></div>
                     <div class="valid-feedback"></div>
                 </div>
@@ -40,7 +33,7 @@ require_once('DB.php');
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class='bx bxs-lock-alt'></i></span>
                     </div>
-                    <input type="password" class="form-control" id="new-password-1">
+                    <input type="password" class="form-control new-account-input" id="new-password-1">
                     <div class="invalid-feedback"></div>
                     <div class="valid-feedback"></div>
                 </div>
@@ -53,20 +46,16 @@ require_once('DB.php');
                     <div class="input-group-prepend">
                         <span class="input-group-text"><i class='bx bxs-lock-alt'></i></span>
                     </div>
-                    <input type="password" class="form-control" id="new-password-2">
+                    <input type="password" class="form-control new-account-input" id="new-password-2">
                     <div class="invalid-feedback"></div>
                     <div class="valid-feedback"></div>
                 </div>
             </div>
 
+            <!-- button to create the account -->
             <button type="button" class="btn btn-primary" id="btn-create-account">Create account</button>
 
         </form>
-
-
-
-
-
 
 
     </div>
