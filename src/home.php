@@ -14,7 +14,7 @@
     </div>
 
 <?php include('footer.php'); ?>
-<script src="js/home-js.js"></script>
+<script src="js/home.js"></script>
 
 </body>
 </html>
