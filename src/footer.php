@@ -15,3 +15,6 @@
 
 <!-- Constants -->
 <script src="js/Constants.js"></script>
+
+<!-- common functions -->
+<script src="js/Common.js"></script>

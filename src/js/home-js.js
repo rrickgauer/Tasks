@@ -28,14 +28,14 @@ function testConnection() {
         type: "get",
 
         data: {
-            // email: "rrickgauer8@gmail.com",
-            // password: "90!Hayrack",
+            email: "rrickgauer8@gmail.com",
+            password: "90!Hayrack",
 
         },
 
-        beforeSend: function(xhr){
-            xhr.setRequestHeader('X-USER-ID', '0f3b1d90-5a08-11eb-8c34-002590d0b8f0');
-        },
+        // beforeSend: function(xhr){
+        //     xhr.setRequestHeader('X-USER-ID', '0f3b1d90-5a08-11eb-8c34-002590d0b8f0');
+        // },
 
         success: function(response) { 
             // console.log(response.text);
