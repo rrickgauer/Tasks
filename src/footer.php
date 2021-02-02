@@ -10,6 +10,9 @@
 <!-- jquery toast: https://kamranahmed.info/toast -->
 <script src="js/external/jquery.toast.min.js"></script>
 
+<!-- uuid: https://github.com/uuidjs/uuid -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
+
 <!-- autotables -->
 <!-- <script src="js/external/auto-tables.js"></script> -->
 
