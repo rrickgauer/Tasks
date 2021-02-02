@@ -8,7 +8,7 @@
 <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet' />
 
 <!-- flatpickr: https://flatpickr.js.org/ -->
-<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" /> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
 
 <!-- jquery toast: https://kamranahmed.info/toast -->
 <link rel="stylesheet" href="css/external/jquery.toast.min.css">

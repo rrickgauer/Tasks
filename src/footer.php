@@ -13,6 +13,9 @@
 <!-- uuid: https://github.com/uuidjs/uuid -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uuid/8.1.0/uuidv4.min.js"></script>
 
+<!-- flatpickr: https://flatpickr.js.org/ -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 <!-- autotables -->
 <!-- <script src="js/external/auto-tables.js"></script> -->
 
