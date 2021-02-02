@@ -7,6 +7,10 @@ const inputAddress2    = $('#address-2-new');
 const inputCity        = $('#city-new');
 const inputState       = $('#state-new');
 const inputZip         = $('#zip-new');
+const inputStartsOn    = $('#starts-on-new');
+const inputStartsAt    = $('#starts-at-new');
+const inputEndsOn      = $('#ends-on-new');
+const inputEndsAt      = $('#ends-at-new');
 const btnSubmit        = $('#btn-submit-new-event');
 
 const inputClassName = '.event-new-input';
@@ -20,6 +24,7 @@ const mUser = new User(Common.getUserIdFromLocalStorage());
  */
 $(document).ready(function() {
     addListeners();
+    initFlatpickr();
 });
 
 
@@ -46,6 +51,8 @@ function submitNewEvent() {
         // generate and add a UUID for the event
         // const eventUUID = Common.getUUID();
         inputValues.id = Common.getUUID();
+
+        console.log(inputValues);
 
         // send the request to the api
         $.ajax({
@@ -97,14 +104,18 @@ function getNewEventInputValues() {
     
     // get the inital input values
     const inputValues = {
-        name: $(inputName).val(),
-        description: $(inputDescription).val(),
-        phone_number: $(inputPhone).val(),
+        name              : $(inputName).val(),
+        description       : $(inputDescription).val(),
+        phone_number      : $(inputPhone).val(),
         location_address_1: $(inputAddress1).val(),
         location_address_2: $(inputAddress2).val(),
-        location_city: $(inputCity).val(),
-        location_state: $(inputState).val(),
-        location_zip: $(inputZip).val(),
+        location_city     : $(inputCity).val(),
+        location_state    : $(inputState).val(),
+        location_zip      : $(inputZip).val(),
+        starts_on         : $(inputStartsOn).val(),
+        starts_at         : $(inputStartsAt).val(),
+        ends_on           : $(inputEndsOn).val(),
+        ends_at           : $(inputEndsAt).val(),
     }
 
 
@@ -140,4 +151,24 @@ function submitNewEventError(response) {
 }
 
 
+/**
+ * Initialize the date/time inputs to use flatpickr
+ */
+function initFlatpickr() {
+    // time inputs
+    $('.event-new-recurrence .time').flatpickr({
+        enableTime: true,
+        noCalendar: true,
+        dateFormat: "H:i:S",
+        altInput: true,
+        altFormat: "h:i K",
+    });
 
+    // date inputs
+    $('.event-new-recurrence .date').flatpickr({
+        altInput: true,
+        altFormat: "F j, Y",
+        dateFormat: "Y-m-d",
+    });
+
+}

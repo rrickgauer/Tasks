@@ -3,3 +3,11 @@ body {
     margin-bottom: 100px;
 }
 
+hr {
+    border-top-width: 5px;
+}
+
+.event-new-recurrence input:disabled, 
+.event-new-recurrence input[readonly]  {
+    background-color: white;
+}

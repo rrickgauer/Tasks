@@ -21,6 +21,53 @@
                 <div class="invalid-feedback"></div>
             </div>
 
+
+            <hr class="mt-5">
+
+
+            <!-- recurrence -->
+            <div class="event-new-recurrence">
+
+                <!-- starts on -->
+                <div class="form-group form-event-new-group">
+                    <label for="starts-on-new">Starts on</label>
+                    <input type="date" class="form-control form-control-sm event-new-input date" id="starts-on-new">
+                    <div class="invalid-feedback"></div>
+                </div>
+
+                <!-- starts at -->
+                <div class="form-group form-event-new-group">
+                    <label for="starts-at-new">Starts at</label>
+                    <input type="time" class="form-control form-control-sm event-new-input time" id="starts-at-new">
+                    <div class="invalid-feedback"></div>
+                </div>
+
+                <!-- ends on -->
+                <div class="form-group form-event-new-group">
+                    <label for="ends-on-new">Ends on</label>
+                    <input type="date" class="form-control form-control-sm event-new-input date" id="ends-on-new">
+                    <div class="invalid-feedback"></div>
+                </div>
+
+                <!-- ends at -->
+                <div class="form-group form-event-new-group">
+                    <label for="ends-at-new">Ends at</label>
+                    <input type="time" class="form-control form-control-sm event-new-input time" id="ends-at-new">
+                    <div class="invalid-feedback"></div>
+                </div>
+            </div>
+
+            <hr class="mb-5">
+
+
+
+
+
+
+
+
+
+
             <!-- description -->
             <div class="form-group form-event-new-group">
                 <label for="description-new">Description</label>
