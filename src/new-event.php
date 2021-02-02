@@ -25,9 +25,8 @@
             <hr class="mt-5">
 
 
-            <!-- recurrence -->
-            <div class="event-new-recurrence">
-
+            <!-- start and end times -->
+            <div class="event-dates-new">
                 <!-- starts on -->
                 <div class="form-group form-event-new-group">
                     <label for="starts-on-new">Starts on</label>
@@ -59,6 +58,51 @@
 
             <hr class="mb-5">
 
+            <!-- recurrence info -->
+            <div class="event-recurrence-new">
+
+                <div class="d-flex">
+                    <span class="mr-3">Repeats every</span>
+                    <!-- seperation -->
+                    <div class="form-group form-event-new-group mr-3">
+                        <input type="number" class="form-control form-control-sm event-new-input time" id="seperation-new" min="0">
+                    </div>
+                    
+                    <!-- frequency -->
+                    <div>
+                        <div class="form-group form-event-new-group">
+                            <select class="form-control form-control-sm event-new-input time" id="frequency-new">
+                                <option value="ONCE">Does not repeat</option>
+                                <option value="DAILY">Day</option>
+                                <option value="WEEKLY">Week</option>
+                                <option value="MONTHLY">Month</option>
+                                <option value="YEARLY">Year</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- weekly frequency day select -->
+                    <div class="d-none ml-3">
+                        <span class="mr-3">On</span>
+                        <select id="recurrence-weekly-day-new" class="form-control form-control-sm event-new-input">
+                            <option value="0">Sunday</option>
+                            <option value="1">Monday</option>
+                            <option value="2">Tuesday</option>
+                            <option value="3">Wednesday</option>
+                            <option value="4">Thursday</option>
+                            <option value="5">Friday</option>
+                            <option value="6">Saturday</option>
+                        </select>
+                    </div>
+
+                </div>
+
+
+
+
+
+
+            </div>
 
 
 
@@ -68,6 +112,7 @@
 
 
 
+            <hr class="mb-5">
             <!-- description -->
             <div class="form-group form-event-new-group">
                 <label for="description-new">Description</label>

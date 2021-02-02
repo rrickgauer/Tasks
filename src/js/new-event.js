@@ -156,7 +156,7 @@ function submitNewEventError(response) {
  */
 function initFlatpickr() {
     // time inputs
-    $('.event-new-recurrence .time').flatpickr({
+    $('.event-dates-new .time').flatpickr({
         enableTime: true,
         noCalendar: true,
         dateFormat: "H:i:S",
@@ -165,7 +165,7 @@ function initFlatpickr() {
     });
 
     // date inputs
-    $('.event-new-recurrence .date').flatpickr({
+    $('.event-dates-new .date').flatpickr({
         altInput: true,
         altFormat: "F j, Y",
         dateFormat: "Y-m-d",
