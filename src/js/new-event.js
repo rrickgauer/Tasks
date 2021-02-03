@@ -96,16 +96,16 @@ function submitNewEvent() {
     // const eventUUID = Common.getUUID();
     inputValues.id = Common.getUUID();
     inputValues.recurrence_id = Common.getUUID();
-            
+    
     // send the request to the api
-    // $.ajax({
-    //     headers: {"X-USER-ID" :  mUser.userID},
-    //     url: m_API_EVENTS,
-    //     type: "POST",
-    //     data: inputValues,
-    //     success: submitNewEventSuccess,
-    //     error: submitNewEventError,
-    // });
+    $.ajax({
+        headers: {"X-USER-ID" :  mUser.userID},
+        url: m_API_EVENTS,
+        type: "POST",
+        data: inputValues,
+        success: submitNewEventSuccess,
+        error: submitNewEventError,
+    });
 
 }
 
@@ -226,11 +226,6 @@ function areInputsValid() {
         }
     }
 
-
-
-
-
-    
     return true;
 }
 
@@ -264,9 +259,6 @@ function removeInvalidFeedback() {
         } else {
             $(this).closest('.form-group').find('input').removeClass('is-invalid');
         }
-
-        
-        
     });
 }
 
