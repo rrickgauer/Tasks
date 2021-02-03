@@ -61,6 +61,7 @@ function initFlatpickr() {
         altInput: true,
         altFormat: "F j, Y",
         dateFormat: "Y-m-d",
+        defaultDate: "today",
     });   
 }
 
@@ -114,13 +115,13 @@ function areInputsValid() {
 
     // starts_on must have value
     if ($(inputStartsOn).val() == '') {
-        setInputIsInvalid(inputStartsOn, 'Required');
+        setInputIsInvalid(inputStartsOn);
         return false;
     }
 
     // ends_on must have value
     if ($(inputEndsOn).val() == '') {
-        setInputIsInvalid(inputEndsOn, 'Required');
+        setInputIsInvalid(inputEndsOn);
         return false;
     }
 
@@ -130,7 +131,7 @@ function areInputsValid() {
         const seperationValue = $(inputSeperation).val();
 
         if (seperationValue == '') {
-            setInputIsInvalid(inputSeperation, 'Required.');
+            setInputIsInvalid(inputSeperation);
             return false;
         }
 
@@ -138,6 +139,22 @@ function areInputsValid() {
             setInputIsInvalid(inputSeperation, 'Must be greater than 0.');
             return false;
         }
+    }
+
+    // if freq is weekly day must have a value between 0-6
+    const reccurenceDayValue = $(inputRecurrenceDay).val();
+    if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.WEEKLY) {
+
+        if (reccurenceDayValue == '') {
+            setInputIsInvalid(inputRecurrenceDay);
+            return false;
+        }
+
+        else if (parseInt(reccurenceDayValue) > 6 || parseInt(reccurenceDayValue) < 0) {
+            setInputIsInvalid(inputRecurrenceDay, 'Must be between 0-6');
+            return false;
+        }
+
     }
 
 
@@ -152,7 +169,7 @@ function areInputsValid() {
  ***************************************************************************/
 function setInputIsInvalid(elementName, errorMessage) {
     if (errorMessage == undefined) {
-        errorMessage = 'Error.';
+        errorMessage = 'Required';
     }
 
     if ($(elementName).closest('.form-group').find('.invalid-feedback').length < 1) {
