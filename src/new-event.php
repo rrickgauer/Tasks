@@ -61,6 +61,7 @@
                     <!-- seperation -->
                     <div class="form-group form-event-new-group mr-3">
                         <input type="number" class="form-control form-control-sm event-new-input d-none" id="seperation-new" min="1" value="1">
+                        <div class="invalid-feedback"></div>
                     </div>
                     
                     <!-- frequency -->
@@ -73,22 +74,26 @@
                                 <option value="MONTHLY">Month</option>
                                 <option value="YEARLY">Year</option>
                             </select>
+                            <div class="invalid-feedback"></div>
                         </div>
                     </div>
                     
                     <!-- recurrence day -->
                     <div class="form-group form-event-new-group ml-3">
                         <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-day-new" max="31" placeholder="Day recurrence">
+                        <div class="invalid-feedback"></div>
                     </div>
 
                     <!-- recurrence week -->
                     <div class="form-group form-event-new-group ml-3">
                         <input type="number" pattern="[0-9]*" inputmode="numeric"  class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-week-new" max="5" placeholder="Week recurrence">
+                        <div class="invalid-feedback"></div>
                     </div>
 
                     <!-- recurrence month -->
                     <div class="form-group form-event-new-group ml-3">
                         <input type="number" pattern="[0-9]*" inputmode="numeric"  class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-month-new" max="12" placeholder="Month recurrence">
+                        <div class="invalid-feedback"></div>
                     </div>
                 </div>
             </div>

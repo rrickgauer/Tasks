@@ -38,9 +38,24 @@ $(document).ready(function() {
  * Add all the event listeners to the page.
  ***************************************************************************/
 function addListeners() {
-    submitNewEvent();
+    
+    $(btnSubmit).on('click', function() {
+        submitNewEvent();
+    });
+
+    // submit entry when enter key is hit
+    $('.form-event-new').on('keypress', function(e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            submitNewEvent();
+        }
+    });
+    
+    
+    // submitNewEvent();
     removeInvalidFeedback();
     toggleRecurrenceInputsVisibility();
+
 }
 
 /***************************************************************************
@@ -61,6 +76,7 @@ function initFlatpickr() {
         altInput: true,
         altFormat: "F j, Y",
         dateFormat: "Y-m-d",
+        defaultDate: "today",
     });   
 }
 
@@ -69,29 +85,28 @@ function initFlatpickr() {
  * Submits a new event to the api.
  ***************************************************************************/
 function submitNewEvent() {
-    $(btnSubmit).on('click', function() {
-        // make sure all inputs are valid
-        if (!areInputsValid()) {
-            return;
-        }
-        
-        let inputValues = getNewEventInputValues();   // retrieve the input values
-        
-        // generate and add a UUID for the event
-        // const eventUUID = Common.getUUID();
-        inputValues.id = Common.getUUID();
-        inputValues.recurrence_id = Common.getUUID();
-                
-        // send the request to the api
-        $.ajax({
-            headers: {"X-USER-ID" :  mUser.userID},
-            url: m_API_EVENTS,
-            type: "POST",
-            data: inputValues,
-            success: submitNewEventSuccess,
-            error: submitNewEventError,
-        });
+    // make sure all inputs are valid
+    if (!areInputsValid()) {
+        return;
+    }
+
+    let inputValues = getNewEventInputValues();   // retrieve the input values
+
+    // generate and add a UUID for the event
+    // const eventUUID = Common.getUUID();
+    inputValues.id = Common.getUUID();
+    inputValues.recurrence_id = Common.getUUID();
+    
+    // send the request to the api
+    $.ajax({
+        headers: {"X-USER-ID" :  mUser.userID},
+        url: m_API_EVENTS,
+        type: "POST",
+        data: inputValues,
+        success: submitNewEventSuccess,
+        error: submitNewEventError,
     });
+
 }
 
 
@@ -110,16 +125,140 @@ function areInputsValid() {
         
         return false;
     }
-    
+
+
+    // starts_on must have value
+    if ($(inputStartsOn).val() == '') {
+        setInputIsInvalid(inputStartsOn);
+        return false;
+    }
+
+    // ends_on must have value
+    if ($(inputEndsOn).val() == '') {
+        setInputIsInvalid(inputEndsOn);
+        return false;
+    }
+
+
+    // ends on must be >= starts on
+    const dateStartsOn = new Date($(inputStartsOn).val());
+    const dateEndsOn = new Date($(inputEndsOn).val());
+    if (dateEndsOn < dateStartsOn) {
+        setInputIsInvalid(inputEndsOn, 'Must be on or after Starts on');
+        return false;
+    }
+
+
+    // if frequency is not once, seperation must have a value greater than 0
+    const inputFrequencyValue = $(inputFrequency).find('option:selected').val();
+    if (inputFrequencyValue != m_EVENT_FREQUENCY_VALUES.ONCE) {
+        const seperationValue = $(inputSeperation).val();
+
+        if (seperationValue == '') {
+            setInputIsInvalid(inputSeperation);
+            return false;
+        }
+
+        else if (parseInt(seperationValue) < 1) {
+            setInputIsInvalid(inputSeperation, 'Must be greater than 0.');
+            return false;
+        }
+    }
+
+    // if freq is weekly day must have a value between 0-6
+    const recurrenceDayValue = $(inputRecurrenceDay).val();
+    if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.WEEKLY) {
+        // no value
+        if (recurrenceDayValue == '') {
+            setInputIsInvalid(inputRecurrenceDay);
+            return false;
+        }
+
+        // value is not within 0-6
+        else if (parseInt(recurrenceDayValue) > 6 || parseInt(recurrenceDayValue) < 0) {
+            setInputIsInvalid(inputRecurrenceDay, 'Must be between 0-6');
+            return false;
+        }
+    }
+
+
+    const recurrenceWeekValue = $(inputRecurrenceWeek).val();
+    if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.MONTHLY || inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.YEARLY) {
+        // no day value
+        if (recurrenceDayValue == '') {
+            setInputIsInvalid(inputRecurrenceDay);
+            return false;
+        }
+
+        // if week is null, day must be between 1-31
+        if (recurrenceWeekValue == '' && recurrenceDayValue != '') {
+            if (parseInt(recurrenceDayValue) > 31 || parseInt(recurrenceDayValue) < 1) {
+                setInputIsInvalid(inputRecurrenceDay, 'Must be within 1-31');
+                return false;   
+            }
+        }
+
+        // if week and day have values:
+        // week must be between 1-4
+        // day must be within 0-6
+        if (recurrenceDayValue != '' && recurrenceWeekValue != '') {
+            // check day
+            if (parseInt(recurrenceDayValue) > 6 || parseInt(recurrenceDayValue) < 0) {
+                setInputIsInvalid(inputRecurrenceDay, 'Must be within 0-6');
+                return false;            
+            }
+            // check week
+            if (parseInt(recurrenceWeekValue) > 4 || parseInt(recurrenceWeekValue) < 1) {
+                setInputIsInvalid(inputRecurrenceWeek, 'Must be within 1-4');
+                return false;             
+            }
+        }
+    }
+
+    const recurrenceMonthValue = $(inputRecurrenceMonth).val();
+
+    // if freq is YEARLY and month input has a value
+    // month must be within 1-12
+    if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.YEARLY && recurrenceMonthValue != '') {
+        if (parseInt(recurrenceMonthValue) > 12 || parseInt(recurrenceMonthValue) < 1) {
+            setInputIsInvalid(inputRecurrenceMonth, 'Must be within 1-12');
+            return false; 
+        }
+    }
+
     return true;
 }
+
+/***************************************************************************
+ * Sets the text of an input's error message section.
+ * Then, sets the input to invalid.
+ ***************************************************************************/
+function setInputIsInvalid(elementName, errorMessage) {
+    if (errorMessage == undefined) {
+        errorMessage = 'Required';
+    }
+
+    if ($(elementName).closest('.form-group').find('.invalid-feedback').length < 1) {
+        $(elementName).closest('.form-group').append('<div class="invalid-feedback"></div>');
+    }
+
+    $(elementName).closest('.form-group').find('.invalid-feedback').text(errorMessage)
+    $(elementName).closest('.form-group').find('input').addClass('is-invalid');
+    $(elementName).addClass('is-invalid');
+}
+
 
 /***************************************************************************
  * Remove the class is-invalid from an input when it is changed.
  ***************************************************************************/
 function removeInvalidFeedback() {
-    $(inputClassName).on('keydown', function() {
-        $(this).removeClass('is-invalid');
+    $(inputClassName).on('change keydown', function() {
+
+        if ($(this).hasClass('is-invalid')) {
+            $(this).removeClass('is-invalid');
+        } else {
+            $(this).closest('.form-group').find('input').removeClass('is-invalid');
+        }
     });
 }
 
