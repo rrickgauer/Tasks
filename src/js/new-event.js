@@ -83,14 +83,14 @@ function submitNewEvent() {
         inputValues.recurrence_id = Common.getUUID();
                 
         // send the request to the api
-        $.ajax({
-            headers: {"X-USER-ID" :  mUser.userID},
-            url: m_API_EVENTS,
-            type: "POST",
-            data: inputValues,
-            success: submitNewEventSuccess,
-            error: submitNewEventError,
-        });
+        // $.ajax({
+        //     headers: {"X-USER-ID" :  mUser.userID},
+        //     url: m_API_EVENTS,
+        //     type: "POST",
+        //     data: inputValues,
+        //     success: submitNewEventSuccess,
+        //     error: submitNewEventError,
+        // });
     });
 }
 
@@ -110,16 +110,40 @@ function areInputsValid() {
         
         return false;
     }
+
+
+    // starts_at must have value
+    console.log($(inputStartsOn).val());
+    if ($(inputStartsOn).val() == '') {
+        setInputIsInvalid(inputStartsOn, 'Required');
+    }
+
+
     
     return true;
 }
 
 /***************************************************************************
+ * Sets the text of an input's error message section.
+ * Then, sets the input to invalid.
+ ***************************************************************************/
+function setInputIsInvalid(elementName, errorMessage) {
+    if (errorMessage == undefined) {
+        errorMessage = 'Error.';
+    }
+    $(elementName).closest('.form-group').find('.invalid-feedback').text(errorMessage)
+    $(elementName).closest('.form-group').find('input').addClass('is-invalid');
+    $(elementName).addClass('is-invalid');
+}
+
+
+/***************************************************************************
  * Remove the class is-invalid from an input when it is changed.
  ***************************************************************************/
 function removeInvalidFeedback() {
-    $(inputClassName).on('keydown', function() {
+    $(inputClassName).on('change keydown', function() {
         $(this).removeClass('is-invalid');
+        $(this).closest('.form-group').find('input').removeClass('is-invalid');
     });
 }
 
