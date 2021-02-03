@@ -5,3 +5,11 @@ const m_API_EVENTS = m_API + '/events';
 const API_RETURN_CODES = {
     Email_Is_Taken: 100,
 }
+
+const m_EVENT_FREQUENCY_VALUES = {
+    ONCE: 'ONCE',
+    DAILY: 'DAILY',
+    WEEKLY: 'WEEKLY',
+    MONTHLY: 'MONTHLY',
+    YEARLY: 'YEARLY',
+}

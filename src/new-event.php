@@ -71,7 +71,7 @@
                     <!-- frequency -->
                     <div>
                         <div class="form-group form-event-new-group">
-                            <select class="form-control form-control-sm event-new-input time" id="frequency-new">
+                            <select class="form-control form-control-sm event-new-input" id="frequency-new">
                                 <option value="ONCE">Does not repeat</option>
                                 <option value="DAILY">Day</option>
                                 <option value="WEEKLY">Week</option>
@@ -80,26 +80,22 @@
                             </select>
                         </div>
                     </div>
-
-                    <!-- weekly frequency day select -->
-                    <div class="d-none ml-3">
-                        <span class="mr-3">On</span>
-                        <select id="recurrence-weekly-day-new" class="form-control form-control-sm event-new-input">
-                            <option value="0">Sunday</option>
-                            <option value="1">Monday</option>
-                            <option value="2">Tuesday</option>
-                            <option value="3">Wednesday</option>
-                            <option value="4">Thursday</option>
-                            <option value="5">Friday</option>
-                            <option value="6">Saturday</option>
-                        </select>
+                    
+                    <!-- recurrence day -->
+                    <div class="form-group form-event-new-group ml-3">
+                        <input type="number" class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-day-new" max="31" placeholder="Day recurrence">
                     </div>
 
+                    <!-- recurrence week -->
+                    <div class="form-group form-event-new-group ml-3">
+                        <input type="number" class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-week-new" max="31" placeholder="Week recurrence">
+                    </div>
+
+                    <!-- recurrence month -->
+                    <div class="form-group form-event-new-group ml-3">
+                        <input type="number" class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-month-new" max="31" placeholder="Month recurrence">
+                    </div>
                 </div>
-
-
-
-
 
 
             </div>
