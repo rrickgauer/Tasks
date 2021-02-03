@@ -132,18 +132,23 @@ function getNewEventInputValues() {
     
     // get the inital input values
     const inputValues = {
-        name              : $(inputName).val(),
-        description       : $(inputDescription).val(),
-        phone_number      : $(inputPhone).val(),
+        name:               $(inputName).val(),
+        description:        $(inputDescription).val(),
+        phone_number:       $(inputPhone).val(),
         location_address_1: $(inputAddress1).val(),
         location_address_2: $(inputAddress2).val(),
-        location_city     : $(inputCity).val(),
-        location_state    : $(inputState).val(),
-        location_zip      : $(inputZip).val(),
-        starts_on         : $(inputStartsOn).val(),
-        starts_at         : $(inputStartsAt).val(),
-        ends_on           : $(inputEndsOn).val(),
-        ends_at           : $(inputEndsAt).val(),
+        location_city:      $(inputCity).val(),
+        location_state:     $(inputState).val(),
+        location_zip:       $(inputZip).val(),
+        starts_on:          $(inputStartsOn).val(),
+        starts_at:          $(inputStartsAt).val(),
+        ends_on:            $(inputEndsOn).val(),
+        ends_at:            $(inputEndsAt).val(),
+        frequency:          $(inputFrequency).val(),
+        seperation:         $(inputSeperation).val(),
+        recurrence_day:     $(inputRecurrenceDay).val(),
+        recurrence_week:    $(inputRecurrenceWeek).val(),
+        recurrence_month:   $(inputRecurrenceMonth).val(),
     }
     
     
@@ -199,7 +204,7 @@ function toggleRecurrenceInputsVisibility() {
             $(inputSeperation).removeClass('d-none');
         }
 
-        
+
         if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.WEEKLY) {
             $(inputRecurrenceDay).removeClass('d-none');            // show day
         } 
