@@ -1,3 +1,13 @@
 body {
     background-color: #fafafa;
+    margin-bottom: 100px;
+}
+
+hr {
+    border-top-width: 5px;
+}
+
+.event-dates-new input:disabled, 
+.event-dates-new input[readonly]  {
+    background-color: white;
 }
