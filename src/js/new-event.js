@@ -115,12 +115,31 @@ function areInputsValid() {
     // starts_on must have value
     if ($(inputStartsOn).val() == '') {
         setInputIsInvalid(inputStartsOn, 'Required');
+        return false;
     }
 
     // ends_on must have value
     if ($(inputEndsOn).val() == '') {
         setInputIsInvalid(inputEndsOn, 'Required');
+        return false;
     }
+
+    // if frequency is not once, seperation must have a value greater than 0
+    const inputFrequencyValue = $(inputFrequency).find('option:selected').val();
+    if (inputFrequencyValue != m_EVENT_FREQUENCY_VALUES.ONCE) {
+        const seperationValue = $(inputSeperation).val();
+
+        if (seperationValue == '') {
+            setInputIsInvalid(inputSeperation, 'Required.');
+            return false;
+        }
+
+        else if (parseInt(seperationValue) < 1) {
+            setInputIsInvalid(inputSeperation, 'Must be greater than 0.');
+            return false;
+        }
+    }
+
 
 
     
@@ -135,6 +154,11 @@ function setInputIsInvalid(elementName, errorMessage) {
     if (errorMessage == undefined) {
         errorMessage = 'Error.';
     }
+
+    if ($(elementName).closest('.form-group').find('.invalid-feedback').length < 1) {
+        $(elementName).closest('.form-group').append('<div class="invalid-feedback"></div>');
+    }
+
     $(elementName).closest('.form-group').find('.invalid-feedback').text(errorMessage)
     $(elementName).closest('.form-group').find('input').addClass('is-invalid');
     $(elementName).addClass('is-invalid');
