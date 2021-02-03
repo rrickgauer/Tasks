@@ -187,9 +187,19 @@ function toggleRecurrenceInputsVisibility() {
         const inputFrequencyValue = $(inputFrequency).find('option:selected').val();
 
         // clear and hide all the recurrence inputs initiallly
-        $('.event-new-input.recurrence').addClass('d-none');
         $('.event-new-input.recurrence').val('');
+        $('.event-new-input.recurrence').addClass('d-none');
+        
+        // if the frequency was set to once, hide the seperation and exit
+        if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.ONCE) {
+            $(inputSeperation).addClass('d-none');
+            $(inputSeperation).val('1');
+            return;
+        } else {
+            $(inputSeperation).removeClass('d-none');
+        }
 
+        
         if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.WEEKLY) {
             $(inputRecurrenceDay).removeClass('d-none');            // show day
         } 
@@ -200,7 +210,6 @@ function toggleRecurrenceInputsVisibility() {
         else if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.YEARLY) {
             $('.event-new-input.recurrence').removeClass('d-none'); // show all
         }
-
     });
 
 

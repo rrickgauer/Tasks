@@ -65,7 +65,7 @@
                     <span class="mr-3">Repeats every</span>
                     <!-- seperation -->
                     <div class="form-group form-event-new-group mr-3">
-                        <input type="number" class="form-control form-control-sm event-new-input time" id="seperation-new" min="0">
+                        <input type="number" class="form-control form-control-sm event-new-input d-none" id="seperation-new" min="1" value="1">
                     </div>
                     
                     <!-- frequency -->
