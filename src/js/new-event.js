@@ -156,20 +156,59 @@ function areInputsValid() {
     }
 
     // if freq is weekly day must have a value between 0-6
-    const reccurenceDayValue = $(inputRecurrenceDay).val();
+    const recurrenceDayValue = $(inputRecurrenceDay).val();
     if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.WEEKLY) {
-
-        if (reccurenceDayValue == '') {
+        // no value
+        if (recurrenceDayValue == '') {
             setInputIsInvalid(inputRecurrenceDay);
             return false;
         }
 
-        else if (parseInt(reccurenceDayValue) > 6 || parseInt(reccurenceDayValue) < 0) {
+        // value is not within 0-6
+        else if (parseInt(recurrenceDayValue) > 6 || parseInt(recurrenceDayValue) < 0) {
             setInputIsInvalid(inputRecurrenceDay, 'Must be between 0-6');
             return false;
         }
-
     }
+
+
+    const recurrenceWeekValue = $(inputRecurrenceWeek).val();
+    if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.MONTHLY) {
+        // no day value
+        if (recurrenceDayValue == '') {
+            setInputIsInvalid(inputRecurrenceDay);
+            return false;
+        }
+
+        // if week is null, day must be between 1-31
+        if (recurrenceWeekValue == '' && recurrenceDayValue != '') {
+            if (parseInt(recurrenceDayValue) > 31 || parseInt(recurrenceDayValue) < 1) {
+                setInputIsInvalid(inputRecurrenceDay, 'Must be within 1-31');
+                return false;   
+            }
+        }
+
+
+        // if week and day have values:
+        // week must be between 1-4
+        // day must be within 0-6
+        if (recurrenceDayValue != '' && recurrenceWeekValue != '') {
+            // check day
+            if (parseInt(recurrenceDayValue) > 6 || parseInt(recurrenceDayValue) < 0) {
+                setInputIsInvalid(inputRecurrenceDay, 'Must be within 0-6');
+                return false;            
+            }
+            // check week
+            if (parseInt(recurrenceWeekValue) > 4 || parseInt(recurrenceWeekValue) < 1) {
+                setInputIsInvalid(inputRecurrenceWeek, 'Must be within 1-4');
+                return false;             
+            }
+
+
+        }
+    }
+
+
 
 
 
