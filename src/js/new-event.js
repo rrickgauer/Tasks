@@ -38,9 +38,24 @@ $(document).ready(function() {
  * Add all the event listeners to the page.
  ***************************************************************************/
 function addListeners() {
-    submitNewEvent();
+    
+    $(btnSubmit).on('click', function() {
+        submitNewEvent();
+    });
+
+    // submit entry when enter key is hit
+    $('.form-event-new').on('keypress', function(e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            submitNewEvent();
+        }
+    });
+    
+    
+    // submitNewEvent();
     removeInvalidFeedback();
     toggleRecurrenceInputsVisibility();
+
 }
 
 /***************************************************************************
@@ -70,29 +85,28 @@ function initFlatpickr() {
  * Submits a new event to the api.
  ***************************************************************************/
 function submitNewEvent() {
-    $(btnSubmit).on('click', function() {
-        // make sure all inputs are valid
-        if (!areInputsValid()) {
-            return;
-        }
-        
-        let inputValues = getNewEventInputValues();   // retrieve the input values
-        
-        // generate and add a UUID for the event
-        // const eventUUID = Common.getUUID();
-        inputValues.id = Common.getUUID();
-        inputValues.recurrence_id = Common.getUUID();
-                
-        // send the request to the api
-        // $.ajax({
-        //     headers: {"X-USER-ID" :  mUser.userID},
-        //     url: m_API_EVENTS,
-        //     type: "POST",
-        //     data: inputValues,
-        //     success: submitNewEventSuccess,
-        //     error: submitNewEventError,
-        // });
-    });
+    // make sure all inputs are valid
+    if (!areInputsValid()) {
+        return;
+    }
+
+    let inputValues = getNewEventInputValues();   // retrieve the input values
+
+    // generate and add a UUID for the event
+    // const eventUUID = Common.getUUID();
+    inputValues.id = Common.getUUID();
+    inputValues.recurrence_id = Common.getUUID();
+            
+    // send the request to the api
+    // $.ajax({
+    //     headers: {"X-USER-ID" :  mUser.userID},
+    //     url: m_API_EVENTS,
+    //     type: "POST",
+    //     data: inputValues,
+    //     success: submitNewEventSuccess,
+    //     error: submitNewEventError,
+    // });
+
 }
 
 
