@@ -139,6 +139,16 @@ function areInputsValid() {
         return false;
     }
 
+
+    // ends on must be >= starts on
+    const dateStartsOn = new Date($(inputStartsOn).val());
+    const dateEndsOn = new Date($(inputEndsOn).val());
+    if (dateEndsOn < dateStartsOn) {
+        setInputIsInvalid(inputEndsOn, 'Must be on or after Starts on');
+        return false;
+    }
+
+
     // if frequency is not once, seperation must have a value greater than 0
     const inputFrequencyValue = $(inputFrequency).find('option:selected').val();
     if (inputFrequencyValue != m_EVENT_FREQUENCY_VALUES.ONCE) {
