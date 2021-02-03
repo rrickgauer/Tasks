@@ -173,7 +173,7 @@ function areInputsValid() {
 
 
     const recurrenceWeekValue = $(inputRecurrenceWeek).val();
-    if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.MONTHLY) {
+    if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.MONTHLY || inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.YEARLY) {
         // no day value
         if (recurrenceDayValue == '') {
             setInputIsInvalid(inputRecurrenceDay);
@@ -187,7 +187,6 @@ function areInputsValid() {
                 return false;   
             }
         }
-
 
         // if week and day have values:
         // week must be between 1-4
@@ -203,8 +202,17 @@ function areInputsValid() {
                 setInputIsInvalid(inputRecurrenceWeek, 'Must be within 1-4');
                 return false;             
             }
+        }
+    }
 
+    const recurrenceMonthValue = $(inputRecurrenceMonth).val();
 
+    // if freq is YEARLY and month input has a value
+    // month must be within 1-12
+    if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.YEARLY && recurrenceMonthValue != '') {
+        if (parseInt(recurrenceMonthValue) > 12 || parseInt(recurrenceMonthValue) < 1) {
+            setInputIsInvalid(inputRecurrenceMonth, 'Must be within 1-12');
+            return false; 
         }
     }
 
@@ -240,8 +248,15 @@ function setInputIsInvalid(elementName, errorMessage) {
  ***************************************************************************/
 function removeInvalidFeedback() {
     $(inputClassName).on('change keydown', function() {
-        $(this).removeClass('is-invalid');
-        $(this).closest('.form-group').find('input').removeClass('is-invalid');
+
+        if ($(this).hasClass('is-invalid')) {
+            $(this).removeClass('is-invalid');
+        } else {
+            $(this).closest('.form-group').find('input').removeClass('is-invalid');
+        }
+
+        
+        
     });
 }
 
