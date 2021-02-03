@@ -80,9 +80,8 @@ function submitNewEvent() {
         // generate and add a UUID for the event
         // const eventUUID = Common.getUUID();
         inputValues.id = Common.getUUID();
-        
-        console.log(inputValues);
-        
+        inputValues.recurrence_id = Common.getUUID();
+                
         // send the request to the api
         $.ajax({
             headers: {"X-USER-ID" :  mUser.userID},
@@ -172,14 +171,13 @@ function getNewEventInputValues() {
  ***************************************************************************/
 function submitNewEventSuccess(responseData, textStatus, xhr) {
     console.log(responseData);
-    console.log(xhr);
 }
 
 /***************************************************************************
  * Action to take when submitting a new event returns an error.
  ***************************************************************************/
 function submitNewEventError(response) {
-    console.log(response);
+    console.error(response.responseText);
 }
 
 

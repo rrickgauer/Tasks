@@ -22,9 +22,6 @@
             </div>
 
 
-            <hr class="mt-5">
-
-
             <!-- start and end times -->
             <div class="event-dates-new">
                 <!-- starts on -->
@@ -56,8 +53,6 @@
                 </div>
             </div>
 
-            <hr class="mb-5">
-
             <!-- recurrence info -->
             <div class="event-recurrence-new">
 
@@ -83,32 +78,22 @@
                     
                     <!-- recurrence day -->
                     <div class="form-group form-event-new-group ml-3">
-                        <input type="number" class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-day-new" max="31" placeholder="Day recurrence">
+                        <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-day-new" max="31" placeholder="Day recurrence">
                     </div>
 
                     <!-- recurrence week -->
                     <div class="form-group form-event-new-group ml-3">
-                        <input type="number" class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-week-new" max="31" placeholder="Week recurrence">
+                        <input type="number" pattern="[0-9]*" inputmode="numeric"  class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-week-new" max="5" placeholder="Week recurrence">
                     </div>
 
                     <!-- recurrence month -->
                     <div class="form-group form-event-new-group ml-3">
-                        <input type="number" class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-month-new" max="31" placeholder="Month recurrence">
+                        <input type="number" pattern="[0-9]*" inputmode="numeric"  class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-month-new" max="12" placeholder="Month recurrence">
                     </div>
                 </div>
-
-
             </div>
 
 
-
-
-
-
-
-
-
-            <hr class="mb-5">
             <!-- description -->
             <div class="form-group form-event-new-group">
                 <label for="description-new">Description</label>
