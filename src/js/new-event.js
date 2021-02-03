@@ -112,10 +112,14 @@ function areInputsValid() {
     }
 
 
-    // starts_at must have value
-    console.log($(inputStartsOn).val());
+    // starts_on must have value
     if ($(inputStartsOn).val() == '') {
         setInputIsInvalid(inputStartsOn, 'Required');
+    }
+
+    // ends_on must have value
+    if ($(inputEndsOn).val() == '') {
+        setInputIsInvalid(inputEndsOn, 'Required');
     }
 
 
