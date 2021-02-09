@@ -16,14 +16,24 @@
 <!-- flatpickr: https://flatpickr.js.org/ -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+<!-- luxon: https://moment.github.io/luxon/index.htm -->
+<script src="https://cdn.jsdelivr.net/npm/luxon@1.25.0/build/global/luxon.min.js"></script>
+
 <!-- autotables -->
 <!-- <script src="js/external/auto-tables.js"></script> -->
 
 <!-- Constants -->
-<script src="js/Constants.js"></script>
-
-<!-- common functions -->
-<script src="js/Common.js"></script>
+<script src="js/classes/Constants.js"></script>
 
 <!-- User class -->
-<script src="js/User.js"></script>
+<script src="js/classes/User.js"></script>
+
+<!-- WeekDates class -->
+<script src="js/classes/WeekDates.js"></script>
+
+
+<script src="js/classes/DailyRecurrences.js"></script>
+<script src="js/classes/EventRecurrence.js"></script>
+
+<!-- common functions -->
+<script src="js/classes/Common.js"></script>
