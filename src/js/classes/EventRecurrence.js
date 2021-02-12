@@ -10,7 +10,7 @@ class EventRecurrence {
     Constructor
     **********************************************************/
     constructor(a_apiResponse) {
-        this.id = a_apiResponse.id;
+        this.id = a_apiResponse.event_id;
         this.occursOn = a_apiResponse.occurs_on;
         this.name = a_apiResponse.name;
     }

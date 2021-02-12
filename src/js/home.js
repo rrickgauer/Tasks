@@ -1,4 +1,3 @@
-
 /**********************************************************
 Page elements
 **********************************************************/
@@ -24,13 +23,6 @@ $(document).ready(function() {
     $("#nav-item-home").addClass('active');
     addListeners();
     initFlatpickrs();
-
-
-    $(e_modalEvent).modal('show');
-
-    m_ModalEvent.init('201723c5-f7fe-4216-a82f-0bf83735bb24');
-
-    
 });
 
 
@@ -38,7 +30,9 @@ $(document).ready(function() {
 Registers all of the event listeners for the page.
 **********************************************************/
 function addListeners() {
-    l_dateChange();
+    $(e_dateSelector).on('change', requestNewDates);
+    $(e_recurrences).on('click', '.task', openModalEvent);
+
 }
 
 
@@ -56,19 +50,15 @@ function initFlatpickrs() {
 }
 
 
-
-function l_dateChange() {
-    $(e_dateSelector).on('change', requestNewDates);
-}
-
-
+/**********************************************************
+Retrieve a week's worth of recurrences from the API
+**********************************************************/
 function requestNewDates() {
     const newDate = DateTime.fromSQL($(this).val());
     m_WeekDates = new WeekDates(newDate);
     getEventsInRange(m_WeekDates.getFirstString(), m_WeekDates.getLastString(), displayWeeklyEvents);
     $('.recurrences-board .recurrences').html('');
 }
-
 
 
 /**********************************************************
@@ -197,5 +187,23 @@ function displayWeeklyEvents(a_events) {
 
     // add the html to the view
     $(e_recurrences).html(html);
+}
+
+/**********************************************************
+Opens the event modal when an recurrence is clicked.
+**********************************************************/
+function openModalEvent(a_eventID) {
+    let eventID = a_eventID;    
+
+    /**
+     * If the argument is a jquery event,
+     * we need to rerieve the event id from the attribute of the element
+     */
+    if (a_eventID instanceof jQuery.Event) {
+        eventID = $(this).attr('data-event-id');
+    }
+
+    m_ModalEvent.init(eventID);
+    m_ModalEvent.showModal();
 }
 

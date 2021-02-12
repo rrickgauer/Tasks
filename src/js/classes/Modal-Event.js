@@ -1,4 +1,9 @@
+/**********************************************************
+ModalEvent
 
+This class holds the logic for the Event Modal.
+It retrieves and displays the meta-data for an event.
+**********************************************************/
 
 
 class ModalEvent
@@ -93,9 +98,15 @@ class ModalEvent
         $(self.e_ends_on).html(apiResponse.ends_on);
         $(self.e_frequency).html(apiResponse.frequency);
         $(self.e_seperation).html(apiResponse.seperation);
-
-
     }
+
+    /**********************************************************
+    Show the modal
+    **********************************************************/
+    showModal() {
+        $(this.e_modal).modal('show');
+    }
+    
 
 }
 
