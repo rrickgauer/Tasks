@@ -1,32 +1,34 @@
-// local variables
+/**********************************************************
+Module variables
+**********************************************************/
 const inputEmail       = $('#new-email');
 const inputPassword1   = $('#new-password-1');
 const inputPassword2   = $('#new-password-2');
 const btnCreateAccount = $('#btn-create-account');
 
 
-/**
- * Main
- */
+/**********************************************************
+Main logic
+**********************************************************/
 $(document).ready(function() {
     addEventListeners();
 });
 
-/**
- * Adds all the event listeners.
- */
+
+/**********************************************************
+Adds all the event listeners.
+**********************************************************/
 function addEventListeners() {
     createAccount();
     clearInvalidFeedbackClasses();
 }
 
 
-/**
- * Create a new account
- */
+/**********************************************************
+Create new account
+**********************************************************/
 function createAccount() {
     $(btnCreateAccount).on('click', function() {
-
         // disable the 'create account' button
         enableLoginLoadingButton();
 
@@ -60,9 +62,10 @@ function createAccount() {
 
 
 
-/**
- * Disables the login button and shows the spinner.
- */
+/**********************************************************
+Disables the login button.
+Shows the spinner
+**********************************************************/
 function enableLoginLoadingButton() {
     const btnHtml = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> &nbsp;Loading...';
 
@@ -71,9 +74,10 @@ function enableLoginLoadingButton() {
     $(btnCreateAccount).prop('disabled', true);
 }
 
-/**
- * Returns the login button back to its normal state.
- */
+
+/**********************************************************
+Returns the login button back to its normal state
+**********************************************************/
 function disableLoginLoadingButton() {
     $(btnCreateAccount).html('Create account');
 
@@ -81,12 +85,11 @@ function disableLoginLoadingButton() {
 }
 
 
-/**
- * validates all the inputs before sending data to the api.
- * 
- * Checks if all inputs have a value.
- * Checks if passwords match.
- */
+/**********************************************************
+Validates all the inputs before sending data to the api.
+- Checks if all the inputs have a value
+- Checks if passwords match
+**********************************************************/
 function areInputsValid() {
     // check if email has a value
     if ($(inputEmail).val() == '') {
@@ -125,10 +128,10 @@ function areInputsValid() {
 }
 
 
-/**
- * Clear the 'invalid-feedback' class from the inputs when 
- * the user starts typing on it.
- */
+/**********************************************************
+Clears the 'invalid-feedback' class from the inputs
+when the user starts typing on it.
+**********************************************************/
 function clearInvalidFeedbackClasses() {
     $('.new-account-input').on('keydown', function() {
         $(this).removeClass('is-invalid');
@@ -136,19 +139,19 @@ function clearInvalidFeedbackClasses() {
 }
 
 
-/**
- * Steps to take when a log in attempt was successful
- */
+/**********************************************************
+Steps to take when a log in attempt was successful
+**********************************************************/
 function loginSuccessful(apiResponse) {
     window.localStorage.setItem('userID', apiResponse.id);
     window.location.href = 'home.php';
 }
 
-/**
- * Steps to take when a log in attempt was not successful
- */
-function loginUnsuccessful(apiResponse) {
 
+/**********************************************************
+Steps to take when a log in attempt was not successful
+**********************************************************/
+function loginUnsuccessful(apiResponse) {
     // default error message
     let errorMessage = 'Error. Your account was not created. Please try again.';
 
@@ -162,11 +165,5 @@ function loginUnsuccessful(apiResponse) {
 
     console.log(apiResponse.responseJSON);
 }
-
-
-
-
-
-
 
 

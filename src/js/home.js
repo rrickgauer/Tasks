@@ -24,7 +24,7 @@ If no user id is set in local storage, go to the login page.
 **********************************************************/
 function setUser() {
     // be sure the user's id is set
-    if (!Common.isUserIdSet()) {
+    if (!Utilities.isUserIdSet()) {
         window.location.href = 'login.php';
     }
 
@@ -80,7 +80,7 @@ function getEventsInRange(a_startsOn, a_endsOn, a_actionSuccess, a_actionError) 
     // send the request to the api
     $.ajax({
         headers: {"X-USER-ID" :  m_User.userID},
-        url: m_API_RECURRENCES,
+        url: Constants.API_URLS.RECURRENCES,
         type: "GET",
         data: dateRanges,
         success: a_actionSuccess,

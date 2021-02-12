@@ -16,13 +16,11 @@ const inputFrequency       = $('#frequency-new');
 const inputRecurrenceDay   = $('#recurrence-day-new');
 const inputRecurrenceWeek  = $('#recurrence-week-new');
 const inputRecurrenceMonth = $('#recurrence-month-new');
-
-const btnSubmit = $('#btn-submit-new-event');
-
-const inputClassName = '.event-new-input';
+const btnSubmit            = $('#btn-submit-new-event');
+const inputClassName       = '.event-new-input';
 
 // other shit
-const mUser = new User(Common.getUserIdFromLocalStorage());
+const mUser = new User(Utilities.getUserIdFromLocalStorage());
 
 /***************************************************************************
 Main logic
@@ -92,9 +90,9 @@ function submitNewEvent() {
     let inputValues = getNewEventInputValues();   // retrieve the input values
 
     // generate and add a UUID for the event
-    // const eventUUID = Common.getUUID();
-    inputValues.id = Common.getUUID();
-    inputValues.recurrence_id = Common.getUUID();
+    // const eventUUID = Utilities.getUUID();
+    inputValues.id = Utilities.getUUID();
+    inputValues.recurrence_id = Utilities.getUUID();
     
     // send the request to the api
     $.ajax({
@@ -150,7 +148,7 @@ function areInputsValid() {
 
     // if frequency is not once, seperation must have a value greater than 0
     const inputFrequencyValue = $(inputFrequency).find('option:selected').val();
-    if (inputFrequencyValue != m_EVENT_FREQUENCY_VALUES.ONCE) {
+    if (inputFrequencyValue != Constants.EVENT_FREQUENCY_VALUES.ONCE) {
         const seperationValue = $(inputSeperation).val();
 
         if (seperationValue == '') {
@@ -166,7 +164,7 @@ function areInputsValid() {
 
     // if freq is weekly day must have a value between 0-6
     const recurrenceDayValue = $(inputRecurrenceDay).val();
-    if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.WEEKLY) {
+    if (inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.WEEKLY) {
         // no value
         if (recurrenceDayValue == '') {
             setInputIsInvalid(inputRecurrenceDay);
@@ -182,7 +180,7 @@ function areInputsValid() {
 
 
     const recurrenceWeekValue = $(inputRecurrenceWeek).val();
-    if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.MONTHLY || inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.YEARLY) {
+    if (inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.MONTHLY || inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.YEARLY) {
         // no day value
         if (recurrenceDayValue == '') {
             setInputIsInvalid(inputRecurrenceDay);
@@ -218,7 +216,7 @@ function areInputsValid() {
 
     // if freq is YEARLY and month input has a value
     // month must be within 1-12
-    if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.YEARLY && recurrenceMonthValue != '') {
+    if (inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.YEARLY && recurrenceMonthValue != '') {
         if (parseInt(recurrenceMonthValue) > 12 || parseInt(recurrenceMonthValue) < 1) {
             setInputIsInvalid(inputRecurrenceMonth, 'Must be within 1-12');
             return false; 
@@ -332,7 +330,7 @@ function toggleRecurrenceInputsVisibility() {
         $('.event-new-input.recurrence').addClass('d-none');
         
         // if the frequency was set to once, hide the seperation and exit
-        if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.ONCE) {
+        if (inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.ONCE) {
             $(inputSeperation).addClass('d-none');
             $(inputSeperation).val('1');
             return;
@@ -341,14 +339,14 @@ function toggleRecurrenceInputsVisibility() {
         }
 
 
-        if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.WEEKLY) {
+        if (inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.WEEKLY) {
             $(inputRecurrenceDay).removeClass('d-none');            // show day
         } 
-        else if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.MONTHLY) {
+        else if (inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.MONTHLY) {
             $(inputRecurrenceDay).removeClass('d-none');            // show day
             $(inputRecurrenceWeek).removeClass('d-none');           // show week
         } 
-        else if (inputFrequencyValue == m_EVENT_FREQUENCY_VALUES.YEARLY) {
+        else if (inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.YEARLY) {
             $('.event-new-input.recurrence').removeClass('d-none'); // show all
         }
     });

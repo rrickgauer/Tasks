@@ -110,7 +110,6 @@ class WeekDates {
         }
 
         let firstDate = this.first;
-
         let dateInWeek = firstDate.plus({days: a_weekdayNum});
 
         return dateInWeek;

@@ -22,7 +22,7 @@ User.prototype.loadUserInfo = function() {
     const self = this;
 
     $.ajax({
-        url: m_API + '/users',
+        url: Constants.API_URLS.USERS + '/users',
         type: "get",
 
         beforeSend: function(xhr){
@@ -38,8 +38,6 @@ User.prototype.loadUserInfo = function() {
             console.log(response);
         }
     });
-
-
 }
 
 

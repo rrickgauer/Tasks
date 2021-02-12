@@ -3,9 +3,8 @@ DailyRecurrences
 
 This represents a card that has a list of EventRecurrences in it.
 **********************************************************************************************************************/
-class DailyRecurrences {
-
-
+class DailyRecurrences 
+{
     /**********************************************************
     Constructor
     **********************************************************/ 
