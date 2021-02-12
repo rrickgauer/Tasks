@@ -24,7 +24,7 @@ If no user id is set in local storage, go to the login page.
 **********************************************************/
 function setUser() {
     // be sure the user's id is set
-    if (!Common.isUserIdSet()) {
+    if (!Utilities.isUserIdSet()) {
         window.location.href = 'login.php';
     }
 

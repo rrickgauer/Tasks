@@ -16,13 +16,11 @@ const inputFrequency       = $('#frequency-new');
 const inputRecurrenceDay   = $('#recurrence-day-new');
 const inputRecurrenceWeek  = $('#recurrence-week-new');
 const inputRecurrenceMonth = $('#recurrence-month-new');
-
-const btnSubmit = $('#btn-submit-new-event');
-
-const inputClassName = '.event-new-input';
+const btnSubmit            = $('#btn-submit-new-event');
+const inputClassName       = '.event-new-input';
 
 // other shit
-const mUser = new User(Common.getUserIdFromLocalStorage());
+const mUser = new User(Utilities.getUserIdFromLocalStorage());
 
 /***************************************************************************
 Main logic
@@ -92,9 +90,9 @@ function submitNewEvent() {
     let inputValues = getNewEventInputValues();   // retrieve the input values
 
     // generate and add a UUID for the event
-    // const eventUUID = Common.getUUID();
-    inputValues.id = Common.getUUID();
-    inputValues.recurrence_id = Common.getUUID();
+    // const eventUUID = Utilities.getUUID();
+    inputValues.id = Utilities.getUUID();
+    inputValues.recurrence_id = Utilities.getUUID();
     
     // send the request to the api
     $.ajax({

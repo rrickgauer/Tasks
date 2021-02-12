@@ -1,4 +1,4 @@
-class Common {
+class Utilities {
 
     /**********************************************************
     Displays an alert on the screen.
