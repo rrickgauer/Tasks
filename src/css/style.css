@@ -6,24 +6,21 @@ hr {
   border-top-width: 5px;
 }
 
+.card {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
+}
+
 .event-dates-new input:disabled,
 .event-dates-new input[readonly] {
   background-color: white;
 }
 
-.recurrences {
-  display: flex;
-  overflow-x: auto;
-  padding-bottom: 30px;
-}
-
-.recurrences-board {
-  display: block;
-}
-
 .card-recurrence-day {
-  width: 300px;
-  margin: 0px 10px;
+  margin-bottom: 40px;
+}
+
+.toolbar {
+  display: flex;
 }
 
 /*# sourceMappingURL=style.css.map */

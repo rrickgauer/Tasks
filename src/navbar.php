@@ -8,6 +8,7 @@
       <ul class="navbar-nav">
         <li class="nav-item"><a class="nav-link" id="nav-item-home" href="home.php">Home</a></li>
         <li class="nav-item"><a class="nav-link" id="nav-item-new-event" href="new-event.php">New Event</a></li>
+        <li class="nav-item"><a class="nav-link" id="nav-item-test" href="test.php">Test</a></li>
       </ul>
     </div>
   </nav>

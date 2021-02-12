@@ -115,6 +115,27 @@ class WeekDates {
         return dateInWeek;
     }
 
+    /*************************************************
+    Returns first property as an SQL string - YYYY-MM-DD
+    *************************************************/
+    getFirstString() {
+        return this.first.toSQLDate();
+    }
+
+    /*************************************************
+    Returns last property as an SQL string - YYYY-MM-DD
+    *************************************************/
+    getLastString() {
+        return this.last.toSQLDate();
+    }
+
+    /*************************************************
+    Returns current property as an SQL string - YYYY-MM-DD
+    *************************************************/
+    getCurrentString() {
+        return this.current.toSQLDate();
+    }
+
 
 }
 
