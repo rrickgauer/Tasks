@@ -33,6 +33,7 @@
     </div>
 
 
+    <?php include('event-modal.php');?>
 
     <?php include('footer.php'); ?>
     <script src="js/home.js"></script>

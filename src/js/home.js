@@ -5,6 +5,7 @@ Page elements
 const e_dateSelector = $('#date-input');
 const e_recurrences = $('.recurrences');
 const e_recurrencesBoard = $('.recurrences-board');
+const e_modalEvent = $('#modal-event');
 
 
 /**********************************************************
@@ -19,14 +20,13 @@ Main logic
 **********************************************************/
 $(document).ready(function() {
     setUser();
-
     getEventsInRange(m_WeekDates.first.toSQLDate(), m_WeekDates.last.toSQLDate(), displayWeeklyEvents);
-
     $("#nav-item-home").addClass('active');
-
     addListeners();
-
     initFlatpickrs();
+
+
+    $(e_modalEvent).modal('show');
 });
 
 
