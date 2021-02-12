@@ -80,7 +80,7 @@ function getEventsInRange(a_startsOn, a_endsOn, a_actionSuccess, a_actionError) 
     // send the request to the api
     $.ajax({
         headers: {"X-USER-ID" :  m_User.userID},
-        url: m_API_RECURRENCES,
+        url: Constants.API_URLS.RECURRENCES,
         type: "GET",
         data: dateRanges,
         success: a_actionSuccess,
