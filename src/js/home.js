@@ -1,8 +1,17 @@
+
+/**********************************************************
+Page elements
+**********************************************************/
+const e_dateSelector = $('#date-input');
+const e_recurrences = $('.recurrences');
+const e_recurrencesBoard = $('.recurrences-board');
+
+
 /**********************************************************
 Module variables
 **********************************************************/
 let m_User = null;
-const m_WeekDates = new WeekDates();
+let m_WeekDates = new WeekDates();
 
 
 /**********************************************************
@@ -15,7 +24,48 @@ $(document).ready(function() {
 
     $("#nav-item-home").addClass('active');
 
+    addListeners();
+
+    initFlatpickrs();
 });
+
+
+/**********************************************************
+Registers all of the event listeners for the page.
+**********************************************************/
+function addListeners() {
+    l_dateChange();
+}
+
+
+/**********************************************************
+Load all the Flatpickr date instances.
+**********************************************************/
+function initFlatpickrs() {
+    // date inputs
+    $('.flatpickr-date').flatpickr({
+        altInput: true,
+        altFormat: "F j, Y",
+        dateFormat: "Y-m-d",
+        defaultDate: "today",
+    });   
+}
+
+
+
+function l_dateChange() {
+    $(e_dateSelector).on('change', requestNewDates);
+}
+
+
+function requestNewDates() {
+    const newDate = DateTime.fromSQL($(this).val());
+    m_WeekDates = new WeekDates(newDate);
+    getEventsInRange(m_WeekDates.getFirstString(), m_WeekDates.getLastString(), displayWeeklyEvents);
+    $('.recurrences-board .recurrences').html('');
+}
+
+
 
 /**********************************************************
 Loads the user object.
@@ -142,6 +192,6 @@ function displayWeeklyEvents(a_events) {
     html += vRecurrencesSat.getHtml();
 
     // add the html to the view
-    $('.recurrences-board .recurrences').html(html);
+    $(e_recurrences).html(html);
 }
 

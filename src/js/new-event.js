@@ -97,7 +97,7 @@ function submitNewEvent() {
     // send the request to the api
     $.ajax({
         headers: {"X-USER-ID" :  mUser.userID},
-        url: m_API_EVENTS,
+        url: Constants.API_URLS.EVENTS,
         type: "POST",
         data: inputValues,
         success: submitNewEventSuccess,

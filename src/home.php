@@ -14,9 +14,20 @@
 
         <h1 class="text-center my-5">Tasks</h1>
 
-        <div class="recurrences-board">
+
+        <div class="toolbar">
+            <div class="form-group">
+                <label for="date-input">Date</label>
+                <input type="text" class="form-control flatpickr-date" id="date-input">
+            </div>
+        
+        </div>
+
+
+
+        <div class="recurrences-board mt-5">
             <div class="recurrences">
-                
+
             </div>
         </div>
     </div>
