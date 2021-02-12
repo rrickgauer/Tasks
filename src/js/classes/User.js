@@ -38,8 +38,6 @@ User.prototype.loadUserInfo = function() {
             console.log(response);
         }
     });
-
-
 }
 
 
