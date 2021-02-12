@@ -25,15 +25,19 @@
 <!-- Constants -->
 <script src="js/classes/Constants.js"></script>
 
+<!-- common functions -->
+<script src="js/classes/Utilities.js"></script>
+
 <!-- User class -->
 <script src="js/classes/User.js"></script>
 
 <!-- WeekDates class -->
 <script src="js/classes/WeekDates.js"></script>
 
-
 <script src="js/classes/DailyRecurrences.js"></script>
 <script src="js/classes/EventRecurrence.js"></script>
 
-<!-- common functions -->
-<script src="js/classes/Common.js"></script>
+
+
+
+<script src="js/classes/Modal-Event.js"></script>

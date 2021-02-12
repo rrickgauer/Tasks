@@ -13,7 +13,7 @@ Module variables
 **********************************************************/
 let m_User = null;
 let m_WeekDates = new WeekDates();
-
+let m_ModalEvent = new ModalEvent(e_modalEvent);
 
 /**********************************************************
 Main logic
@@ -27,6 +27,10 @@ $(document).ready(function() {
 
 
     $(e_modalEvent).modal('show');
+
+    m_ModalEvent.init('201723c5-f7fe-4216-a82f-0bf83735bb24');
+
+    
 });
 
 

@@ -42,6 +42,15 @@ class Utilities {
             return true;
         }
     }
+
+    /**********************************************************
+    Generates an api url to use
+    **********************************************************/
+    static buildApiEventUrl(a_apiUrl, a_eventID) {
+        let url = a_apiUrl + '/' + a_eventID;
+        return url;
+    }
+
 }
 
 
