@@ -154,23 +154,6 @@
 
             <button type="button" id="btn-submit-new-event" class="btn btn-sm btn-primary">Create event</button>
         </form>
-
-
-
-
-
-
-
-
-
-    
-    
-    
-    
-    
-    
-    
-    
     
     </div>
     
