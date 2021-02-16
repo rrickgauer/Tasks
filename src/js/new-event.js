@@ -93,6 +93,15 @@ function submitNewEvent() {
     // const eventUUID = Utilities.getUUID();
     inputValues.id = Utilities.getUUID();
     inputValues.recurrence_id = Utilities.getUUID();
+
+    const recurrenceData = {
+        id: inputValues.recurrence_id,
+        event_id: inputValues.id,
+        day: inputValues.recurrence_day,  
+        week: inputValues.recurrence_week, 
+        month: inputValues.recurrence_month,
+    }
+
     
     // send the request to the api
     $.ajax({
@@ -100,10 +109,18 @@ function submitNewEvent() {
         url: Constants.API_URLS.EVENTS,
         type: "POST",
         data: inputValues,
-        success: submitNewEventSuccess,
+        success: function() {
+            $.ajax({
+                headers: {"X-USER-ID" :  mUser.userID},
+                url: Constants.API_URLS.RECURRENCES,
+                type: "POST",
+                data: recurrenceData,
+                success: submitNewEventSuccess,
+                error: submitNewEventError,
+            });
+        },
         error: submitNewEventError,
     });
-
 }
 
 
@@ -306,7 +323,7 @@ function getNewEventInputValues() {
 Action to take when submitting a new event is successful.
 ***************************************************************************/
 function submitNewEventSuccess(responseData, textStatus, xhr) {
-    console.log(responseData);
+    Utilities.displayAlert('Success!');
 }
 
 /***************************************************************************
