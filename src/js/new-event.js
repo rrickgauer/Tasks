@@ -18,6 +18,7 @@ const inputRecurrenceWeek  = $('#recurrence-week-new');
 const inputRecurrenceMonth = $('#recurrence-month-new');
 const btnSubmit            = $('#btn-submit-new-event');
 const inputClassName       = '.event-new-input';
+const inputForm            = $('.form-event-new');
 
 // other shit
 const mUser = new User(Utilities.getUserIdFromLocalStorage());
@@ -66,6 +67,7 @@ function initFlatpickr() {
         dateFormat: "H:i:S",
         altInput: true,
         altFormat: "h:i K",
+        wrap: true,
     });
     
     // date inputs
@@ -303,7 +305,7 @@ function getNewEventInputValues() {
 Action to take when submitting a new event is successful.
 ***************************************************************************/
 function submitNewEventSuccess(responseData, textStatus, xhr) {
-    $('.event-new-input').val('');
+    $(inputForm).trigger('reset');
     Utilities.displayAlert('Success!');
 }
 
