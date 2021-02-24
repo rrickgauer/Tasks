@@ -41,4 +41,9 @@ hr {
   cursor: pointer;
 }
 
+#modal-event .event-data {
+  display: flex;
+  margin-bottom: 50px;
+}
+
 /*# sourceMappingURL=style.css.map */

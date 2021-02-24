@@ -87,18 +87,68 @@ class ModalEvent
             self = this;
         }
 
-        $(self.e_name).html(apiResponse.name);
-        $(self.e_description).html(apiResponse.description);
-        $(self.e_phone_number).html(apiResponse.phone_number);
-        $(self.e_location_address_1).html(apiResponse.location_address_1);
-        $(self.e_location_address_2).html(apiResponse.location_address_2);
-        $(self.e_location_city).html(apiResponse.location_city);
-        $(self.e_location_state).html(apiResponse.location_state);
-        $(self.e_starts_on).html(apiResponse.starts_on);
-        $(self.e_ends_on).html(apiResponse.ends_on);
-        $(self.e_frequency).html(apiResponse.frequency);
-        $(self.e_seperation).html(apiResponse.seperation);
+        const locationStruct = {
+            address_1: apiResponse.location_address_1,
+            address_2: apiResponse.location_address_2,
+            city:     apiResponse.location_city,
+            state:    apiResponse.location_state,
+            zip:      apiResponse.location_zip,
+        }
+
+        let address = self.getAddressDisplayHtml(locationStruct);
+        console.log(address);
     }
+
+    /**********************************************************
+    Generates a string to display an event's address:
+    Address 1 Address 2, City, ST ZIP
+    **********************************************************/
+    getAddressDisplayHtml(locationStruct) {
+        // setup flags
+        const isAddress1Set = locationStruct.address_1 != null;
+        const isAddress2Set = locationStruct.address_2 != null;
+        const isCitySet     = locationStruct.city != null;
+        const isStateSet    = locationStruct.state != null;
+        const isZipSet      = locationStruct.zip != null;
+        
+        let result = '';
+        
+        if (isAddress1Set) {
+            result += `${locationStruct.address_1}`;
+        }
+
+        if (isAddress2Set) {
+            result += ` ${locationStruct.address_2}`;
+        }
+
+        if ((isAddress1Set || isAddress2Set) && (isCitySet || isStateSet || isZipSet)) {
+            result += ', ';
+        }
+
+        if (isCitySet) {
+            result += `${locationStruct.city}`;
+
+            if (isStateSet || isZipSet) {
+                result += ', ';
+            }
+        }
+
+        if (isStateSet) {
+            result += `${locationStruct.state}`;
+
+            if (isZipSet) {
+                result += ' ';
+            }
+        }
+
+        if (isZipSet) {
+            result += `${locationStruct.zip}`;
+        }
+
+        
+        return result;
+    }
+
 
     /**********************************************************
     Show the modal

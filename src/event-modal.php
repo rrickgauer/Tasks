@@ -2,14 +2,43 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <!-- <h5 class="modal-title">Modal title</h5> -->
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            
             <div class="modal-body">
 
-                <dl class="event-data">
+                <div class="event-data name">
+                    <div class="event-data-icon"><i class='bx bx-task'></i></div>
+                    <div class="event-data-data">Event name</div>
+                </div>
+
+                <div class="event-data description">
+                    <div class="event-data-icon"><i class='bx bx-detail'></i></div>
+                    <div class="event-data-data">Description</div>
+                </div>
+
+                <div class="event-data event-data-normal address">
+                    <div class="event-data-icon"><i class='bx bx-been-here'></i></div>
+                    <div class="event-data-data">
+                        <span class="address-1">Address 1</span>
+                        <span class="address-1">Address 2</span>
+                        <span class="city">City</span>
+                        <span class="state">State</span>
+                        <span class="zip">ZIP</span>
+                    </div>
+                </div>
+
+                <div class="event-data event-data-normal phone">
+                    <div class="event-data-icon"><i class='bx bx-phone'></i></div>
+                    <div class="event-data-data">Phone number</div>
+                </div>
+
+
+
+
+                <!-- <dl class="event-data">
                     <dt class="name">Name</dt>
                     <dd class="name">this is the name</dd>
 
@@ -42,7 +71,7 @@
 
                     <dt class="seperation">seperation</dt>
                     <dd class="seperation">this is the description</dd>
-                </dl>
+                </dl> -->
 
             </div>
 
