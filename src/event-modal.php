@@ -2,23 +2,17 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <div>
+                    <h4 class="modal-title">Title goes here</h4>
+                    <p class="description"></p>
+
+                </div>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            
+
             <div class="modal-body">
-
-                <div class="event-data name">
-                    <div class="event-data-icon"><i class='bx bx-task'></i></div>
-                    <div class="event-data-data">Event name</div>
-                </div>
-
-                <div class="event-data description">
-                    <div class="event-data-icon"><i class='bx bx-detail'></i></div>
-                    <div class="event-data-data">Description</div>
-                </div>
-
                 <div class="event-data event-data-normal address">
                     <div class="event-data-icon"><i class='bx bx-been-here'></i></div>
                     <div class="event-data-data">Address</div>

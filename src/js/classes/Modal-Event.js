@@ -29,8 +29,8 @@ class ModalEvent
         const self = this;
         const modal = this.e_modal;
 
-        this.e_nameDisplay        = $(modal).find('.event-data.name .event-data-data');
-        this.e_descriptionDisplay = $(modal).find('.event-data.description .event-data-data');
+        this.e_nameDisplay        = $(modal).find('.modal-title');
+        this.e_descriptionDisplay = $(modal).find('.modal-header .description');
         this.e_phoneDisplay       = $(modal).find('.event-data.phone .event-data-data');
         this.e_addressDisplay     = $(modal).find('.event-data.address .event-data-data');
     }
@@ -87,8 +87,6 @@ class ModalEvent
         
         const displayAddress = self.getAddressDisplayHtml(apiResponse);
         $(self.e_addressDisplay).text(displayAddress);
-
-
     }
 
     /**********************************************************
