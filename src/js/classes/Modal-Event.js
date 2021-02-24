@@ -1,10 +1,9 @@
-/**********************************************************
+/**********************************************************************************************************************
 ModalEvent
 
 This class holds the logic for the Event Modal.
 It retrieves and displays the meta-data for an event.
-**********************************************************/
-
+**********************************************************************************************************************/
 
 class ModalEvent
 {  
@@ -17,7 +16,7 @@ class ModalEvent
     constructor(a_e_modalElement) {
         this.e_modal = a_e_modalElement;
         this.userID = Utilities.getUserIdFromLocalStorage();
-
+        
         this.setElementFields();
     }
 
@@ -27,19 +26,12 @@ class ModalEvent
     **********************************************************/
     setElementFields() {
         const self = this;
-        this.e_event_data = $(self.e_modal).find('.event-data');
+        const modal = this.e_modal;
 
-        this.e_name               = $(this.e_event_data).find('dd.name');
-        this.e_description        = $(this.e_event_data).find('dd.description');
-        this.e_phone_number       = $(this.e_event_data).find('dd.phone_number');
-        this.e_location_address_1 = $(this.e_event_data).find('dd.location_address_1');
-        this.e_location_address_2 = $(this.e_event_data).find('dd.location_address_2');
-        this.e_location_city      = $(this.e_event_data).find('dd.location_city');
-        this.e_location_state     = $(this.e_event_data).find('dd.location_state');
-        this.e_starts_on          = $(this.e_event_data).find('dd.starts_on');
-        this.e_ends_on            = $(this.e_event_data).find('dd.ends_on');
-        this.e_frequency          = $(this.e_event_data).find('dd.frequency');
-        this.e_seperation         = $(this.e_event_data).find('dd.seperation');
+        this.e_nameDisplay        = $(modal).find('.modal-title');
+        this.e_descriptionDisplay = $(modal).find('.modal-header .description');
+        this.e_phoneDisplay       = $(modal).find('.event-data.phone .event-data-data');
+        this.e_addressDisplay     = $(modal).find('.event-data.address .event-data-data');
     }
 
     /**********************************************************
@@ -87,18 +79,65 @@ class ModalEvent
             self = this;
         }
 
-        $(self.e_name).html(apiResponse.name);
-        $(self.e_description).html(apiResponse.description);
-        $(self.e_phone_number).html(apiResponse.phone_number);
-        $(self.e_location_address_1).html(apiResponse.location_address_1);
-        $(self.e_location_address_2).html(apiResponse.location_address_2);
-        $(self.e_location_city).html(apiResponse.location_city);
-        $(self.e_location_state).html(apiResponse.location_state);
-        $(self.e_starts_on).html(apiResponse.starts_on);
-        $(self.e_ends_on).html(apiResponse.ends_on);
-        $(self.e_frequency).html(apiResponse.frequency);
-        $(self.e_seperation).html(apiResponse.seperation);
+        $(self.e_nameDisplay).html(apiResponse.name);
+        $(self.e_descriptionDisplay).html(apiResponse.description);
+        $(self.e_phoneDisplay).html(apiResponse.phone_number);
+
+        
+        const displayAddress = self.getAddressDisplayHtml(apiResponse);
+        $(self.e_addressDisplay).html(displayAddress);
     }
+
+    /**********************************************************
+    Generates a string to display an event's address:
+    Address 1 Address 2, City, ST ZIP
+    **********************************************************/
+    getAddressDisplayHtml(a_eventStruct) {
+        // setup flags
+        const isAddress1Set = a_eventStruct.location_address_1 != null;
+        const isAddress2Set = a_eventStruct.location_address_2 != null;
+        const isCitySet     = a_eventStruct.location_city != null;
+        const isStateSet    = a_eventStruct.location_state != null;
+        const isZipSet      = a_eventStruct.location_zip != null;
+        
+        let result = '';
+        
+        if (isAddress1Set) {
+            result += `${a_eventStruct.location_address_1}`;
+        }
+
+        if (isAddress2Set) {
+            result += ` ${a_eventStruct.location_address_2}`;
+        }
+
+        if ((isAddress1Set || isAddress2Set) && (isCitySet || isStateSet || isZipSet)) {
+            result += ', ';
+        }
+
+        if (isCitySet) {
+            result += `${a_eventStruct.location_city}`;
+
+            if (isStateSet || isZipSet) {
+                result += ', ';
+            }
+        }
+
+        if (isStateSet) {
+            result += `${a_eventStruct.location_state}`;
+
+            if (isZipSet) {
+                result += ' ';
+            }
+        }
+
+        if (isZipSet) {
+            result += `${a_eventStruct.location_zip}`;
+        }
+
+        
+        return result;
+    }
+
 
     /**********************************************************
     Show the modal

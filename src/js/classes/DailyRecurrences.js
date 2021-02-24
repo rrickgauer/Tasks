@@ -21,26 +21,33 @@ class DailyRecurrences
     }
 
     /**********************************************************
-    Insert a new event recurrence into the Event Recurrences list.
+    Generate the html for a daily recurrence
     **********************************************************/ 
-    getHtml(a_apiResponseEventRecurrence) {
+    getHtml() {
+        // format the date for display
+        const weekdayDisplay = this.date.toLocaleString(DateTime.DATE_HUGE);
 
-        const eventRecurrencesHtml = this.getEventRecurrencesHtml();
-        const weekdayDisplay = this.date.weekdayLong;
-
-        let html = `
-        <div class="recurrence-wrapper">
-            <div class="card card-recurrence-day">
-                <div class="card-header">
-                    <div class="card-task-weekday">${weekdayDisplay}</div>
-                </div>
-                <div class="card-body">
-                    <ul class="list-group tasks">
-                        ${eventRecurrencesHtml}
-                    </ul>
-                </div>
+        // build the header
+        let htmlHeader = `
+        <div class="header">
+            <div class="header-date">
+                ${weekdayDisplay}
             </div>
         </div>`;
+
+        // get the recurrences html
+        const eventRecurrencesHtml = this.getEventRecurrencesHtml();
+
+        // build the recurrence html
+        let htmlEvents = `            
+        <div class="container-events">
+            <ul class="list-group events-list">
+                ${eventRecurrencesHtml}
+            </ul>
+        </div>`;
+
+        // put them all together
+        let html = `<div class="container-day-recurrences">${htmlHeader} ${htmlEvents} </div>`;
 
         return html;
 

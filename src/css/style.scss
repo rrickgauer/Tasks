@@ -18,36 +18,79 @@ hr {
 }
 
 
-.card-recurrence-day {
-    margin-bottom: 40px;
-}
-
 .toolbar {
     display: flex;
 }
 
 
+.container-day-recurrences {
+    margin-top: 50px;
+    
+    .header {
+        margin-bottom: 10px;
+    }
+    
+    .header-date {
+        font-weight: bold;
+    }
+    
+    .events-list {
+        .event {
+            
+            &:hover {
+                background-color: #f7f7f7;
+            }
+            
+            .event-checkbox {
+                margin-right: 10px;
+            }
+            
+            .event-time {
+                margin-right: 5px;
+            }
+            
+            .event-modal-open:hover {
+                cursor: pointer;
+            }
+            
+        }
+    }
+}
 
 
+#modal-event {
+    .modal-header {
+        border-bottom: none;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        .modal-title {
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            font-weight: 400;
+            line-height: 1.5;
+            box-sizing: border-box;
+            color: #586069;
+            font-size: 12px;
+        }
+    }
+    
+    
+    .event-data {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 10px;
+        
+        .event-data-icon {
+            margin-right: 15px;
+        }
+    }
+    
+    .event-data.name {
+        .event-data-data {
+            font-size: 24px;
+        }
+    }
+    
+}
 

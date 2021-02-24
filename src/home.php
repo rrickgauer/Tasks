@@ -9,26 +9,20 @@
 <body>
     <?php include('navbar.php'); ?>
 
-
-    <div class="container-fluid">
-
+    <div class="container">
         <h1 class="text-center my-5">Tasks</h1>
 
-
+        <!-- toolbar to filter/search for events -->
         <div class="toolbar">
             <div class="form-group">
                 <label for="date-input">Date</label>
                 <input type="text" class="form-control flatpickr-date" id="date-input">
             </div>
-        
         </div>
 
-
-
+        <!-- recurrences go here -->
         <div class="recurrences-board mt-5">
-            <div class="recurrences">
-
-            </div>
+            <div class="recurrences"></div>
         </div>
     </div>
 
