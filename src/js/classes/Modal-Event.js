@@ -17,7 +17,7 @@ class ModalEvent
     constructor(a_e_modalElement) {
         this.e_modal = a_e_modalElement;
         this.userID = Utilities.getUserIdFromLocalStorage();
-
+        
         this.setElementFields();
     }
 
@@ -27,19 +27,12 @@ class ModalEvent
     **********************************************************/
     setElementFields() {
         const self = this;
-        this.e_event_data = $(self.e_modal).find('.event-data');
+        const modal = this.e_modal;
 
-        this.e_name               = $(this.e_event_data).find('dd.name');
-        this.e_description        = $(this.e_event_data).find('dd.description');
-        this.e_phone_number       = $(this.e_event_data).find('dd.phone_number');
-        this.e_location_address_1 = $(this.e_event_data).find('dd.location_address_1');
-        this.e_location_address_2 = $(this.e_event_data).find('dd.location_address_2');
-        this.e_location_city      = $(this.e_event_data).find('dd.location_city');
-        this.e_location_state     = $(this.e_event_data).find('dd.location_state');
-        this.e_starts_on          = $(this.e_event_data).find('dd.starts_on');
-        this.e_ends_on            = $(this.e_event_data).find('dd.ends_on');
-        this.e_frequency          = $(this.e_event_data).find('dd.frequency');
-        this.e_seperation         = $(this.e_event_data).find('dd.seperation');
+        this.e_nameDisplay        = $(modal).find('.event-data.name .event-data-data');
+        this.e_descriptionDisplay = $(modal).find('.event-data.description .event-data-data');
+        this.e_phoneDisplay       = $(modal).find('.event-data.phone .event-data-data');
+        this.e_addressDisplay     = $(modal).find('.event-data.address .event-data-data');
     }
 
     /**********************************************************
@@ -87,38 +80,37 @@ class ModalEvent
             self = this;
         }
 
-        const locationStruct = {
-            address_1: apiResponse.location_address_1,
-            address_2: apiResponse.location_address_2,
-            city:     apiResponse.location_city,
-            state:    apiResponse.location_state,
-            zip:      apiResponse.location_zip,
-        }
+        $(self.e_nameDisplay).text(apiResponse.name);
+        $(self.e_descriptionDisplay).text(apiResponse.description);
+        $(self.e_phoneDisplay).text(apiResponse.phone_number);
 
-        let address = self.getAddressDisplayHtml(locationStruct);
-        console.log(address);
+        
+        const displayAddress = self.getAddressDisplayHtml(apiResponse);
+        $(self.e_addressDisplay).text(displayAddress);
+
+
     }
 
     /**********************************************************
     Generates a string to display an event's address:
     Address 1 Address 2, City, ST ZIP
     **********************************************************/
-    getAddressDisplayHtml(locationStruct) {
+    getAddressDisplayHtml(a_eventStruct) {
         // setup flags
-        const isAddress1Set = locationStruct.address_1 != null;
-        const isAddress2Set = locationStruct.address_2 != null;
-        const isCitySet     = locationStruct.city != null;
-        const isStateSet    = locationStruct.state != null;
-        const isZipSet      = locationStruct.zip != null;
+        const isAddress1Set = a_eventStruct.location_address_1 != null;
+        const isAddress2Set = a_eventStruct.location_address_2 != null;
+        const isCitySet     = a_eventStruct.location_city != null;
+        const isStateSet    = a_eventStruct.location_state != null;
+        const isZipSet      = a_eventStruct.location_zip != null;
         
         let result = '';
         
         if (isAddress1Set) {
-            result += `${locationStruct.address_1}`;
+            result += `${a_eventStruct.location_address_1}`;
         }
 
         if (isAddress2Set) {
-            result += ` ${locationStruct.address_2}`;
+            result += ` ${a_eventStruct.location_address_2}`;
         }
 
         if ((isAddress1Set || isAddress2Set) && (isCitySet || isStateSet || isZipSet)) {
@@ -126,7 +118,7 @@ class ModalEvent
         }
 
         if (isCitySet) {
-            result += `${locationStruct.city}`;
+            result += `${a_eventStruct.location_city}`;
 
             if (isStateSet || isZipSet) {
                 result += ', ';
@@ -134,7 +126,7 @@ class ModalEvent
         }
 
         if (isStateSet) {
-            result += `${locationStruct.state}`;
+            result += `${a_eventStruct.location_state}`;
 
             if (isZipSet) {
                 result += ' ';
@@ -142,7 +134,7 @@ class ModalEvent
         }
 
         if (isZipSet) {
-            result += `${locationStruct.zip}`;
+            result += `${a_eventStruct.location_zip}`;
         }
 
         
