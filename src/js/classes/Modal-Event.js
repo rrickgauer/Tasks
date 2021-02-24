@@ -32,6 +32,7 @@ class ModalEvent
         this.e_descriptionDisplay = $(modal).find('.modal-header .description');
         this.e_phoneDisplay       = $(modal).find('.event-data.phone .event-data-data');
         this.e_addressDisplay     = $(modal).find('.event-data.address .event-data-data');
+        this.e_occursOnDisplay    = $(modal).find('.event-data.occurs-on .event-data-data')
     }
 
     /**********************************************************
@@ -39,8 +40,9 @@ class ModalEvent
 
     This should be called every time a new event needs to be displayed
     **********************************************************/
-    init(a_eventID) {
+    init(a_eventID, a_occursOn) {
         this.eventID = a_eventID;
+        this.occursOn = DateTime.fromSQL(a_occursOn);
         this.loadData(this.displayEventData);
     }
 
@@ -79,13 +81,30 @@ class ModalEvent
             self = this;
         }
 
+        // event name
         $(self.e_nameDisplay).html(apiResponse.name);
+        
+        // description
         $(self.e_descriptionDisplay).html(apiResponse.description);
+
+        // phone
         $(self.e_phoneDisplay).html(apiResponse.phone_number);
 
-        
+        // address
         const displayAddress = self.getAddressDisplayHtml(apiResponse);
         $(self.e_addressDisplay).html(displayAddress);
+
+        // occurs on
+        let occursOnDisplay = self.occursOn.toFormat('cccc, LLLL d');
+        
+        // if the api response includes a non-null starts_at, display the time as well 
+        if (apiResponse.starts_at != null) {
+            let startsAtDisplay = DateTime.fromSQL(apiResponse.starts_at).toLocaleString(DateTime.TIME_SIMPLE);
+            occursOnDisplay += `&nbsp;&sdot;&nbsp;${startsAtDisplay}`;
+        }
+
+        console.log(occursOnDisplay);
+        $(self.e_occursOnDisplay).html(occursOnDisplay);
     }
 
     /**********************************************************

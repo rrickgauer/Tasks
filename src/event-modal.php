@@ -3,17 +3,22 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div>
-                    <h4 class="modal-title">Title goes here</h4>
+                    <h4 class="modal-title"></h4>
                     <p class="description"></p>
+
+                    <div class="event-data event-data-normal occurs-on">
+                        <div class="event-data-icon"><i class='bx bx-time'></i></div>
+                        <div class="event-data-data"></div>
+                    </div>
 
                     <div class="event-data event-data-normal address">
                         <div class="event-data-icon"><i class='bx bx-been-here'></i></div>
-                        <div class="event-data-data">Address</div>
+                        <div class="event-data-data"></div>
                     </div>
 
                     <div class="event-data event-data-normal phone">
                         <div class="event-data-icon"><i class='bx bx-phone'></i></div>
-                        <div class="event-data-data">Phone number</div>
+                        <div class="event-data-data"></div>
                     </div>
                 </div>
                 <button type="button" class="close" data-dismiss="modal">
