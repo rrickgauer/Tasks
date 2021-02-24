@@ -305,6 +305,7 @@ function getNewEventInputValues() {
 Action to take when submitting a new event is successful.
 ***************************************************************************/
 function submitNewEventSuccess(responseData, textStatus, xhr) {
+    $('.event-new-input').val('');
     Utilities.displayAlert('Success!');
 }
 

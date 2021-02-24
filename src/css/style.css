@@ -66,4 +66,8 @@ hr {
   font-size: 24px;
 }
 
+.form-group label {
+  font-weight: bold;
+}
+
 /*# sourceMappingURL=style.css.map */
