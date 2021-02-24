@@ -8,19 +8,15 @@
 
 <body>
     <?php include('navbar.php'); ?>
-
     <div class="container">
-
         <h1 class="text-center my-5">New Event</h1>
-
 
         <!-- new event form -->
         <form class="form-event-new">
             <!-- name -->
             <div class="form-group form-event-new-group">
                 <label for="name-new">Name</label>
-                <input type="text" class="form-control form-control-sm event-new-input" id="name-new" maxlength="100"
-                    autofocus>
+                <input type="text" class="form-control form-control-sm event-new-input" id="name-new" maxlength="100" autofocus>
                 <div class="invalid-feedback"></div>
             </div>
 
@@ -36,9 +32,14 @@
                     </div>
 
                     <!-- starts at -->
-                    <div class="form-group form-event-new-group  col-2">
+                    <div class="form-group form-event-new-group col-2 time">
                         <label for="starts-at-new">At</label>
-                        <input type="time" class="form-control form-control-sm event-new-input time" id="starts-at-new">
+                        <div class="input-group">
+                            <input type="time" class="form-control form-control-sm event-new-input " id="starts-at-new" data-input>
+                            <div class="input-group-append">
+                                <button class="btn btn-sm btn-outline-secondary" type="button" data-clear><i class='bx bx-x'></i></button>
+                            </div>
+                        </div>
                         <div class="invalid-feedback"></div>
                     </div>
 
@@ -50,11 +51,17 @@
                     </div>
 
                     <!-- ends at -->
-                    <div class="form-group form-event-new-group  col-2">
+                    <div class="form-group form-event-new-group col-2 time">
                         <label for="ends-at-new">At</label>
-                        <input type="time" class="form-control form-control-sm event-new-input time" id="ends-at-new">
+                        <div class="input-group">
+                            <input type="time" class="form-control form-control-sm event-new-input" id="ends-at-new" data-input>
+                            <div class="input-group-append">
+                                <button class="btn btn-sm btn-outline-secondary" type="button" data-clear><i class='bx bx-x'></i></button>
+                            </div>
+                        </div>
                         <div class="invalid-feedback"></div>
                     </div>
+
                 </div>
 
             </div>
@@ -65,8 +72,7 @@
                     <span class="mr-3">Repeats every</span>
                     <!-- seperation -->
                     <div class="form-group form-event-new-group mr-3">
-                        <input type="number" class="form-control form-control-sm event-new-input d-none"
-                            id="seperation-new" min="1" value="1">
+                        <input type="number" class="form-control form-control-sm event-new-input d-none" id="seperation-new" min="1" value="1">
                         <div class="invalid-feedback"></div>
                     </div>
 
@@ -87,24 +93,21 @@
                     <!-- recurrence day -->
                     <div class="form-group form-event-new-group ml-3">
                         <input type="number" pattern="[0-9]*" inputmode="numeric"
-                            class="form-control form-control-sm event-new-input recurrence d-none"
-                            id="recurrence-day-new" max="31" placeholder="Day recurrence">
+                            class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-day-new" max="31" placeholder="Day recurrence">
                         <div class="invalid-feedback"></div>
                     </div>
 
                     <!-- recurrence week -->
                     <div class="form-group form-event-new-group ml-3">
                         <input type="number" pattern="[0-9]*" inputmode="numeric"
-                            class="form-control form-control-sm event-new-input recurrence d-none"
-                            id="recurrence-week-new" max="5" placeholder="Week recurrence">
+                            class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-week-new" max="5" placeholder="Week recurrence">
                         <div class="invalid-feedback"></div>
                     </div>
 
                     <!-- recurrence month -->
                     <div class="form-group form-event-new-group ml-3">
                         <input type="number" pattern="[0-9]*" inputmode="numeric"
-                            class="form-control form-control-sm event-new-input recurrence d-none"
-                            id="recurrence-month-new" max="12" placeholder="Month recurrence">
+                            class="form-control form-control-sm event-new-input recurrence d-none" id="recurrence-month-new" max="12" placeholder="Month recurrence">
                         <div class="invalid-feedback"></div>
                     </div>
                 </div>
@@ -113,26 +116,22 @@
             <!-- address 1 -->
             <div class="form-group form-event-new-group">
                 <label for="address-1-new">Address 1</label>
-                <input type="text" class="form-control form-control-sm event-new-input" id="address-1-new"
-                    maxlength="70">
+                <input type="text" class="form-control form-control-sm event-new-input" id="address-1-new" maxlength="70">
             </div>
 
 
             <!-- address 2 -->
             <div class="form-group form-event-new-group">
                 <label for="address-2-new">Address 2</label>
-                <input type="text" class="form-control form-control-sm event-new-input" id="address-2-new"
-                    maxlength="70">
+                <input type="text" class="form-control form-control-sm event-new-input" id="address-2-new" maxlength="70">
             </div>
 
             <div class="form-row">
                 <!-- city -->
                 <div class="form-group form-event-new-group col-6">
                     <label for="city-new">City</label>
-                    <input type="text" class="form-control form-control-sm event-new-input" id="city-new"
-                        maxlength="40">
+                    <input type="text" class="form-control form-control-sm event-new-input" id="city-new" maxlength="40">
                 </div>
-
 
                 <!-- state -->
                 <div class="form-group form-event-new-group col-3">
@@ -162,7 +161,6 @@
                 <label for="phone-new">Phone</label>
                 <input type="tel" class="form-control form-control-sm event-new-input" id="phone-new">
             </div>
-
 
             <button type="button" id="btn-submit-new-event" class="btn btn-sm btn-primary">Create event</button>
         </form>

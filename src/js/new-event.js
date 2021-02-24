@@ -67,6 +67,7 @@ function initFlatpickr() {
         dateFormat: "H:i:S",
         altInput: true,
         altFormat: "h:i K",
+        wrap: true,
     });
     
     // date inputs
