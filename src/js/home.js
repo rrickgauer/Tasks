@@ -1,17 +1,17 @@
 /**********************************************************
 Page elements
 **********************************************************/
-const e_dateSelector = $('#date-input');
-const e_recurrences = $('.recurrences');
+const e_dateSelector     = $('#date-input');
+const e_recurrences      = $('.recurrences');
 const e_recurrencesBoard = $('.recurrences-board');
-const e_modalEvent = $('#modal-event');
+const e_modalEvent       = $('#modal-event');
 
 
 /**********************************************************
 Module variables
 **********************************************************/
-let m_User = null;
-let m_WeekDates = new WeekDates();
+let m_User       = null;
+let m_WeekDates  = new WeekDates();
 let m_ModalEvent = new ModalEvent(e_modalEvent);
 
 /**********************************************************
@@ -31,8 +31,7 @@ Registers all of the event listeners for the page.
 **********************************************************/
 function addListeners() {
     $(e_dateSelector).on('change', requestNewDates);
-    $(e_recurrences).on('click', '.task', openModalEvent);
-
+    $(e_recurrences).on('click', '.event-modal-open', openModalEvent);
 }
 
 
@@ -147,7 +146,7 @@ function displayWeeklyEvents(a_events) {
     const vRecurrencesFri   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(5));
     const vRecurrencesSat   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(6));
 
-
+    
     // put each event into its related day bucket
     for (let count = 0; count < a_events.length; count++) {
         const thisEvent = a_events[count];
@@ -192,15 +191,15 @@ function displayWeeklyEvents(a_events) {
 /**********************************************************
 Opens the event modal when an recurrence is clicked.
 **********************************************************/
-function openModalEvent(a_eventID) {
-    let eventID = a_eventID;    
+function openModalEvent(a_eventElement) {
+    let eventID = a_eventElement;
 
     /**
      * If the argument is a jquery event,
      * we need to rerieve the event id from the attribute of the element
      */
-    if (a_eventID instanceof jQuery.Event) {
-        eventID = $(this).attr('data-event-id');
+    if (a_eventElement instanceof jQuery.Event) {
+        eventID = $(this).closest('.event').attr('data-event-id');
     }
 
     m_ModalEvent.init(eventID);

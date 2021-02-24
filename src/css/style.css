@@ -15,12 +15,21 @@ hr {
   background-color: white;
 }
 
-.card-recurrence-day {
-  margin-bottom: 40px;
-}
-
 .toolbar {
   display: flex;
+}
+
+.container-day-recurrences {
+  margin-top: 50px;
+}
+.container-day-recurrences .header-date {
+  font-weight: bold;
+}
+.container-day-recurrences .events-list .event .event-checkbox {
+  margin-right: 10px;
+}
+.container-day-recurrences .events-list .event .event-time {
+  margin-right: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */

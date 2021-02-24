@@ -18,13 +18,32 @@ hr {
 }
 
 
-.card-recurrence-day {
-    margin-bottom: 40px;
-}
-
 .toolbar {
     display: flex;
 }
+
+
+.container-day-recurrences {
+    margin-top: 50px;
+    .header-date {
+        font-weight: bold;
+    }
+
+    .events-list {
+        .event {
+
+            .event-checkbox {
+                margin-right: 10px;
+            }
+
+            .event-time {
+                margin-right: 5px;
+            }
+
+        }
+    }
+}
+
 
 
 

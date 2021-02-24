@@ -6,119 +6,61 @@
     <title>Tasks</title>
 </head>
 
-<body>
+<body id="test">
     <?php include('navbar.php'); ?>
-    <div class="container-fluid" id="test">
-        
-        <h1 class="text-center my-5">Test</h1>
-        
 
-        <div class="card">
-            <div class="card-header">
-                Sunday 3/8/1996
+    <div class="container mt-5">
+
+
+
+        <div class="container-day-recurrences">
+            <div class="header">
+                <div class="header-dates">
+                    <div class="header-dow">Sunday</div>
+                    <div class="mx-1">&sdot;</div>
+                    <div class="header-date">3/8/1996</div>
+                </div>
             </div>
-            <div class="card-body">
-                
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
+
+            <div class="container-events">
+                <ul class="list-group list-group-flush events-list">
+                    <li class="list-group-item event">
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex">
+                                <div class="event-checkbox"><input type="checkbox" /></div>
+                                <div class="event-time">3:00 PM</div>
+                                <div class="event-name">Event name</div>
+                            </div>
+
+                            <div class="event-dropdown">
+                                <div class="dropdown">
+                                    <button class="btn" type="button" data-toggle="dropdown"><i
+                                            class='bx bx-dots-horizontal-rounded'></i></button>
+                                    <div class="dropdown-menu">
+                                        <button class="dropdown-item" type="button">Action</button>
+                                        <button class="dropdown-item" type="button">Another action</button>
+                                        <button class="dropdown-item" type="button">Something else here</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="event-labels">
+                            <span class="badge badge-primary event-label">Primary</span>
+                            <span class="badge badge-secondary event-label">Primary</span>
+                            <span class="badge badge-success event-label">Primary</span>
+                            <span class="badge badge-danger event-label">Primary</span>
+                        </div>
+                    </li>
                 </ul>
+
             </div>
+
+
+
+
         </div>
-                <div class="card">
-            <div class="card-header">
-                Sunday 3/8/1996
-            </div>
-            <div class="card-body">
-                
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
-            </div>
-        </div>
-                <div class="card">
-            <div class="card-header">
-                Sunday 3/8/1996
-            </div>
-            <div class="card-body">
-                
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
-            </div>
-        </div>
-                <div class="card">
-            <div class="card-header">
-                Sunday 3/8/1996
-            </div>
-            <div class="card-body">
-                
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
-            </div>
-        </div>
-                <div class="card">
-            <div class="card-header">
-                Sunday 3/8/1996
-            </div>
-            <div class="card-body">
-                
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
-            </div>
-        </div>
-                <div class="card">
-            <div class="card-header">
-                Sunday 3/8/1996
-            </div>
-            <div class="card-body">
-                
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
-            </div>
-        </div>
-                <div class="card">
-            <div class="card-header">
-                Sunday 3/8/1996
-            </div>
-            <div class="card-body">
-                
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
-            </div>
-        </div>
-        
+
 
 
 
@@ -127,6 +69,15 @@
 
 
     </div>
+
+
+
+
+
+
+
+
+
 
     <?php include('footer.php'); ?>
     <!-- <script src="js/home.js"></script> -->
