@@ -202,7 +202,9 @@ function openModalEvent(a_eventElement) {
         eventID = $(this).closest('.event').attr('data-event-id');
     }
 
-    m_ModalEvent.init(eventID);
+    const occursOn = $(this).closest('.container-day-recurrences').attr('data-date');
+
+    m_ModalEvent.init(eventID, occursOn);
     m_ModalEvent.showModal();
 }
 

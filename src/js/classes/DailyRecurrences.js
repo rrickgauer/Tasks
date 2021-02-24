@@ -46,8 +46,11 @@ class DailyRecurrences
             </ul>
         </div>`;
 
+        // format the date to put into the data attribute
+        const dateData = this.date.toSQLDate();
+
         // put them all together
-        let html = `<div class="container-day-recurrences">${htmlHeader} ${htmlEvents} </div>`;
+        let html = `<div class="container-day-recurrences" data-date="${this.date.toSQLDate()}">${htmlHeader} ${htmlEvents} </div>`;
 
         return html;
 
