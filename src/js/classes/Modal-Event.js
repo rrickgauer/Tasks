@@ -1,10 +1,9 @@
-/**********************************************************
+/**********************************************************************************************************************
 ModalEvent
 
 This class holds the logic for the Event Modal.
 It retrieves and displays the meta-data for an event.
-**********************************************************/
-
+**********************************************************************************************************************/
 
 class ModalEvent
 {  
@@ -80,13 +79,13 @@ class ModalEvent
             self = this;
         }
 
-        $(self.e_nameDisplay).text(apiResponse.name);
-        $(self.e_descriptionDisplay).text(apiResponse.description);
-        $(self.e_phoneDisplay).text(apiResponse.phone_number);
+        $(self.e_nameDisplay).html(apiResponse.name);
+        $(self.e_descriptionDisplay).html(apiResponse.description);
+        $(self.e_phoneDisplay).html(apiResponse.phone_number);
 
         
         const displayAddress = self.getAddressDisplayHtml(apiResponse);
-        $(self.e_addressDisplay).text(displayAddress);
+        $(self.e_addressDisplay).html(displayAddress);
     }
 
     /**********************************************************

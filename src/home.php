@@ -9,9 +9,7 @@
 <body>
     <?php include('navbar.php'); ?>
 
-
     <div class="container">
-
         <h1 class="text-center my-5">Tasks</h1>
 
         <!-- toolbar to filter/search for events -->
@@ -22,7 +20,7 @@
             </div>
         </div>
 
-        
+        <!-- recurrences go here -->
         <div class="recurrences-board mt-5">
             <div class="recurrences"></div>
         </div>
