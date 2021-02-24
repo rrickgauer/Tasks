@@ -22,14 +22,23 @@ hr {
 .container-day-recurrences {
   margin-top: 50px;
 }
+.container-day-recurrences .header {
+  margin-bottom: 10px;
+}
 .container-day-recurrences .header-date {
   font-weight: bold;
+}
+.container-day-recurrences .events-list .event:hover {
+  background-color: #f7f7f7;
 }
 .container-day-recurrences .events-list .event .event-checkbox {
   margin-right: 10px;
 }
 .container-day-recurrences .events-list .event .event-time {
   margin-right: 5px;
+}
+.container-day-recurrences .events-list .event .event-modal-open:hover {
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -41,7 +41,7 @@ class DailyRecurrences
         // build the recurrence html
         let htmlEvents = `            
         <div class="container-events">
-            <ul class="list-group list-group-flush events-list">
+            <ul class="list-group events-list">
                 ${eventRecurrencesHtml}
             </ul>
         </div>`;

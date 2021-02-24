@@ -25,6 +25,11 @@ hr {
 
 .container-day-recurrences {
     margin-top: 50px;
+
+    .header {
+        margin-bottom: 10px;
+    }
+
     .header-date {
         font-weight: bold;
     }
@@ -32,12 +37,20 @@ hr {
     .events-list {
         .event {
 
+            &:hover {
+                background-color: #f7f7f7;
+            }
+
             .event-checkbox {
                 margin-right: 10px;
             }
 
             .event-time {
                 margin-right: 5px;
+            }
+
+            .event-modal-open:hover {
+                cursor: pointer;
             }
 
         }
