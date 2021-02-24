@@ -90,10 +90,8 @@ function submitNewEvent() {
     let inputValues = getNewEventInputValues();   // retrieve the input values
 
     // generate and add a UUID for the event
-    // const eventUUID = Utilities.getUUID();
     inputValues.id = Utilities.getUUID();
 
-    
     // send the request to the api
     $.ajax({
         headers: {"X-USER-ID" :  mUser.userID},

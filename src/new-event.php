@@ -138,6 +138,7 @@
                 <div class="form-group form-event-new-group col-3">
                     <label for="state-new">State</label>
                     <select id="state-new" class="form-control form-control-sm event-new-input">
+                        <option value="" selected disabled class="d-none">Select state</option>
                         <?php include('state-abbvs-select.php'); ?>
                     </select>
                 </div>
