@@ -163,12 +163,6 @@
             </div>
 
 
-
-
-
-            <!-- heres where recurrence shit goes -->
-
-
             <button type="button" id="btn-submit-new-event" class="btn btn-sm btn-primary">Create event</button>
         </form>
 
