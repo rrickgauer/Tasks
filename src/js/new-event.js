@@ -92,15 +92,6 @@ function submitNewEvent() {
     // generate and add a UUID for the event
     // const eventUUID = Utilities.getUUID();
     inputValues.id = Utilities.getUUID();
-    inputValues.recurrence_id = Utilities.getUUID();
-
-    const recurrenceData = {
-        id: inputValues.recurrence_id,
-        event_id: inputValues.id,
-        day: inputValues.recurrence_day,  
-        week: inputValues.recurrence_week, 
-        month: inputValues.recurrence_month,
-    }
 
     
     // send the request to the api
@@ -109,16 +100,7 @@ function submitNewEvent() {
         url: Constants.API_URLS.EVENTS,
         type: "POST",
         data: inputValues,
-        success: function() {
-            $.ajax({
-                headers: {"X-USER-ID" :  mUser.userID},
-                url: Constants.API_URLS.RECURRENCES,
-                type: "POST",
-                data: recurrenceData,
-                success: submitNewEventSuccess,
-                error: submitNewEventError,
-            });
-        },
+        success: submitNewEventSuccess,
         error: submitNewEventError,
     });
 }
