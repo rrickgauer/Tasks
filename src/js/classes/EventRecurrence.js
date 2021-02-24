@@ -64,12 +64,7 @@ class EventRecurrence {
                 </div>
             </div>
 
-            <div class="event-labels">
-                <span class="badge badge-primary event-label">Primary</span>
-                <span class="badge badge-secondary event-label">Primary</span>
-                <span class="badge badge-success event-label">Primary</span>
-                <span class="badge badge-danger event-label">Primary</span>
-            </div>
+            <div class="event-labels"></div>
         </li>`;
 
 
