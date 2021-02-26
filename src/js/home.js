@@ -1,10 +1,11 @@
 /**********************************************************
 Page elements
 **********************************************************/
-const e_dateSelector     = $('#date-input');
-const e_recurrences      = $('.recurrences');
-const e_recurrencesBoard = $('.recurrences-board');
-const e_modalEvent       = $('#modal-event');
+const e_dateSelector       = $('#date-input');
+const e_recurrences        = $('.recurrences');
+const e_recurrencesBoard   = $('.recurrences-board');
+const e_modalEvent         = $('#modal-event');
+const e_datePicker         = $('.btn-date-picker');
 
 
 /**********************************************************
@@ -32,6 +33,7 @@ Registers all of the event listeners for the page.
 function addListeners() {
     $(e_dateSelector).on('change', requestNewDates);
     $(e_recurrences).on('click', '.event-modal-open', openModalEvent);
+    $(e_datePicker).on('click', getNewWeekInterval);
 }
 
 
@@ -52,10 +54,13 @@ function initFlatpickrs() {
 /**********************************************************
 Retrieve a week's worth of recurrences from the API
 **********************************************************/
-function requestNewDates() {
-    const newDate = DateTime.fromSQL($(this).val());
+function requestNewDates(a_newDate) {
+    let newDate = DateTime.fromSQL($(this).val());
+    
     m_WeekDates = new WeekDates(newDate);
+
     getEventsInRange(m_WeekDates.getFirstString(), m_WeekDates.getLastString(), displayWeeklyEvents);
+    
     $('.recurrences-board .recurrences').html('');
 }
 
@@ -206,5 +211,26 @@ function openModalEvent(a_eventElement) {
 
     m_ModalEvent.init(eventID, occursOn);
     m_ModalEvent.showModal();
+}
+
+
+/**********************************************************
+When the user clicks one of the arrow buttons to get 
+the next, previous, or current weekly tasks.
+**********************************************************/
+function getNewWeekInterval(a_callerElement) {
+    const newInterval = $(this).attr('data-date-interval');
+
+    // decide whether to increase or decrease the week by 1
+    if (newInterval == 'prev') {
+        m_WeekDates.decreaseCurrentWeek(1);
+    } else if (newInterval == 'next') {
+        m_WeekDates.increaseCurrentWeek(1);        
+    } else {
+        m_WeekDates = new WeekDates();  // set it to today
+    }
+
+    // get the new events from the api
+    getEventsInRange(m_WeekDates.getFirstString(), m_WeekDates.getLastString(), displayWeeklyEvents);   
 }
 
