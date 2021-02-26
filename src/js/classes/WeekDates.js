@@ -64,7 +64,7 @@ class WeekDates {
     *************************************************/
     decreaseCurrentWeek(a_numWeeks = 1) {
         // make the number negative
-        decreaseWeeks = a_numWeeks * -1;
+        let decreaseWeeks = a_numWeeks * -1;
 
         this.increaseCurrentWeek(decreaseWeeks);
     }
