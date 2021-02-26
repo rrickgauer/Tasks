@@ -39,14 +39,22 @@ function addListeners() {
 
 /**********************************************************
 Load all the Flatpickr date instances.
+
+a_defaultDate: a date string that the input's value will be set to
 **********************************************************/
-function initFlatpickrs() {
+function initFlatpickrs(a_defaultDate) {
+
+    let defaultDate = "today";
+    if (a_defaultDate != undefined) {
+        defaultDate = a_defaultDate;
+    }
+
     // date inputs
     $('.flatpickr-date').flatpickr({
         altInput: true,
         altFormat: "F j, Y",
         dateFormat: "Y-m-d",
-        defaultDate: "today",
+        defaultDate: defaultDate,
     });   
 }
 
@@ -231,6 +239,9 @@ function getNewWeekInterval(a_callerElement) {
     }
 
     // get the new events from the api
-    getEventsInRange(m_WeekDates.getFirstString(), m_WeekDates.getLastString(), displayWeeklyEvents);   
+    getEventsInRange(m_WeekDates.getFirstString(), m_WeekDates.getLastString(), displayWeeklyEvents);
+
+    // set the date selector input value to the new date
+    initFlatpickrs(m_WeekDates.getCurrentString());
 }
 
