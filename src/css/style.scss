@@ -17,9 +17,14 @@ hr {
     background-color: white;
 }
 
+.flatpickr-date {
+    background-color: white !important;
+}
 
 .toolbar {
     display: flex;
+    align-items: baseline;
+    justify-content: space-between;
 }
 
 

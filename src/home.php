@@ -14,10 +14,30 @@
 
         <!-- toolbar to filter/search for events -->
         <div class="toolbar">
-            <div class="form-group">
-                <label for="date-input">Date</label>
-                <input type="text" class="form-control flatpickr-date" id="date-input">
+            <div>
+                <div class="form-group">
+                    <input type="text" class="form-control form-control-sm flatpickr-date" id="date-input">
+                </div>
             </div>
+
+
+            <div class="d-flex align-items-center">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <!-- previous week button -->
+                    <button type="button" class="btn btn-sm btn-light btn-date-picker btn-date-picker-prev" title="Previous week">
+                        <i class='bx bxs-chevron-left'></i>
+                    </button>
+
+                    <!-- next week button -->                    
+                    <button type="button" class="btn btn-sm btn-light btn-date-picker btn-date-picker-next" title="Next week">
+                        <i class='bx bxs-chevron-right'></i>
+                    </button>
+                </div>
+
+                <!-- this week button -->
+                <button type="button" class="btn btn-sm btn-light ml-3 btn-date-picker btn-date-picker-today" title="Today">Today</button>
+            </div>
+
         </div>
 
         <!-- recurrences go here -->
