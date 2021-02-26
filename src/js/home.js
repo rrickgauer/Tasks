@@ -138,13 +138,13 @@ Takes a week's worth of event recurrences received from the
 API and displays them for viewing.
 **********************************************************/
 function displayWeeklyEvents(a_events) {
-    const vRecurrencesSun   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(0));
-    const vRecurrencesMon   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(1));
-    const vRecurrencesTues  = new DailyRecurrences(m_WeekDates.getDateInTheWeek(2));
-    const vRecurrencesWed   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(3));
-    const vRecurrencesThurs = new DailyRecurrences(m_WeekDates.getDateInTheWeek(4));
-    const vRecurrencesFri   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(5));
-    const vRecurrencesSat   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(6));
+    const vRecurrencesSun   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(Constants.WEEKDAY_VALUES.SUNDAY));
+    const vRecurrencesMon   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(Constants.WEEKDAY_VALUES.MONDAY));
+    const vRecurrencesTues  = new DailyRecurrences(m_WeekDates.getDateInTheWeek(Constants.WEEKDAY_VALUES.TUESDAY));
+    const vRecurrencesWed   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(Constants.WEEKDAY_VALUES.WEDNESDAY));
+    const vRecurrencesThurs = new DailyRecurrences(m_WeekDates.getDateInTheWeek(Constants.WEEKDAY_VALUES.THURSDAY));
+    const vRecurrencesFri   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(Constants.WEEKDAY_VALUES.FRIDAY));
+    const vRecurrencesSat   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(Constants.WEEKDAY_VALUES.SATURDAY));
 
     
     // put each event into its related day bucket
@@ -153,25 +153,25 @@ function displayWeeklyEvents(a_events) {
         const thisEventWeekday = DateTime.fromSQL(thisEvent.occurs_on).weekday;
 
         switch (thisEventWeekday) {
-            case 0:
+            case Constants.WEEKDAY_VALUES.SUNDAY:
                 vRecurrencesSun.addEventRecurrence(thisEvent);
                 break;
-            case 1:
+            case Constants.WEEKDAY_VALUES.MONDAY:
                 vRecurrencesMon.addEventRecurrence(thisEvent);
                 break;
-            case 2:
+            case Constants.WEEKDAY_VALUES.TUESDAY:
                 vRecurrencesTues.addEventRecurrence(thisEvent);
                 break;
-            case 3:
+            case Constants.WEEKDAY_VALUES.WEDNESDAY:
                 vRecurrencesWed.addEventRecurrence(thisEvent);
                 break;
-            case 4:
+            case Constants.WEEKDAY_VALUES.THURSDAY:
                 vRecurrencesThurs.addEventRecurrence(thisEvent);
                 break;
-            case 5:
+            case Constants.WEEKDAY_VALUES.FRIDAY:
                 vRecurrencesFri.addEventRecurrence(thisEvent);
                 break;
-            case 6:
+            case Constants.WEEKDAY_VALUES.SATURDAY:
                 vRecurrencesSat.addEventRecurrence(thisEvent);
                 break;
         }
