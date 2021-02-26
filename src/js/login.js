@@ -54,7 +54,7 @@ function loginAttmempt() {
 
         // send the request to the api
         $.ajax({
-            url: m_API + '/users',
+            url: Constants.API_URLS.USERS,
             type: "get",
             data: {
                 email: email,
