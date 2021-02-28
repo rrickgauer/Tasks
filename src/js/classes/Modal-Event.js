@@ -53,6 +53,9 @@ class ModalEvent
         this.e_formEditZip         = $('#zip-edit');
         this.e_formEditDescription = $('#description-edit');
         this.e_formEditPhone       = $('#phone-edit');
+
+        this.e_btnSaveEditForm = $('#btn-edit-event-save');
+        this.e_btnCancelEditForm = $('#btn-edit-event-save');
     }
 
     /**********************************************************
@@ -182,8 +185,6 @@ class ModalEvent
     Load the event data into the edit event form
     **********************************************************/
     loadEditFormData(apiResponse, self) {
-        console.log(apiResponse);
-
         $(self.e_formEditName).val(apiResponse.name);   // name
         $(self.e_formEditStartsOn).val(apiResponse.starts_on);  // starts on
         $(self.e_formEditStartsAt).val(apiResponse.starts_at);  // starts at
@@ -219,14 +220,16 @@ class ModalEvent
         
         // toggle an edit for the event data
         $(this.e_btnToggleHeaderEdit).on('click', function() {
-            $(self.e_modal).find('.modal-header-display').removeClass('active');
-            $(self.e_modal).find('.modal-header-edit').addClass('active');
+            self.showEditHeader(self);
         });
 
         // make sure the edit form is not visible when the modal is closed
         $(this.e_modal).on('hidden.bs.modal', function() {
-            $(self.e_modal).find('.modal-header-display').addClass('active');
-            $(self.e_modal).find('.modal-header-edit').removeClass('active');
+            self.showDisplayHeader(self);
+        });
+
+        $(this.e_btnSaveEditForm).on('click', function() {
+            self.sendEventUpdateRequest(self);
         });
     }
 
@@ -237,25 +240,70 @@ class ModalEvent
         const self = this;
 
         const result = {
-            name: $(self.e_formEditName).val(),
-            description: $(self.e_formEditDescription).val(),
-            phone_number: $(self.e_formEditPhone).val(),
+            name              : $(self.e_formEditName).val(),
+            description       : $(self.e_formEditDescription).val(),
+            phone_number      : $(self.e_formEditPhone).val(),
             location_address_1: $(self.e_formEditAddress1).val(),
             location_address_2: $(self.e_formEditAddress2).val(),
-            location_city: $(self.e_formEditCity).val(),
-            location_state: $(self.e_formEditState).val(),
-            starts_on: $(self.e_formEditStartsOn).val(),
-            ends_on: $(self.e_formEditEndsOn).val(),
-            starts_at: $(self.e_formEditStatsAt).val(),
-            ends_at: $(self.e_formEditEndsAt).val(),
-            frequency: $(self.e_formEditFrequency).val(),
-            seperation: $(self.e_formEditSeperation).val(),
-            recurrence_day: $(self.e_formEditDay).val(),
-            recurrence_week: $(self.e_formEditWeek).val(),
-            recurrence_month: $(self.e_formEditMonth).val(),
+            location_city     : $(self.e_formEditCity).val(),
+            location_state    : $(self.e_formEditState).val(),
+            location_zip      : $(self.e_formEditZip).val(),
+            starts_on         : $(self.e_formEditStartsOn).val(),
+            ends_on           : $(self.e_formEditEndsOn).val(),
+            starts_at         : $(self.e_formEditStatsAt).val(),
+            ends_at           : $(self.e_formEditEndsAt).val(),
+            frequency         : $(self.e_formEditFrequency).val(),
+            seperation        : $(self.e_formEditSeperation).val(),
+            recurrence_day    : $(self.e_formEditDay).val(),
+            recurrence_week   : $(self.e_formEditWeek).val(),
+            recurrence_month  : $(self.e_formEditMonth).val(),
         };
 
         return result;
+    }
+
+    /**********************************************************
+    send an update request to the api to update an event's meta data
+    **********************************************************/
+    sendEventUpdateRequest(self) {
+        const url = Utilities.buildApiEventUrl(Constants.API_URLS.EVENTS, self.eventID);
+
+        // send the request to the api
+        $.ajax({
+            headers: {"X-USER-ID" :  self.userID},
+            url: url,
+            type: "PUT",
+            data: self.getEditFormValues(),
+            success: function(response) {
+                self.loadData(self.displayEventData);
+                self.showDisplayHeader(self);
+            },
+            error: console.error,
+        });
+    }
+
+    /**********************************************************
+    Show the display event modal header
+    **********************************************************/
+    showDisplayHeader(self) {
+        if (self == undefined) {
+            self = this;
+        }
+
+        $(self.e_modal).find('.modal-header-display').addClass('active');
+        $(self.e_modal).find('.modal-header-edit').removeClass('active');
+    }
+
+    /**********************************************************
+    Show the display event modal header
+    **********************************************************/
+    showEditHeader(self) {
+        if (self == undefined) {
+            self = this;
+        }
+
+        $(self.e_modal).find('.modal-header-display').removeClass('active');
+        $(self.e_modal).find('.modal-header-edit').addClass('active');
     }
 
 }

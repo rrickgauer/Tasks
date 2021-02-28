@@ -28,6 +28,8 @@
 <!-- common functions -->
 <script src="js/classes/Utilities.js"></script>
 
+<script src="js/classes/API-Wrapper.js"></script>
+
 <!-- User class -->
 <script src="js/classes/User.js"></script>
 
