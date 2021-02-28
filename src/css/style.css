@@ -49,6 +49,7 @@ hr {
 
 #modal-event .modal-header {
   border-bottom: none;
+  display: block;
 }
 #modal-event .modal-header .modal-title {
   margin-bottom: 10px;
