@@ -55,7 +55,7 @@ class ModalEvent
         this.e_formEditPhone       = $('#phone-edit');
 
         this.e_btnSaveEditForm = $('#btn-edit-event-save');
-        this.e_btnCancelEditForm = $('#btn-edit-event-save');
+        this.e_btnCancelEditForm = $('#btn-edit-event-cancel');
     }
 
     /**********************************************************
@@ -231,6 +231,14 @@ class ModalEvent
         $(this.e_btnSaveEditForm).on('click', function() {
             self.sendEventUpdateRequest(self);
         });
+
+        // cancel an event edit request
+        $(this.e_btnCancelEditForm).on('click', function() {
+            self.showDisplayHeader(self);
+            self.loadData(function(response) {
+                self.loadEditFormData(response, self);  // reset the input values
+            });
+        });
     }
 
     /**********************************************************
@@ -278,12 +286,10 @@ class ModalEvent
                 self.loadData(self.displayEventData);
                 self.showDisplayHeader(self);
                 
-
+                // fire an event saying an event was updated
                 let event = new CustomEvent('event_update', {
                     bubbles: true,
                 });
-
-                // self.e_modal.dispatchEvent(event);
 
                 $(self.e_modal)[0].dispatchEvent(event);
             },
