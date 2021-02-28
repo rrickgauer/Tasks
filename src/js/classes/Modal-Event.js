@@ -228,6 +228,7 @@ class ModalEvent
             self.showDisplayHeader(self);
         });
 
+        // update an event
         $(this.e_btnSaveEditForm).on('click', function() {
             self.sendEventUpdateRequest(self);
         });
@@ -292,6 +293,8 @@ class ModalEvent
                 });
 
                 $(self.e_modal)[0].dispatchEvent(event);
+
+                Utilities.displayAlert('Event was successfully updated.');
             },
             error: console.error,
         });
