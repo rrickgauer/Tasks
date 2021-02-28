@@ -180,33 +180,13 @@ class ModalEvent
 
     /**********************************************************
     Load the event data into the edit event form
-
-    this.e_formEditName
-    this.e_formEditStartsOn
-    this.e_formEditStatsAt
-    this.e_formEditEndsOn
-    this.e_formEditEndsAt
-    this.e_formEditSeperation
-    this.e_formEditFrequency
-    this.e_formEditDay
-    this.e_formEditWeek
-    this.e_formEditMonth
-    this.e_formEditAddress1
-    this.e_formEditAddress2
-    this.e_formEditCity
-    this.e_formEditState
-    this.e_formEditZip
-    this.e_formEditDescription
-    this.e_formEditPhone
     **********************************************************/
     loadEditFormData(apiResponse, self) {
         console.log(apiResponse);
 
-        
         $(self.e_formEditName).val(apiResponse.name);   // name
         $(self.e_formEditStartsOn).val(apiResponse.starts_on);  // starts on
         $(self.e_formEditStartsAt).val(apiResponse.starts_at);  // starts at
-
         $(self.e_formEditEndsOn).val(apiResponse.ends_on);
         $(self.e_formEditEndsAt).val(apiResponse.ends_at);
         $(self.e_formEditSeperation).val(apiResponse.seperation);
@@ -221,7 +201,6 @@ class ModalEvent
         $(self.e_formEditZip).val(apiResponse.location_zip);
         $(self.e_formEditDescription).val(apiResponse.description);
         $(self.e_formEditPhone).val(apiResponse.phone_number);
-
     }
 
 
@@ -249,6 +228,34 @@ class ModalEvent
             $(self.e_modal).find('.modal-header-display').addClass('active');
             $(self.e_modal).find('.modal-header-edit').removeClass('active');
         });
+    }
+
+    /**********************************************************
+    Returns an object of all the edit event form inputs
+    **********************************************************/
+    getEditFormValues() {
+        const self = this;
+
+        const result = {
+            name: $(self.e_formEditName).val(),
+            description: $(self.e_formEditDescription).val(),
+            phone_number: $(self.e_formEditPhone).val(),
+            location_address_1: $(self.e_formEditAddress1).val(),
+            location_address_2: $(self.e_formEditAddress2).val(),
+            location_city: $(self.e_formEditCity).val(),
+            location_state: $(self.e_formEditState).val(),
+            starts_on: $(self.e_formEditStartsOn).val(),
+            ends_on: $(self.e_formEditEndsOn).val(),
+            starts_at: $(self.e_formEditStatsAt).val(),
+            ends_at: $(self.e_formEditEndsAt).val(),
+            frequency: $(self.e_formEditFrequency).val(),
+            seperation: $(self.e_formEditSeperation).val(),
+            recurrence_day: $(self.e_formEditDay).val(),
+            recurrence_week: $(self.e_formEditWeek).val(),
+            recurrence_month: $(self.e_formEditMonth).val(),
+        };
+
+        return result;
     }
 
 }
