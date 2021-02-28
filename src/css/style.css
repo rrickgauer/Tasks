@@ -49,11 +49,12 @@ hr {
 
 #modal-event .modal-header {
   border-bottom: none;
+  display: block;
 }
-#modal-event .modal-header .modal-title {
+#modal-event .modal-header-display .modal-title {
   margin-bottom: 10px;
 }
-#modal-event .modal-header .description {
+#modal-event .modal-header-display .description {
   font-weight: 400;
   line-height: 1.5;
   box-sizing: border-box;
@@ -70,6 +71,14 @@ hr {
 }
 #modal-event .event-data.name .event-data-data {
   font-size: 24px;
+}
+#modal-event .modal-header-display,
+#modal-event .modal-header-edit {
+  display: none;
+}
+#modal-event .modal-header-display.active,
+#modal-event .modal-header-edit.active {
+  display: block;
 }
 
 .form-group label {
