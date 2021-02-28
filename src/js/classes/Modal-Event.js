@@ -277,6 +277,15 @@ class ModalEvent
             success: function(response) {
                 self.loadData(self.displayEventData);
                 self.showDisplayHeader(self);
+                
+
+                let event = new CustomEvent('event_update', {
+                    bubbles: true,
+                });
+
+                // self.e_modal.dispatchEvent(event);
+
+                $(self.e_modal)[0].dispatchEvent(event);
             },
             error: console.error,
         });

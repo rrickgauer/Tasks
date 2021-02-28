@@ -34,6 +34,10 @@ function addListeners() {
     $(e_dateSelector).on('change', requestNewDates);
     $(e_recurrences).on('click', '.event-modal-open', openModalEvent);
     $(e_datePicker).on('click', getNewWeekInterval);
+
+    $(e_modalEvent).on('event_update', function() {
+        getEventsInRange(m_WeekDates.first.toSQLDate(), m_WeekDates.last.toSQLDate(), displayWeeklyEvents);
+    });
 }
 
 
