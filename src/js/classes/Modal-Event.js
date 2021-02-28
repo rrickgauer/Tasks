@@ -35,6 +35,7 @@ class ModalEvent
         this.e_occursOnDisplay    = $(modal).find('.event-data.occurs-on .event-data-data');
 
         this.e_btnToggleHeaderEdit = $(modal).find('.btn-modal-header-edit');
+        this.e_btnDeleteEvent      = $(modal).find('.btn-modal-header-delete');
 
         this.e_formEditName        = $('#name-edit');
         this.e_formEditStartsOn    = $('#starts-on-edit');
@@ -240,6 +241,10 @@ class ModalEvent
                 self.loadEditFormData(response, self);  // reset the input values
             });
         });
+
+        $(this.e_btnDeleteEvent).on('click', function() {
+            self.deleteEvent(self);
+        });
     }
 
     /**********************************************************
@@ -322,6 +327,38 @@ class ModalEvent
 
         $(self.e_modal).find('.modal-header-display').removeClass('active');
         $(self.e_modal).find('.modal-header-edit').addClass('active');
+    }
+
+    /**********************************************************
+    Delete an event
+    **********************************************************/
+    deleteEvent(self) {
+
+        if (!confirm('Are you sure you want to delete this event?')) {
+            return;
+        }
+
+
+        const url = Utilities.buildApiEventUrl(Constants.API_URLS.EVENTS, self.eventID);
+
+        // send the request to the api
+        $.ajax({
+            headers: {"X-USER-ID" :  self.userID},
+            url: url,
+            type: "DELETE",
+            success: function(response) {                
+                // fire an event saying an event was updated
+                let event = new CustomEvent('event_update', {
+                    bubbles: true,
+                });
+
+                $(self.e_modal)[0].dispatchEvent(event);
+
+                $(self.e_modal).modal('hide');
+            },
+            error: console.error,
+        });
+        
     }
 
 }
