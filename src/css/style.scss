@@ -64,10 +64,13 @@ hr {
 
 
 #modal-event {
+
     .modal-header {
         border-bottom: none;
         display: block;
+    }
 
+    .modal-header-display {
         .modal-title {
             margin-bottom: 10px;
         }
@@ -96,6 +99,16 @@ hr {
         .event-data-data {
             font-size: 24px;
         }
+    }
+
+    .modal-header-display,
+    .modal-header-edit {
+        display: none;
+    }
+
+    .modal-header-display.active,
+    .modal-header-edit.active {
+        display: block;
     }
     
 }
