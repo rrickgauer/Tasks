@@ -31,6 +31,7 @@ class Constants {
         FRIDAY: 5,
         SATURDAY: 6,
     }
+
 }
 
 
