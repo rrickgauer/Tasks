@@ -20,6 +20,8 @@ const btnSubmit            = $('#btn-submit-new-event');
 const inputClassName       = '.event-new-input';
 const inputForm            = $('.form-event-new');
 
+let m_inputValues = null;
+
 // other shit
 const mUser = new User(Utilities.getUserIdFromLocalStorage());
 
@@ -89,17 +91,19 @@ function submitNewEvent() {
         return;
     }
 
-    let inputValues = getNewEventInputValues();   // retrieve the input values
+    m_inputValues = getNewEventInputValues();   // retrieve the input values
 
     // generate and add a UUID for the event
-    inputValues.id = Utilities.getUUID();
+    m_inputValues.id = Utilities.getUUID();
+
+    const url = Utilities.buildApiEventUrl(Constants.API_URLS.EVENTS, m_inputValues.id);
 
     // send the request to the api
     $.ajax({
         headers: {"X-USER-ID" :  mUser.userID},
-        url: Constants.API_URLS.EVENTS,
+        url: url,
         type: "POST",
-        data: inputValues,
+        data: m_inputValues,
         success: submitNewEventSuccess,
         error: submitNewEventError,
     });
@@ -305,8 +309,16 @@ function getNewEventInputValues() {
 Action to take when submitting a new event is successful.
 ***************************************************************************/
 function submitNewEventSuccess(responseData, textStatus, xhr) {
-    $(inputForm).trigger('reset');
     Utilities.displayAlert('Success!');
+    $(inputForm).trigger('reset');
+
+    if (m_inputValues == null) {
+        return;
+    }
+
+    let eventModal = new ModalEvent($('#modal-event'));
+    eventModal.init(m_inputValues.id, m_inputValues.starts_on);
+    eventModal.showModal();
 }
 
 /***************************************************************************
