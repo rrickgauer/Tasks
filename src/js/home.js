@@ -38,6 +38,8 @@ function addListeners() {
     $(e_modalEvent).on('event_update', function() {
         getEventsInRange(m_WeekDates.first.toSQLDate(), m_WeekDates.last.toSQLDate(), displayWeeklyEvents);
     });
+
+    $('body').on('change', '.event-checkbox input', toggleEventCompleted);
 }
 
 
@@ -107,6 +109,8 @@ Makes a request to the api to get all the date occurences
 within the range of dates given.
 **********************************************************/
 function getEventsInRange(a_startsOn, a_endsOn, a_actionSuccess, a_actionError) {
+
+
     // verify the start and end dates are set
     if (a_startsOn == undefined) {
         console.error('getEventsInRange() - needs start date');
@@ -136,10 +140,9 @@ function getEventsInRange(a_startsOn, a_endsOn, a_actionSuccess, a_actionError) 
         starts_on: a_startsOn,
         ends_on: a_endsOn,
     }
-
-    console.log(dateRanges);
-    console.log(Constants.API_URLS.RECURRENCES);
     
+    console.log(dateRanges);
+
     // send the request to the api
     $.ajax({
         headers: {"X-USER-ID" :  m_User.userID},
@@ -168,11 +171,6 @@ function displayWeeklyEvents(a_events) {
 
     console.log(a_events);
 
-    console.log(m_WeekDates.current.toLocaleString(DateTime.DATE_FULL));
-    console.log(m_WeekDates.first.toLocaleString(DateTime.DATE_FULL));
-    console.log(m_WeekDates.last.toLocaleString(DateTime.DATE_FULL));
-
-    
     // put each event into its related day bucket
     for (let count = 0; count < a_events.length; count++) {
         const thisEvent = a_events[count];
@@ -261,4 +259,30 @@ function getNewWeekInterval(a_callerElement) {
     // set the date selector input value to the new date
     initFlatpickrs(m_WeekDates.getCurrentString());
 }
+
+
+function toggleEventCompleted(self) {
+    const markEventCompleted = $(this).is(':checked');
+    const type = markEventCompleted ? "POST" : "DELETE";
+
+    const eventID = $(this).closest('.event').attr('data-event-id');
+    const date = $(this).closest('.container-day-recurrences').attr('data-date');
+    const url = `${Constants.API_URLS.COMPLETIONS}/${eventID}/${date}`;
+
+    console.log(url);
+
+
+    // send the request to the api
+    $.ajax({
+        headers: {"X-USER-ID" :  m_User.userID},
+        url: url,
+        type: type,
+        success: console.log,
+        error: function(xhr) {
+            console.error(xhr.responseText);
+            Utilities.displayAlert('There was an error.');
+        },
+    });
+}
+
 

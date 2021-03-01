@@ -10,6 +10,7 @@ class EventRecurrence {
     Constructor
     **********************************************************/
     constructor(a_apiResponse) {
+        const self = this;
         this.setAllPropertiesToNull();
 
         // set each property
@@ -21,16 +22,29 @@ class EventRecurrence {
             if (a_apiResponse.hasOwnProperty(key)) {
                 this[key] = a_apiResponse[key];
             }
-        }        
+        }
+
+        /**
+         * the api response is set to either:
+         * 0 -> false
+         * 1 -> true
+         */
+        if (this.completed != "1") {
+            this.completed = false; 
+        } else {
+            this.completed = true;
+        }
+
     }
 
     /**********************************************************
     Sets all the properites of the class to null
     **********************************************************/
     setAllPropertiesToNull() {
-        this.event_id           = null;
-        this.user_id            = null;
-        this.name               = null;
+        this.event_id  = null;
+        this.user_id   = null;
+        this.name      = null;
+        this.completed = null;
     }
 
     /**********************************************************
@@ -38,13 +52,15 @@ class EventRecurrence {
     **********************************************************/
     getHtml() {
 
+        let checkboxHtml = this.getCheckboxHtml();
+
         let html = `
         <li class="list-group-item event" data-event-id="${this.event_id}">
             <div class="d-flex justify-content-between">
                 <div class="d-flex w-100">
-                    <div class="event-checkbox"><input type="checkbox" /></div>
+                    ${checkboxHtml}
                     <div class="d-flex w-100 event-modal-open">
-                        <div class="event-time">3:00 PM</div>
+                        <div class="event-time"></div>
                         <div class="event-name">${this.name}</div>
                     </div>
 
@@ -69,7 +85,21 @@ class EventRecurrence {
 
 
         return html;
+    }
 
+    /**********************************************************
+    Generates and returns the html for the checkbox
+    **********************************************************/
+    getCheckboxHtml() {
+        let html = '<div class="event-checkbox"><input type="checkbox"'
+
+        if (this.completed) {
+            html += ' checked';
+        }
+
+        html += '></div>';
+
+        return html;
     }
 }
 

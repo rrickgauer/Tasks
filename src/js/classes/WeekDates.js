@@ -88,8 +88,6 @@ class WeekDates {
 
         daysDiff *= -1;
 
-        console.log(daysDiff);
-
         let dateFirstInWeek = a_date.plus({ days: daysDiff });
 
         return dateFirstInWeek;
