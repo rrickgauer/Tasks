@@ -10,6 +10,7 @@ class EventRecurrence {
     Constructor
     **********************************************************/
     constructor(a_apiResponse) {
+        const self = this;
         this.setAllPropertiesToNull();
 
         // set each property

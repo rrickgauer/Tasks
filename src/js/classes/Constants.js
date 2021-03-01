@@ -8,6 +8,7 @@ class Constants {
         EVENTS: Constants.API + '/events',
         RECURRENCES: Constants.API + '/recurrences',
         USERS: Constants.API + '/users',
+        COMPLETIONS: Constants.API + '/completions',
     };
 
     static API_RETURN_CODES = {
