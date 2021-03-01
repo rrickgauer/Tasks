@@ -14,7 +14,7 @@
         <div class="card">
             <div class="card-body">
                 <!-- new event form -->
-                <form class="form-event-new">
+                <form class="form-event-new" autocomplete="off">
                     <!-- name -->
                     <div class="form-group form-event-new-group">
                         <label for="name-new">Name</label>
