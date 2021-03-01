@@ -171,7 +171,7 @@
     </div>
 
 
-
+    <?php include('event-modal.php'); ?>
     <?php include('footer.php'); ?>
     <script src="js/new-event.js"></script>
 </body>
