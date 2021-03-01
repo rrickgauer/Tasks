@@ -136,6 +136,9 @@ function getEventsInRange(a_startsOn, a_endsOn, a_actionSuccess, a_actionError) 
         starts_on: a_startsOn,
         ends_on: a_endsOn,
     }
+
+    console.log(dateRanges);
+    console.log(Constants.API_URLS.RECURRENCES);
     
     // send the request to the api
     $.ajax({
@@ -163,11 +166,21 @@ function displayWeeklyEvents(a_events) {
     const vRecurrencesFri   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(Constants.WEEKDAY_VALUES.FRIDAY));
     const vRecurrencesSat   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(Constants.WEEKDAY_VALUES.SATURDAY));
 
+    console.log(a_events);
+
+    console.log(m_WeekDates.current.toLocaleString(DateTime.DATE_FULL));
+    console.log(m_WeekDates.first.toLocaleString(DateTime.DATE_FULL));
+    console.log(m_WeekDates.last.toLocaleString(DateTime.DATE_FULL));
+
     
     // put each event into its related day bucket
     for (let count = 0; count < a_events.length; count++) {
         const thisEvent = a_events[count];
-        const thisEventWeekday = DateTime.fromSQL(thisEvent.occurs_on).weekday;
+        let thisEventWeekday = DateTime.fromSQL(thisEvent.occurs_on).weekday;
+
+        if (thisEventWeekday == 7) {
+            thisEventWeekday = Constants.WEEKDAY_VALUES.SUNDAY;
+        }
 
         switch (thisEventWeekday) {
             case Constants.WEEKDAY_VALUES.SUNDAY:

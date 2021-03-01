@@ -3,6 +3,11 @@ WeekDates
 
 This class' purpose is to retrieve the first and last days of either a current week,
 or of the week of the date supplied.
+
+Properties:
+    - current
+    - first
+    - last
 **********************************************************************************************************************/
 
 class WeekDates {
@@ -75,7 +80,15 @@ class WeekDates {
     falls within the week of the date supplied.
     *************************************************/
     getFirstDateInWeek(a_date) {
-        let daysDiff = (a_date.weekday) * -1;
+        let daysDiff = a_date.weekday;
+
+        if (daysDiff == 7) {
+            daysDiff = 0;   // luxon uses 7 for sundays
+        }
+
+        daysDiff *= -1;
+
+        console.log(daysDiff);
 
         let dateFirstInWeek = a_date.plus({ days: daysDiff });
 
@@ -88,7 +101,13 @@ class WeekDates {
     falls within the week of the date supplied.
     *************************************************/
     getLastDateInWeek(a_date) {
-        let daysDiff = 6 - a_date.weekday;
+        let daysDiff = a_date.weekday;
+
+        if (daysDiff == 7) {
+            daysDiff = 0;   // luxon uses 7 for sundays
+        }
+
+        daysDiff = 6 - daysDiff;
 
         let dateLastInWeek = a_date.plus({ days: daysDiff });
 
