@@ -239,6 +239,9 @@ When the user clicks one of the arrow buttons to get
 the next, previous, or current weekly tasks.
 **********************************************************/
 function getNewWeekInterval(a_callerElement) {
+    const spinnerHtml = '<div class="d-flex justify-content-center my-5 py-5"><div class="spinner-border" role="status"></div></div>';
+    $('.recurrences-board .recurrences').html(spinnerHtml);
+    
     const newInterval = $(this).attr('data-date-interval');
 
     // decide whether to increase or decrease the week by 1
