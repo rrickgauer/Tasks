@@ -61,6 +61,7 @@ function initFlatpickrs(a_defaultDate) {
         altFormat: "F j, Y",
         dateFormat: "Y-m-d",
         defaultDate: defaultDate,
+        wrap: true,
     });   
 }
 

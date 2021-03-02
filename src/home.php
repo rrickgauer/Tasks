@@ -15,8 +15,14 @@
         <!-- toolbar to filter/search for events -->
         <div class="toolbar">
             <div>
-                <div class="form-group">
-                    <input type="text" class="form-control form-control-sm flatpickr-date" id="date-input">
+                <div class="form-group form-event-new-group flatpickr-date">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class='bx bx-calendar'></i></span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" id="date-input" data-input>
+                    </div>
+                    <div class="invalid-feedback"></div>
                 </div>
             </div>
 
