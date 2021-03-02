@@ -10,11 +10,17 @@
     <?php include('navbar.php'); ?>
 
     <div class="container">
-        <h1 class="text-center my-5">Tasks</h1>
+
 
         <!-- toolbar to filter/search for events -->
-        <div class="toolbar">
-            <div>
+
+        <div class="d-flex align-items-baseline justify-content-between mt-5 mb-3">
+            <!-- title -->
+            <div><h3>Tasks</h3></div>
+
+            <!-- right side -->
+            <div class="d-flex align-items-baseline">
+                <!-- date selector -->
                 <div class="form-group form-event-new-group flatpickr-date">
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -24,27 +30,32 @@
                     </div>
                     <div class="invalid-feedback"></div>
                 </div>
-            </div>
 
 
-            <div class="d-flex align-items-center">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <!-- previous week button -->
-                    <button type="button" class="btn btn-sm btn-light btn-date-picker" data-date-interval="prev" title="Previous week">
-                        <i class='bx bxs-chevron-left'></i>
-                    </button>
+                <!-- next, prev, today buttons -->
+                <div class="d-flex align-items-center ml-3">
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <!-- previous week button -->
+                        <button type="button" class="btn btn-sm btn-light btn-date-picker" data-date-interval="prev" title="Previous week">
+                            <i class='bx bxs-chevron-left'></i>
+                        </button>
 
-                    <!-- next week button -->
-                    <button type="button" class="btn btn-sm btn-light btn-date-picker" data-date-interval="next" title="Next week">
-                        <i class='bx bxs-chevron-right'></i>
-                    </button>
+                        <!-- next week button -->
+                        <button type="button" class="btn btn-sm btn-light btn-date-picker" data-date-interval="next" title="Next week">
+                            <i class='bx bxs-chevron-right'></i>
+                        </button>
+                    </div>
+
+                    <!-- this week button -->
+                    <button type="button" class="btn btn-sm btn-light ml-3 btn-date-picker" data-date-interval="today" title="Today">Today</button>
                 </div>
 
-                <!-- this week button -->
-                <button type="button" class="btn btn-sm btn-light ml-3 btn-date-picker" data-date-interval="today" title="Today">Today</button>
             </div>
 
         </div>
+
+
+
 
         <!-- recurrences go here -->
 
