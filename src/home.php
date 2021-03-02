@@ -28,7 +28,7 @@
                         <i class='bx bxs-chevron-left'></i>
                     </button>
 
-                    <!-- next week button -->                    
+                    <!-- next week button -->
                     <button type="button" class="btn btn-sm btn-light btn-date-picker" data-date-interval="next" title="Next week">
                         <i class='bx bxs-chevron-right'></i>
                     </button>
@@ -41,9 +41,22 @@
         </div>
 
         <!-- recurrences go here -->
-        <div class="recurrences-board mt-5">
-            <div class="recurrences"></div>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="recurrences-board">
+                    <div class="recurrences">
+                        <div class="d-flex justify-content-center my-5 py-5">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
     </div>
 
 
