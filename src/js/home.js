@@ -61,6 +61,7 @@ function initFlatpickrs(a_defaultDate) {
         altFormat: "F j, Y",
         dateFormat: "Y-m-d",
         defaultDate: defaultDate,
+        wrap: true,
     });   
 }
 
@@ -69,13 +70,14 @@ function initFlatpickrs(a_defaultDate) {
 Retrieve a week's worth of recurrences from the API
 **********************************************************/
 function requestNewDates(a_newDate) {
+    // display a spinner
+    const spinnerHtml = '<div class="d-flex justify-content-center my-5 py-5"><div class="spinner-border" role="status"></div></div>';
+    $('.recurrences-board .recurrences').html(spinnerHtml);
+
     let newDate = DateTime.fromSQL($(this).val());
-    
     m_WeekDates = new WeekDates(newDate);
 
-    getEventsInRange(m_WeekDates.getFirstString(), m_WeekDates.getLastString(), displayWeeklyEvents);
-    
-    $('.recurrences-board .recurrences').html('');
+    getEventsInRange(m_WeekDates.getFirstString(), m_WeekDates.getLastString(), displayWeeklyEvents);    
 }
 
 
@@ -109,8 +111,6 @@ Makes a request to the api to get all the date occurences
 within the range of dates given.
 **********************************************************/
 function getEventsInRange(a_startsOn, a_endsOn, a_actionSuccess, a_actionError) {
-
-
     // verify the start and end dates are set
     if (a_startsOn == undefined) {
         console.error('getEventsInRange() - needs start date');
@@ -239,6 +239,9 @@ When the user clicks one of the arrow buttons to get
 the next, previous, or current weekly tasks.
 **********************************************************/
 function getNewWeekInterval(a_callerElement) {
+    const spinnerHtml = '<div class="d-flex justify-content-center my-5 py-5"><div class="spinner-border" role="status"></div></div>';
+    $('.recurrences-board .recurrences').html(spinnerHtml);
+    
     const newInterval = $(this).attr('data-date-interval');
 
     // decide whether to increase or decrease the week by 1
@@ -265,9 +268,6 @@ function toggleEventCompleted(self) {
     const eventID = $(this).closest('.event').attr('data-event-id');
     const date = $(this).closest('.container-day-recurrences').attr('data-date');
     const url = `${Constants.API_URLS.COMPLETIONS}/${eventID}/${date}`;
-
-    console.log(url);
-
 
     // send the request to the api
     $.ajax({

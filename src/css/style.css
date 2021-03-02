@@ -15,7 +15,7 @@ hr {
   background-color: white;
 }
 
-.flatpickr-date {
+.flatpickr-date input {
   background-color: white !important;
 }
 
@@ -26,7 +26,7 @@ hr {
 }
 
 .container-day-recurrences {
-  margin-top: 50px;
+  margin-bottom: 30px;
 }
 .container-day-recurrences .header {
   margin-bottom: 10px;

@@ -29,10 +29,9 @@ class DailyRecurrences
 
         // build the header
         let htmlHeader = `
-        <div class="header">
-            <div class="header-date">
-                ${weekdayDisplay}
-            </div>
+        <div class="header d-flex">
+            <div class="header-date">${weekdayDisplay}</div>
+            <div class="ml-1"><span class="badge badge-secondary">${this.eventRecurrences.length}</span></div>
         </div>`;
 
         // get the recurrences html
