@@ -141,8 +141,6 @@ function getEventsInRange(a_startsOn, a_endsOn, a_actionSuccess, a_actionError) 
         ends_on: a_endsOn,
     }
     
-    console.log(dateRanges);
-
     // send the request to the api
     $.ajax({
         headers: {"X-USER-ID" :  m_User.userID},
@@ -169,7 +167,6 @@ function displayWeeklyEvents(a_events) {
     const vRecurrencesFri   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(Constants.WEEKDAY_VALUES.FRIDAY));
     const vRecurrencesSat   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(Constants.WEEKDAY_VALUES.SATURDAY));
 
-    console.log(a_events);
 
     // put each event into its related day bucket
     for (let count = 0; count < a_events.length; count++) {
