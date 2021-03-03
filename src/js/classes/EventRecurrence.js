@@ -45,6 +45,7 @@ class EventRecurrence {
         this.user_id   = null;
         this.name      = null;
         this.completed = null;
+        this.starts_at = null;
     }
 
     /**********************************************************
@@ -52,11 +53,23 @@ class EventRecurrence {
     **********************************************************/
     getHtml() {
         let checkboxHtml = this.completed ? ' checked ' : '';
+        let completedHtml = this.completed ? 'completed' : '';
+
+        let startsAtHtml = '';
+        if (this.starts_at != null) {
+            startsAtHtml = `
+            <span class="badge badge-light">
+                ${DateTime.fromSQL(this.starts_at).toLocaleString(DateTime.TIME_SIMPLE)}
+            </span>`;
+        }
 
         let html = `
-        <div class="board-item" data-event-id="${this.event_id}">
+        <div class="board-item ${completedHtml}" data-event-id="${this.event_id}">
             <div class="board-item-checkbox"><input type="checkbox" ${checkboxHtml}></div>
-            <div class="board-item-name ml-3">${this.name}</div>
+            <div class="ml-3">
+                <div class="board-item-name">${this.name}</div>
+                <div class="board-item-starts-at">${startsAtHtml}</div>
+            </div>
         </div>`;
 
         return html;

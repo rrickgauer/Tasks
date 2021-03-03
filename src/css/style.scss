@@ -160,6 +160,22 @@ hr {
         box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .04);
         margin-bottom: 10px;
         cursor: pointer;
+
+        .board-item-starts-at {
+            color: #8e908c;
+            font-size: .8rem;
+        }
+    }
+
+    .board-item.completed {
+        .board-item-name {
+            color: grey;
+            text-decoration: line-through;
+        }
+
+        .board-item-starts-at span {
+            text-decoration: line-through;
+        }
     }
 }
 

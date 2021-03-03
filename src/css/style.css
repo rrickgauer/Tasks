@@ -128,6 +128,17 @@ hr {
   margin-bottom: 10px;
   cursor: pointer;
 }
+.board-daily-recurrences .board-item .board-item-starts-at {
+  color: #8e908c;
+  font-size: 0.8rem;
+}
+.board-daily-recurrences .board-item.completed .board-item-name {
+  color: grey;
+  text-decoration: line-through;
+}
+.board-daily-recurrences .board-item.completed .board-item-starts-at span {
+  text-decoration: line-through;
+}
 
 @media screen and (max-width: 768px) {
   .daily-recurrences-container {
