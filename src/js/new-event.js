@@ -148,6 +148,7 @@ function areInputsValid() {
         return false;
     }
 
+    const recurrenceInvalidFeedbackElement = $('.event-recurrence-new .invalid-feedback');
 
     // if frequency is not once, seperation must have a value greater than 0
     const inputFrequencyValue = $(inputFrequency).find('option:selected').val();
@@ -155,12 +156,14 @@ function areInputsValid() {
         const seperationValue = $(inputSeperation).val();
 
         if (seperationValue == '') {
-            setInputIsInvalid(inputSeperation);
+            $(inputSeperation).addClass('is-invalid');
+            $(recurrenceInvalidFeedbackElement).text('Required');
             return false;
         }
 
         else if (parseInt(seperationValue) < 1) {
-            setInputIsInvalid(inputSeperation, 'Must be greater than 0.');
+            $(inputSeperation).addClass('is-invalid');
+            $(recurrenceInvalidFeedbackElement).text('Must be greater than 0.');
             return false;
         }
     }
@@ -170,13 +173,17 @@ function areInputsValid() {
     if (inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.WEEKLY) {
         // no value
         if (recurrenceDayValue == '') {
-            setInputIsInvalid(inputRecurrenceDay);
+            // setInputIsInvalid(inputRecurrenceDay);
+            $(inputRecurrenceDay).addClass('is-invalid');
+            $(recurrenceInvalidFeedbackElement).text('Required');
             return false;
         }
 
         // value is not within 0-6
         else if (parseInt(recurrenceDayValue) > 6 || parseInt(recurrenceDayValue) < 0) {
-            setInputIsInvalid(inputRecurrenceDay, 'Must be between 0-6');
+            // setInputIsInvalid(inputRecurrenceDay, 'Must be between 0-6');
+            $(inputRecurrenceDay).addClass('is-invalid');
+            $(recurrenceInvalidFeedbackElement).text('Must be between 0-6');
             return false;
         }
     }
@@ -186,14 +193,18 @@ function areInputsValid() {
     if (inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.MONTHLY || inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.YEARLY) {
         // no day value
         if (recurrenceDayValue == '') {
-            setInputIsInvalid(inputRecurrenceDay);
+            // setInputIsInvalid(inputRecurrenceDay);
+            $(inputRecurrenceDay).addClass('is-invalid');
+            $(recurrenceInvalidFeedbackElement).text('Required');
             return false;
         }
 
         // if week is null, day must be between 1-31
         if (recurrenceWeekValue == '' && recurrenceDayValue != '') {
             if (parseInt(recurrenceDayValue) > 31 || parseInt(recurrenceDayValue) < 1) {
-                setInputIsInvalid(inputRecurrenceDay, 'Must be within 1-31');
+                // setInputIsInvalid(inputRecurrenceDay, 'Must be within 1-31');
+                $(inputRecurrenceDay).addClass('is-invalid');
+                $(recurrenceInvalidFeedbackElement).text('Must be within 1-31');
                 return false;   
             }
         }
@@ -204,12 +215,16 @@ function areInputsValid() {
         if (recurrenceDayValue != '' && recurrenceWeekValue != '') {
             // check day
             if (parseInt(recurrenceDayValue) > 6 || parseInt(recurrenceDayValue) < 0) {
-                setInputIsInvalid(inputRecurrenceDay, 'Must be within 0-6');
+                // setInputIsInvalid(inputRecurrenceDay, 'Must be within 0-6');
+                $(inputRecurrenceDay).addClass('is-invalid');
+                $(recurrenceInvalidFeedbackElement).text('Must be within 0-6');
                 return false;            
             }
             // check week
             if (parseInt(recurrenceWeekValue) > 4 || parseInt(recurrenceWeekValue) < 1) {
-                setInputIsInvalid(inputRecurrenceWeek, 'Must be within 1-4');
+                // setInputIsInvalid(inputRecurrenceWeek, 'Must be within 1-4');
+                $(inputRecurrenceWeek).addClass('is-invalid');
+                $(recurrenceInvalidFeedbackElement).text('Must be within 1-4');
                 return false;             
             }
         }
@@ -221,7 +236,9 @@ function areInputsValid() {
     // month must be within 1-12
     if (inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.YEARLY && recurrenceMonthValue != '') {
         if (parseInt(recurrenceMonthValue) > 12 || parseInt(recurrenceMonthValue) < 1) {
-            setInputIsInvalid(inputRecurrenceMonth, 'Must be within 1-12');
+            // setInputIsInvalid(inputRecurrenceMonth, 'Must be within 1-12');
+            $(inputRecurrenceMonth).addClass('is-invalid');
+            $(recurrenceInvalidFeedbackElement).text('Must be within 1-12');
             return false; 
         }
     }
