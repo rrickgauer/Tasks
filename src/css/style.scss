@@ -1,6 +1,6 @@
 body {
-    // background-color: #fafafa;
-    margin-bottom: 100px;
+    background-color: #f8f9fa;
+    // margin-bottom: 100px;
 }
 
 hr {
@@ -12,8 +12,8 @@ hr {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
 }
 
-.event-dates-new input:disabled, 
-.event-dates-new input[readonly]  {
+.event-dates-new input:disabled,
+.event-dates-new input[readonly] {
     background-color: white;
 }
 
@@ -28,43 +28,7 @@ hr {
 }
 
 
-.container-day-recurrences {
-    margin-bottom: 30px;
-    
-    .header {
-        margin-bottom: 10px;
-    }
-    
-    .header-date {
-        font-weight: bold;
-    }
-    
-    .events-list {
-        .event {
-            
-            &:hover {
-                background-color: #f7f7f7;
-            }
-            
-            .event-checkbox {
-                margin-right: 10px;
-            }
-            
-            .event-time {
-                margin-right: 5px;
-            }
-            
-            .event-modal-open:hover {
-                cursor: pointer;
-            }
-            
-        }
-    }
-}
-
-
 #modal-event {
-
     .modal-header {
         border-bottom: none;
         display: block;
@@ -74,7 +38,7 @@ hr {
         .modal-title {
             margin-bottom: 10px;
         }
-        
+
         .description {
             font-weight: 400;
             line-height: 1.5;
@@ -83,18 +47,18 @@ hr {
             font-size: 12px;
         }
     }
-    
-    
+
+
     .event-data {
         display: flex;
         align-items: flex-start;
         margin-bottom: 10px;
-        
+
         .event-data-icon {
             margin-right: 15px;
         }
     }
-    
+
     .event-data.name {
         .event-data-data {
             font-size: 24px;
@@ -110,10 +74,86 @@ hr {
     .modal-header-edit.active {
         display: block;
     }
-    
+
 }
 
 
+#navbar {
+    height: 60px;
+}
+
 .form-group label {
     font-weight: bold;
+}
+
+
+
+.home-toolbar {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+@media screen and (max-width: 768px) {
+    .home-toolbar {
+        flex-direction: column;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+}
+
+
+
+.daily-recurrences-container {
+    display: flex;
+    overflow-x: auto;
+    height: calc(100vh - 157.5px);
+}
+
+@media screen and (max-width: 768px) {
+    .daily-recurrences-container {
+        height: calc(100vh - 88px - 25px - 60px);
+    }
+
+}
+
+.board-wrapper {
+    margin: 0px 30px;
+}
+
+// start of extra
+.board-daily-recurrences {
+    width: 280px;
+    max-height: 100%;
+
+    .card-body {
+        overflow-y: auto;
+    }
+
+    .board-item {
+        display: flex;
+        padding: 10px;
+        border: 1px solid rgba(0, 0, 0, .12);
+        border-radius: 5px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .04);
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .daily-recurrences-container {
+        scroll-snap-type: x mandatory;
+    }
+
+    .board-wrapper {
+        scroll-snap-align: center;
+    }
+
+    .board-daily-recurrences {
+        width: 90vw;
+    }
 }
