@@ -10,35 +10,49 @@
     <?php include('navbar.php'); ?>
 
 
-    <div class="container-fluid">
+    <div class="container">
 
-        <div class="daily-recurrences-container">
 
-            <div class="board-wrapper">
-                <div class="card board-daily-recurrences">
-                    <div class="card-header">
-                        <h6>Monday 3/8</h6>
-                    </div>
-                    <div class="card-body">
+        <div class="form-group form-event-new-group">
+            <label for="frequency-new">Repeats</label>
 
-                        <div class="board-item">
-                            <div class="board-item-checkbox"><input type="checkbox"></div>
-                            <div class="board-item-name ml-3">This is the text of the event</div>
-                        </div>
+            <div class="input-group input-group-sm">
 
-                        
-                    </div>
-                    <div class="card-footer">
-                        <input type="text" class="form-control form-control-sm" placeholder="Add task">
-                    </div>
-                </div>
+                <select class="form-control form-control-sm event-new-input custom-select" id="frequency-new">
+                    <option value="ONCE">Does not repeat</option>
+                    <option value="DAILY">Day</option>
+                    <option value="WEEKLY">Week</option>
+                    <option value="MONTHLY">Month</option>
+                    <option value="YEARLY">Year</option>
+                </select>
+                <input type="number" class="form-control form-control-sm event-new-input" id="seperation-new" min="1" value="1">
+                <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control form-control-sm event-new-input recurrence" id="recurrence-day-new" max="31" placeholder="Day">
+                <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control form-control-sm event-new-input recurrence" id="recurrence-week-new" max="5" placeholder="Week">
+                <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control form-control-sm event-new-input recurrence" id="recurrence-month-new" max="12" placeholder="Month">
+                <div class="invalid-feedback">.</div>
+            </div>
+        </div>
+
+
+
+
+        <div class="input-group input-group-sm">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Repeats</span>
             </div>
 
-
-
-
-
-
+            <select class="form-control form-control-sm event-new-input custom-select" id="frequency-new">
+                <option value="ONCE">Does not repeat</option>
+                <option value="DAILY">Day</option>
+                <option value="WEEKLY">Week</option>
+                <option value="MONTHLY">Month</option>
+                <option value="YEARLY">Year</option>
+            </select>
+            <input type="number" class="form-control form-control-sm event-new-input" id="seperation-new" min="1" value="1">
+            <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control form-control-sm event-new-input recurrence" id="recurrence-day-new" max="31" placeholder="Day">
+            <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control form-control-sm event-new-input recurrence" id="recurrence-week-new" max="5" placeholder="Week">
+            <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control form-control-sm event-new-input recurrence" id="recurrence-month-new" max="12" placeholder="Month">
+            <div class="invalid-feedback">.</div>
         </div>
 
 

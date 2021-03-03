@@ -25,6 +25,10 @@ hr {
   justify-content: space-between;
 }
 
+.input-group-recurrence .form-group {
+  margin-bottom: 0px !important;
+}
+
 #modal-event .modal-header {
   border-bottom: none;
   display: block;
@@ -63,8 +67,19 @@ hr {
   height: 60px;
 }
 
-.form-group label {
-  font-weight: bold;
+hr {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+  margin-top: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.5rem !important;
 }
 
 .home-toolbar {
@@ -125,6 +140,18 @@ hr {
 
   .board-daily-recurrences {
     width: 90vw;
+  }
+}
+.form-event-new {
+  width: 600px;
+  margin-bottom: 80px;
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .form-event-new {
+    margin-bottom: 80px;
+    margin-top: 0px;
   }
 }
 
