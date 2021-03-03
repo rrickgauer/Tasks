@@ -51,53 +51,13 @@ class EventRecurrence {
     Generates and returns the html for this event recurrence
     **********************************************************/
     getHtml() {
-
-        let checkboxHtml = this.getCheckboxHtml();
+        let checkboxHtml = this.completed ? ' checked ' : '';
 
         let html = `
-        <li class="list-group-item event" data-event-id="${this.event_id}">
-            <div class="d-flex justify-content-between">
-                <div class="d-flex w-100">
-                    ${checkboxHtml}
-                    <div class="d-flex w-100 event-modal-open">
-                        <div class="event-time"></div>
-                        <div class="event-name">${this.name}</div>
-                    </div>
-
-                </div>
-
-                <div class="event-dropdown">
-                    <div class="dropdown">
-                        <button class="btn" type="button" data-toggle="dropdown">
-                            <i class='bx bx-dots-horizontal-rounded'></i>
-                        </button>
-                        <div class="dropdown-menu">
-                            <button class="dropdown-item" type="button">Action</button>
-                            <button class="dropdown-item" type="button">Another action</button>
-                            <button class="dropdown-item" type="button">Something else here</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="event-labels"></div>
-        </li>`;
-
-
-        return html;
-    }
-
-    /**********************************************************
-    Generates and returns the html for the checkbox
-    **********************************************************/
-    getCheckboxHtml() {
-        let html = '<div class="event-checkbox"><input type="checkbox"'
-
-        if (this.completed) {
-            html += ' checked';
-        }
-
-        html += '></div>';
+        <div class="board-item" data-event-id="${this.event_id}">
+            <div class="board-item-checkbox"><input type="checkbox" ${checkboxHtml}></div>
+            <div class="board-item-name ml-3">${this.name}</div>
+        </div>`;
 
         return html;
     }

@@ -24,32 +24,23 @@ class DailyRecurrences
     Generate the html for a daily recurrence
     **********************************************************/ 
     getHtml() {
-        // format the date for display
-        const weekdayDisplay = this.date.toLocaleString(DateTime.DATE_HUGE);
-
-        // build the header
-        let htmlHeader = `
-        <div class="header d-flex">
-            <div class="header-date">${weekdayDisplay}</div>
-            <div class="ml-1"><span class="badge badge-secondary">${this.eventRecurrences.length}</span></div>
-        </div>`;
-
-        // get the recurrences html
         const eventRecurrencesHtml = this.getEventRecurrencesHtml();
+        const dateDisplay = this.date.toFormat('ccc LLL d');
+        const numItemsDisplay = `<span class="badge badge-secondary ml-1">${this.eventRecurrences.length}</span>`;
 
-        // build the recurrence html
-        let htmlEvents = `            
-        <div class="container-events">
-            <ul class="list-group events-list">
-                ${eventRecurrencesHtml}
-            </ul>
+
+        let html = `
+        <div class="board-wrapper" data-date="${this.date.toSQLDate()}">
+            <div class="card board-daily-recurrences">
+                <div class="card-header">
+                    <h6>${dateDisplay} ${numItemsDisplay}</h6>
+                </div>
+                <div class="card-body">${eventRecurrencesHtml}</div>
+                <div class="card-footer">
+                    <input type="text" class="form-control form-control-sm" placeholder="Add task">
+                </div>
+            </div>
         </div>`;
-
-        // format the date to put into the data attribute
-        const dateData = this.date.toSQLDate();
-
-        // put them all together
-        let html = `<div class="container-day-recurrences" data-date="${this.date.toSQLDate()}">${htmlHeader} ${htmlEvents} </div>`;
 
         return html;
 

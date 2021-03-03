@@ -2,7 +2,7 @@
 Page elements
 **********************************************************/
 const e_dateSelector       = $('#date-input');
-const e_recurrences        = $('.recurrences');
+const e_recurrences        = $('.daily-recurrences-container');
 const e_recurrencesBoard   = $('.recurrences-board');
 const e_modalEvent         = $('#modal-event');
 const e_datePicker         = $('.btn-date-picker');
@@ -32,14 +32,24 @@ Registers all of the event listeners for the page.
 **********************************************************/
 function addListeners() {
     $(e_dateSelector).on('change', requestNewDates);
-    $(e_recurrences).on('click', '.event-modal-open', openModalEvent);
+    
+    $(e_recurrences).on('click', '.board-item', function(e) {
+        // e.preventDefault();
+
+        if (e.target.type == 'checkbox') {
+            toggleEventCompleted($(e.target));
+        } else {
+            openModalEvent(this);
+        }
+    });
+
     $(e_datePicker).on('click', getNewWeekInterval);
 
     $(e_modalEvent).on('event_update', function() {
         getEventsInRange(m_WeekDates.first.toSQLDate(), m_WeekDates.last.toSQLDate(), displayWeeklyEvents);
     });
 
-    $('body').on('change', '.event-checkbox input', toggleEventCompleted);
+    // $('body').on('change', '.board-item-checkbox input', toggleEventCompleted);
 }
 
 
@@ -71,8 +81,8 @@ Retrieve a week's worth of recurrences from the API
 **********************************************************/
 function requestNewDates(a_newDate) {
     // display a spinner
-    const spinnerHtml = '<div class="d-flex justify-content-center my-5 py-5"><div class="spinner-border" role="status"></div></div>';
-    $('.recurrences-board .recurrences').html(spinnerHtml);
+    const spinnerHtml = '<div class="d-flex justify-content-center my-5 py-5 vw-100"><div class="spinner-border" role="status"></div></div>';
+    $('.daily-recurrences-container').html(spinnerHtml);
 
     let newDate = DateTime.fromSQL($(this).val());
     m_WeekDates = new WeekDates(newDate);
@@ -217,17 +227,9 @@ function displayWeeklyEvents(a_events) {
 Opens the event modal when an recurrence is clicked.
 **********************************************************/
 function openModalEvent(a_eventElement) {
-    let eventID = a_eventElement;
+    let eventID = $(a_eventElement).closest('.board-item').attr('data-event-id');
 
-    /**
-     * If the argument is a jquery event,
-     * we need to rerieve the event id from the attribute of the element
-     */
-    if (a_eventElement instanceof jQuery.Event) {
-        eventID = $(this).closest('.event').attr('data-event-id');
-    }
-
-    const occursOn = $(this).closest('.container-day-recurrences').attr('data-date');
+    const occursOn = $(a_eventElement).closest('.board-wrapper').attr('data-date');
 
     m_ModalEvent.init(eventID, occursOn);
     m_ModalEvent.showModal();
@@ -239,8 +241,8 @@ When the user clicks one of the arrow buttons to get
 the next, previous, or current weekly tasks.
 **********************************************************/
 function getNewWeekInterval(a_callerElement) {
-    const spinnerHtml = '<div class="d-flex justify-content-center my-5 py-5"><div class="spinner-border" role="status"></div></div>';
-    $('.recurrences-board .recurrences').html(spinnerHtml);
+    const spinnerHtml = '<div class="d-flex justify-content-center my-5 py-5 vw-100"><div class="spinner-border" role="status"></div></div>';
+    $('.daily-recurrences-container').html(spinnerHtml);
     
     const newInterval = $(this).attr('data-date-interval');
 
@@ -262,11 +264,11 @@ function getNewWeekInterval(a_callerElement) {
 
 
 function toggleEventCompleted(self) {
-    const markEventCompleted = $(this).is(':checked');
+    const markEventCompleted = $(self).is(':checked');
     const type = markEventCompleted ? "POST" : "DELETE";
 
-    const eventID = $(this).closest('.event').attr('data-event-id');
-    const date = $(this).closest('.container-day-recurrences').attr('data-date');
+    const eventID = $(self).closest('.board-item').attr('data-event-id');
+    const date = $(self).closest('.board-wrapper').attr('data-date');
     const url = `${Constants.API_URLS.COMPLETIONS}/${eventID}/${date}`;
 
     // send the request to the api
