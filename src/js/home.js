@@ -271,6 +271,8 @@ function toggleEventCompleted(self) {
     const date = $(self).closest('.board-wrapper').attr('data-date');
     const url = `${Constants.API_URLS.COMPLETIONS}/${eventID}/${date}`;
 
+    $(self).closest('.board-item').toggleClass('completed');
+
     // send the request to the api
     $.ajax({
         headers: {"X-USER-ID" :  m_User.userID},
