@@ -6,6 +6,7 @@ const e_recurrences        = $('.daily-recurrences-container');
 const e_recurrencesBoard   = $('.recurrences-board');
 const e_modalEvent         = $('#modal-event');
 const e_datePicker         = $('.btn-date-picker');
+const e_newTaskInput       = '.input-add-task';
 
 
 /**********************************************************
@@ -50,6 +51,13 @@ function addListeners() {
     });
 
     // $('body').on('change', '.board-item-checkbox input', toggleEventCompleted);
+    
+    $('body').on('keypress', e_newTaskInput, function(e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            addNewTaskToDay(this);
+        }
+    });
 }
 
 
@@ -286,4 +294,43 @@ function toggleEventCompleted(self) {
     });
 }
 
+
+function addNewTaskToDay(inputElement) {
+    const newEventName = $(inputElement).val();
+    const newEventID = Utilities.getUUID();
+    const url = Utilities.buildApiEventUrl(Constants.API_URLS.EVENTS, newEventID);
+
+    const newEventStartsOn = $(inputElement).closest('.board-wrapper').attr('data-date');
+    const newEventEndsOn = newEventStartsOn;
+
+    let requestBody = {
+        name: newEventName,
+        starts_on: newEventStartsOn,
+        ends_on: newEventEndsOn,
+    }
+
+    // send the request to the api
+    $.ajax({
+        headers: {"X-USER-ID" : Utilities.getUserIdFromLocalStorage()},
+        url: url,
+        type: "POST",
+        data: requestBody,
+        success: function(response) {
+            $(inputElement).val('');    // clear the input
+            requestBody.event_id = newEventID;
+            insertNewEventOnDay(requestBody, $(inputElement).closest('.board-wrapper'));
+        },
+        error: function(response) {
+            Utilities.displayAlert('Error.');
+            console.error(response);
+        },
+    });
+}
+
+
+function insertNewEventOnDay(eventStruct, dailyRecurrenceElement) {
+    let event = new EventRecurrence(eventStruct);
+
+    $(dailyRecurrenceElement).find('.board-daily-recurrences .card-body').append(event.getHtml());
+}
 
