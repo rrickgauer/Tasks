@@ -31,6 +31,7 @@ Main logic
 $(document).ready(function() {
     addListeners();
     initFlatpickr();
+    setMinimumEndsOnValue();
 });
 
 
@@ -51,10 +52,10 @@ function addListeners() {
         }
     });
     
-    
     // submitNewEvent();
     removeInvalidFeedback();
     toggleRecurrenceInputsVisibility();
+    $(inputStartsOn).on('change', setMinimumEndsOnValue);
 
 }
 
@@ -379,8 +380,18 @@ function toggleRecurrenceInputsVisibility() {
             $('.event-new-input.recurrence').removeClass('d-none'); // show all
         }
     });
+}
 
-
+/***************************************************************************
+When the starts on input is set, set the minimum ends on value to the starts
+on value.
+***************************************************************************/
+function setMinimumEndsOnValue() {
+    const startsOnValue = $(inputStartsOn).val();
+    const endsOn = document.querySelector('#ends-on-new')._flatpickr;
+    
+    endsOn.set('minDate', startsOnValue);
+    endsOn.setDate(startsOnValue);
 }
 
 
