@@ -42,7 +42,7 @@ class DailyRecurrences
                 </div>
                 <div class="card-body">${eventRecurrencesHtml}</div>
                 <div class="card-footer">
-                    <input type="text" class="form-control form-control-sm input-add-task" placeholder="Add task">
+                    <input type="text" class="form-control form-control-sm input-add-task" placeholder="Add task...">
                 </div>
             </div>
         </div>`;
