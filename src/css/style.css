@@ -224,5 +224,25 @@ hr {
     margin-top: 0px;
   }
 }
+.card-login {
+  width: 400px;
+}
+.card-login .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .card-login .buttons {
+    flex-direction: column;
+  }
+  .card-login .buttons .btn-primary {
+    width: 100%;
+  }
+  .card-login .buttons .other-page {
+    text-align: center;
+    margin-top: 10px;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */
