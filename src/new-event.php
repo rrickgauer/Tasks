@@ -9,7 +9,6 @@
 <body>
     <?php include('navbar.php'); ?>
     <div class="container">
-        <!-- <h1 class="text-center my-5">New Event</h1> -->
 
         <div class="d-flex justify-content-center">
             <!-- new event form -->
