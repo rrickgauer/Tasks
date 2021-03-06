@@ -56,14 +56,14 @@
                         <div class="event-dates-edit">
                             <div class="form-row">
                                 <!-- starts on -->
-                                <div class="form-group form-event-edit-group col-md-9 col-sm-12">
+                                <div class="form-group form-event-edit-group col-md-8 col-sm-12">
                                     <label for="starts-on-edit">Starts</label>
                                     <input type="date" class="form-control form-control-sm  event-edit-input date" id="starts-on-edit">
                                     <div class="invalid-feedback"></div>
                                 </div>
 
                                 <!-- starts at -->
-                                <div class="form-group form-event-edit-group col-md-3 col-sm-12 time">
+                                <div class="form-group form-event-edit-group col-md-4 col-sm-12 time">
                                     <label for="starts-at-edit">At</label>
                                     <div class="input-group">
                                         <input type="time" class="form-control form-control-sm  event-edit-input " id="starts-at-edit" data-input>
@@ -76,14 +76,14 @@
                             </div>
                             <div class="form-row">
                                 <!-- ends on -->
-                                <div class="form-group form-event-edit-group col-md-9 col-sm-12">
+                                <div class="form-group form-event-edit-group col-md-8 col-sm-12">
                                     <label for="ends-on-edit">Ends</label>
                                     <input type="date" class="form-control form-control-sm  event-edit-input date" id="ends-on-edit">
                                     <div class="invalid-feedback"></div>
                                 </div>
 
                                 <!-- ends at -->
-                                <div class="form-group form-event-edit-group col-md-3 col-sm-12 time">
+                                <div class="form-group form-event-edit-group col-md-4 col-sm-12 time">
                                     <label for="ends-at-edit">At</label>
                                     <div class="input-group">
                                         <input type="time" class="form-control form-control-sm  event-edit-input" id="ends-at-edit" data-input>

@@ -39,7 +39,7 @@ class ModalEvent
 
         this.e_formEditName        = $('#name-edit');
         this.e_formEditStartsOn    = $('#starts-on-edit');
-        this.e_formEditStatsAt     = $('#starts-at-edit');
+        this.e_formEditStartsAt     = $('#starts-at-edit');
         this.e_formEditEndsOn      = $('#ends-on-edit');
         this.e_formEditEndsAt      = $('#ends-at-edit');
         this.e_formEditSeperation  = $('#seperation-edit');
@@ -187,10 +187,6 @@ class ModalEvent
     **********************************************************/
     loadEditFormData(apiResponse, self) {
         $(self.e_formEditName).val(apiResponse.name);   // name
-        $(self.e_formEditStartsOn).val(apiResponse.starts_on);  // starts on
-        $(self.e_formEditStartsAt).val(apiResponse.starts_at);  // starts at
-        $(self.e_formEditEndsOn).val(apiResponse.ends_on);
-        $(self.e_formEditEndsAt).val(apiResponse.ends_at);
         $(self.e_formEditSeperation).val(apiResponse.seperation);
         $(self.e_formEditFrequency).val(apiResponse.frequency);
         $(self.e_formEditDay).val(apiResponse.recurrence_day);
@@ -203,6 +199,10 @@ class ModalEvent
         $(self.e_formEditZip).val(apiResponse.location_zip);
         $(self.e_formEditDescription).val(apiResponse.description);
         $(self.e_formEditPhone).val(apiResponse.phone_number);
+        $(self.e_formEditStartsOn).val(apiResponse.starts_on);  // starts on
+        $(self.e_formEditStartsAt).val(apiResponse.starts_at);  // starts at
+        $(self.e_formEditEndsOn).val(apiResponse.ends_on);
+        $(self.e_formEditEndsAt).val(apiResponse.ends_at);
     }
 
 
