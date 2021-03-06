@@ -271,6 +271,7 @@ class ModalEvent
             recurrence_day    : $(self.e_formEditDay).val(),
             recurrence_week   : $(self.e_formEditWeek).val(),
             recurrence_month  : $(self.e_formEditMonth).val(),
+            description       : null,
         };
 
         return result;

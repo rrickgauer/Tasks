@@ -43,49 +43,50 @@
                 </div>
 
                 <div class="modal-header-edit">
-                    <form class="form-event-edit">
+                    <form class="form-event-edit" autocomplete="off">
+
                         <!-- name -->
                         <div class="form-group form-event-edit-group">
                             <label for="name-edit">Name</label>
-                            <input type="text" class="form-control form-control-sm event-edit-input" id="name-edit" maxlength="100" autofocus>
+                            <input type="text" class="form-control form-control-sm  event-edit-input" id="name-edit" maxlength="100" autofocus>
                             <div class="invalid-feedback"></div>
                         </div>
-
 
                         <!-- start and end times -->
                         <div class="event-dates-edit">
                             <div class="form-row">
                                 <!-- starts on -->
-                                <div class="form-group form-event-edit-group col-4">
-                                    <label for="starts-on-edit">Starts on</label>
-                                    <input type="date" class="form-control form-control-sm event-edit-input date" id="starts-on-edit">
+                                <div class="form-group form-event-edit-group col-md-9 col-sm-12">
+                                    <label for="starts-on-edit">Starts</label>
+                                    <input type="date" class="form-control form-control-sm  event-edit-input date" id="starts-on-edit">
                                     <div class="invalid-feedback"></div>
                                 </div>
 
                                 <!-- starts at -->
-                                <div class="form-group form-event-edit-group col-2 time">
+                                <div class="form-group form-event-edit-group col-md-3 col-sm-12 time">
                                     <label for="starts-at-edit">At</label>
                                     <div class="input-group">
-                                        <input type="time" class="form-control form-control-sm event-edit-input " id="starts-at-edit" data-input>
+                                        <input type="time" class="form-control form-control-sm  event-edit-input " id="starts-at-edit" data-input>
                                         <div class="input-group-append">
                                             <button class="btn btn-sm btn-outline-secondary" type="button" data-clear><i class='bx bx-x'></i></button>
                                         </div>
                                     </div>
                                     <div class="invalid-feedback"></div>
                                 </div>
-
+                            </div>
+                            <div class="form-row">
                                 <!-- ends on -->
-                                <div class="form-group form-event-edit-group  col-4">
-                                    <label for="ends-on-edit">Ends on</label>
-                                    <input type="date" class="form-control form-control-sm event-edit-input date" id="ends-on-edit">
+                                <div class="form-group form-event-edit-group col-md-9 col-sm-12">
+                                    <label for="ends-on-edit">Ends</label>
+                                    <input type="date" class="form-control form-control-sm  event-edit-input date" id="ends-on-edit">
                                     <div class="invalid-feedback"></div>
                                 </div>
 
                                 <!-- ends at -->
-                                <div class="form-group form-event-edit-group col-2 time">
+                                <div class="form-group form-event-edit-group col-md-3 col-sm-12 time">
                                     <label for="ends-at-edit">At</label>
                                     <div class="input-group">
-                                        <input type="time" class="form-control form-control-sm event-edit-input" id="ends-at-edit" data-input>
+                                        <input type="time" class="form-control form-control-sm  event-edit-input" id="ends-at-edit" data-input>
                                         <div class="input-group-append">
                                             <button class="btn btn-sm btn-outline-secondary" type="button" data-clear><i class='bx bx-x'></i></button>
                                         </div>
@@ -97,101 +98,79 @@
                         </div>
 
                         <!-- recurrence info -->
-                        <div class="event-recurrence-edit">
-                            <p><b>Recurrence</b></p>
-                            <div class="d-flex">
-                                <!-- <span class="mr-1">Repeats every</span> -->
-                                <!-- seperation -->
-                                <div class="form-group form-event-edit-group mr-3">
-                                    <input type="number" class="form-control form-control-sm event-edit-input" id="seperation-edit" min="1" value="1">
-                                    <div class="invalid-feedback"></div>
-                                </div>
+                        <div class="form-group form-event-edit-group">
+                            <label for="frequency-edit">Repeats</label>
 
-                                <!-- frequency -->
-                                <div>
-                                    <div class="form-group form-event-edit-group">
-                                        <select class="form-control form-control-sm event-edit-input" id="frequency-edit">
-                                            <option value="ONCE">Does not repeat</option>
-                                            <option value="DAILY">Day</option>
-                                            <option value="WEEKLY">Week</option>
-                                            <option value="MONTHLY">Month</option>
-                                            <option value="YEARLY">Year</option>
-                                        </select>
-                                        <div class="invalid-feedback"></div>
-                                    </div>
-                                </div>
+                            <div class="event-recurrence-edit">
+                                <div class="input-group input-group-sm">
+                                    <select class="form-control form-control-sm  event-edit-input custom-select" id="frequency-edit">
+                                        <option value="ONCE">Does not repeat</option>
+                                        <option value="DAILY">Day</option>
+                                        <option value="WEEKLY">Week</option>
+                                        <option value="MONTHLY">Month</option>
+                                        <option value="YEARLY">Year</option>
+                                    </select>
 
-                                <!-- recurrence day -->
-                                <div class="form-group form-event-edit-group ml-3">
-                                    <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control form-control-sm event-edit-input recurrence" id="recurrence-day-edit" max="31" placeholder="Day recurrence">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-
-                                <!-- recurrence week -->
-                                <div class="form-group form-event-edit-group ml-3">
-                                    <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control form-control-sm event-edit-input recurrence" id="recurrence-week-edit" max="5" placeholder="Week recurrence">
-                                    <div class="invalid-feedback"></div>
-                                </div>
-
-                                <!-- recurrence month -->
-                                <div class="form-group form-event-edit-group ml-3">
-                                    <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control form-control-sm event-edit-input recurrence" id="recurrence-month-edit" max="12" placeholder="Month recurrence">
+                                    <input type="number" class="form-control form-control-sm  event-edit-input d-none" id="seperation-edit" min="1" value="1" placeholder="Seperation">
+                                    <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control form-control-sm event-edit-input recurrence d-none" id="recurrence-day-edit" max="31" placeholder="Day">
+                                    <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control form-control-sm event-edit-input recurrence d-none" id="recurrence-week-edit" max="5" placeholder="Week">
+                                    <input type="number" pattern="[0-9]*" inputmode="numeric" class="form-control form-control-sm event-edit-input recurrence d-none" id="recurrence-month-edit" max="12" placeholder="Month">
                                     <div class="invalid-feedback"></div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- address 1 -->
-                        <div class="form-group form-event-edit-group">
-                            <label for="address-1-edit">Address 1</label>
-                            <input type="text" class="form-control form-control-sm event-edit-input" id="address-1-edit" maxlength="70">
+                        <!-- address -->
+                        <div class="form-row">
+                            <!-- address 1 -->
+                            <div class="form-group form-event-edit-group col-md-9 col-sm-12">
+                                <label for="address-1-edit">Address 1</label>
+                                <input type="text" class="form-control form-control-sm  event-edit-input" id="address-1-edit" maxlength="70">
+                            </div>
+
+                            <!-- address 2 -->
+                            <div class="form-group form-event-edit-group col-md-3 col-sm-12">
+                                <label for="address-2-edit">Address 2</label>
+                                <input type="text" class="form-control form-control-sm  event-edit-input" id="address-2-edit" maxlength="70">
+                            </div>
                         </div>
 
-
-                        <!-- address 2 -->
-                        <div class="form-group form-event-edit-group">
-                            <label for="address-2-edit">Address 2</label>
-                            <input type="text" class="form-control form-control-sm event-edit-input" id="address-2-edit" maxlength="70">
-                        </div>
 
                         <div class="form-row">
                             <!-- city -->
-                            <div class="form-group form-event-edit-group col-6">
+                            <div class="form-group form-event-edit-group col-md-6 col-sm-12">
                                 <label for="city-edit">City</label>
-                                <input type="text" class="form-control form-control-sm event-edit-input" id="city-edit" maxlength="40">
+                                <input type="text" class="form-control form-control-sm  event-edit-input" id="city-edit" maxlength="40">
                             </div>
 
                             <!-- state -->
-                            <div class="form-group form-event-edit-group col-3">
+                            <div class="form-group form-event-edit-group col-md-3 col-sm-12">
                                 <label for="state-edit">State</label>
-                                <select id="state-edit" class="form-control form-control-sm event-edit-input">
-                                    <option value="" selected disabled class="d-none">Select state</option>
+                                <select id="state-edit" class="form-control form-control-sm  event-edit-input">
+                                    <option value="" selected disabled class="d-none">Choose...</option>
                                     <?php include('state-abbvs-select.php'); ?>
                                 </select>
                             </div>
 
 
                             <!-- zip -->
-                            <div class="form-group form-event-edit-group col-3">
+                            <div class="form-group form-event-edit-group col-md-3 col-sm-12">
                                 <label for="zip-edit">Zip</label>
-                                <input type="text" class="form-control form-control-sm event-edit-input" id="zip-edit">
+                                <input type="text" class="form-control form-control-sm  event-edit-input" id="zip-edit">
                             </div>
-                        </div>
-
-                        <!-- description -->
-                        <div class="form-group form-event-edit-group">
-                            <label for="description-edit">Description</label>
-                            <input type="text" class="form-control form-control-sm event-edit-input" id="description-edit">
                         </div>
 
                         <!-- phone number -->
                         <div class="form-group form-event-edit-group">
                             <label for="phone-edit">Phone</label>
-                            <input type="tel" class="form-control form-control-sm event-edit-input" id="phone-edit">
+                            <input type="tel" class="form-control form-control-sm  event-edit-input" id="phone-edit">
                         </div>
 
-                        <button type="button" id="btn-edit-event-save" class="btn btn-sm btn-success">Save</button>
-                        <button type="button" id="btn-edit-event-cancel" class="btn btn-sm btn-danger">Cancel</button>
+                        <div class="d-flex justify-content-end">
+                            <button type="button" id="btn-edit-event-cancel" class="btn btn-sm btn-outline-danger mr-1">Cancel</button>
+                            <button type="button" id="btn-edit-event-save" class="btn btn-sm btn-success">Save</button>
+                        </div>
+
                     </form>
 
 
@@ -200,7 +179,7 @@
 
 
             </div>
-    
+
             <div class="modal-body">
 
 
