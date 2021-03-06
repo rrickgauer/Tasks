@@ -153,6 +153,13 @@ class WeekDates {
         return this.current.toSQLDate();
     }
 
+    /*************************************************
+    Returns today's date
+    *************************************************/
+    static getTodaysDate() {
+        return DateTime.local();
+    }
+
 
 }
 

@@ -153,6 +153,10 @@ hr {
     width: 90vw;
   }
 }
+.board-wrapper-current-date .card-header {
+  background-color: khaki;
+}
+
 .form-event-new {
   width: 600px;
   margin-bottom: 80px;
