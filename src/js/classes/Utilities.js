@@ -21,6 +21,13 @@ class Utilities {
     }
 
     /**********************************************************
+    Clears the user id from the local storage.
+    **********************************************************/
+    static removeUserIdFromLocalStorage() {
+        window.localStorage.removeItem('userID');
+    }
+
+    /**********************************************************
     returns a UUID
     **********************************************************/
     static getUUID() {
