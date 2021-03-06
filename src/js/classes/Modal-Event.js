@@ -39,7 +39,7 @@ class ModalEvent
 
         this.e_formEditName        = $('#name-edit');
         this.e_formEditStartsOn    = $('#starts-on-edit');
-        this.e_formEditStatsAt     = $('#starts-at-edit');
+        this.e_formEditStartsAt     = $('#starts-at-edit');
         this.e_formEditEndsOn      = $('#ends-on-edit');
         this.e_formEditEndsAt      = $('#ends-at-edit');
         this.e_formEditSeperation  = $('#seperation-edit');
@@ -187,10 +187,6 @@ class ModalEvent
     **********************************************************/
     loadEditFormData(apiResponse, self) {
         $(self.e_formEditName).val(apiResponse.name);   // name
-        $(self.e_formEditStartsOn).val(apiResponse.starts_on);  // starts on
-        $(self.e_formEditStartsAt).val(apiResponse.starts_at);  // starts at
-        $(self.e_formEditEndsOn).val(apiResponse.ends_on);
-        $(self.e_formEditEndsAt).val(apiResponse.ends_at);
         $(self.e_formEditSeperation).val(apiResponse.seperation);
         $(self.e_formEditFrequency).val(apiResponse.frequency);
         $(self.e_formEditDay).val(apiResponse.recurrence_day);
@@ -203,6 +199,12 @@ class ModalEvent
         $(self.e_formEditZip).val(apiResponse.location_zip);
         $(self.e_formEditDescription).val(apiResponse.description);
         $(self.e_formEditPhone).val(apiResponse.phone_number);
+        $(self.e_formEditStartsOn).val(apiResponse.starts_on);  // starts on
+        $(self.e_formEditStartsAt).val(apiResponse.starts_at);  // starts at
+        $(self.e_formEditEndsOn).val(apiResponse.ends_on);
+        $(self.e_formEditEndsAt).val(apiResponse.ends_at);
+
+        self.toggleEditRecurrenceInputs(self, false);
     }
 
 
@@ -245,6 +247,10 @@ class ModalEvent
         $(this.e_btnDeleteEvent).on('click', function() {
             self.deleteEvent(self);
         });
+
+        $(this.e_formEditFrequency).on('change', function() {
+            self.toggleEditRecurrenceInputs(self, true);
+        });
     }
 
     /**********************************************************
@@ -271,6 +277,7 @@ class ModalEvent
             recurrence_day    : $(self.e_formEditDay).val(),
             recurrence_week   : $(self.e_formEditWeek).val(),
             recurrence_month  : $(self.e_formEditMonth).val(),
+            description       : null,
         };
 
         return result;
@@ -333,11 +340,9 @@ class ModalEvent
     Delete an event
     **********************************************************/
     deleteEvent(self) {
-
         if (!confirm('Are you sure you want to delete this event?')) {
             return;
         }
-
 
         const url = Utilities.buildApiEventUrl(Constants.API_URLS.EVENTS, self.eventID);
 
@@ -358,7 +363,43 @@ class ModalEvent
             },
             error: console.error,
         });
+    }
+
+    toggleEditRecurrenceInputs(self, clearInputs = true) {
+        const inputFrequencyValue = $(self.e_formEditFrequency).find('option:selected').val();
+
+        // clear and hide all the recurrence inputs initially
+        if (clearInputs) {
+            $('.event-edit-input.recurrence').val('');
+        }
         
+        $('.event-edit-input.recurrence').addClass('d-none');
+        
+        // if the frequency was set to once, hide the seperation and exit
+        if (inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.ONCE) {
+            $(self.e_formEditSeperation).addClass('d-none');
+
+            if (clearInputs) {
+                $(self.e_formEditSeperation).val('1');
+            }
+            
+            return;
+        } else {
+            $(self.e_formEditSeperation).removeClass('d-none');
+        }
+
+
+        if (inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.WEEKLY) {
+            $(self.e_formEditDay).removeClass('d-none');            // show day
+        } 
+        else if (inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.MONTHLY) {
+            $(self.e_formEditDay).removeClass('d-none');            // show day
+            $(self.e_formEditWeek).removeClass('d-none');           // show week
+        } 
+        else if (inputFrequencyValue == Constants.EVENT_FREQUENCY_VALUES.YEARLY) {
+            $('.event-edit-input.recurrence').removeClass('d-none'); // show all
+        }
+
     }
 
 }
