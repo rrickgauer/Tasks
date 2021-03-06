@@ -38,16 +38,6 @@
                 <button type="button" class="btn btn-primary" id="btn-login">Log in</button>
             </form>
 
-
-
-
-
-
-
-
-
-
-
         </div>
 
 

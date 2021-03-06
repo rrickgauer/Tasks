@@ -39,7 +39,6 @@
 <script src="js/classes/DailyRecurrences.js"></script>
 <script src="js/classes/EventRecurrence.js"></script>
 
-
-
-
 <script src="js/classes/Modal-Event.js"></script>
+
+<script src="js/classes/Navbar.js"></script>
