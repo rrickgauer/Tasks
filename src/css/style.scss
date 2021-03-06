@@ -1,12 +1,92 @@
+$color-purple: hsl(237, 100%, 75%);
+$color-purple-dark: hsl(237, 100%, 70%);
+$color-purple-darker: hsl(237, 100%, 65%);
+$color-purple-darkest: hsl(237, 100%, 60%);
+$color-purple-light: hsl(237, 100%, 80%);
+$color-purple-lighter: hsl(237, 100%, 85%);
+$color-purple-lightest: hsl(237, 100%, 90%);
+
+$color-white: hsl(0, 0%, 97%);
+$color-white-darker: hsl(0, 0%, 92%);
+$color-white-darkest: hsl(0, 0%, 87%);
+
+
+.color-purple {
+    color: $color-purple;
+}
+
+.color-bg-purple {
+    background-color: $color-purple;
+    color: white;
+}
+
+.btn-light {
+    background-color: $color-white-darker;
+}
+
+.btn-primary {
+    background-color: $color-purple;
+    border-color: $color-purple;
+
+    &:active,
+    &:hover,
+    &:focus,
+    &:visited,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active {
+        background-color: $color-purple-dark;
+        border-color: $color-purple-dark;
+        box-shadow: 0 0 0 0 !important;
+    }
+}
+
+.btn-outline-primary {
+    color: $color-purple;
+    border-color: $color-purple;
+
+    &:active,
+    &:hover,
+    &:focus,
+    &:visited,
+    &:not(:disabled):not(.disabled):active,
+    &:not(:disabled):not(.disabled).active {
+        color: white;
+        background-color: $color-purple;
+        border-color: $color-purple-darker;
+        box-shadow: 0 0 0 0 !important;
+    }
+}
+
+.custom-font {
+    font-family: 'Jost', sans-serif;
+}
+
+.custom-font-bold {
+    font-family: 'Jost', sans-serif;
+    font-weight: bold;
+}
+
+h1.custom-font {
+    font-family: 'Jost', sans-serif;
+    font-size: 3.0em;
+}
+
 body {
-    background-color: #f8f9fa;
-    // margin-bottom: 100px;
+    background-color: $color-white;
 }
 
 hr {
     border-top-width: 5px;
 }
 
+#navbar {
+    background-color: $color-purple;
+    // margin-bottom: 50px;
+
+    .nav-link {
+        color: white;
+    }
+}
 
 .card {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.18);
@@ -27,15 +107,11 @@ hr {
     justify-content: space-between;
 }
 
-
-
 .input-group-recurrence {
     .form-group {
         margin-bottom: 0px !important;
     }
 }
-
-
 
 #modal-event {
     .modal-header {
@@ -148,6 +224,10 @@ hr {
     width: 280px;
     max-height: 100%;
 
+    .card-header {
+        background-color: $color-purple-lightest;
+    }
+
     .card-body {
         overflow-y: auto;
     }
@@ -209,5 +289,29 @@ hr {
     .form-event-new {
         margin-bottom: 80px;
         margin-top: 0px;
+    }
+}
+
+.card-login {
+    width: 400px;
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .card-login .buttons {
+        flex-direction: column;
+
+        .btn-primary {
+            width: 100%;
+        }
+
+        .other-page {
+            text-align: center;
+            margin-top: 10px;
+        }
     }
 }

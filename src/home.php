@@ -14,7 +14,7 @@
 
         <!-- title -->
         <div>
-            <h3>Tasks</h3>
+            <h3 class="custom-font">Tasks <i class='bx bx-calendar-check'></i></h3>
         </div>
 
         <!-- right side -->
