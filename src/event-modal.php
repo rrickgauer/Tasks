@@ -36,7 +36,7 @@
                     </div>
 
                     <!-- event action buttons -->
-                    <div class="d-flex align-items-center justify-content-start">
+                    <div class="d-flex align-items-center justify-content-end">
                         <button type="button" class="btn btn-sm btn-light btn-modal-header-edit" title="Edit"><i class='bx bxs-pencil'></i></button>
                         <button type="button" class="btn btn-sm btn-light btn-modal-header-delete" title="Delete event"><i class='bx bx-trash'></i></button>
                     </div>
