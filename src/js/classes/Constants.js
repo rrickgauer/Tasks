@@ -2,7 +2,7 @@ const DateTime = luxon.DateTime;
 
 class Constants {
 
-    static API = 'http://localhost/files/api.tasks/src/main.php';
+    static API = 'https://api.tasks.ryanrickgauer.com/main.php';
 
     static API_URLS = {
         EVENTS: Constants.API + '/events',
