@@ -8,6 +8,7 @@ const btnLogin      = $('#btn-login');
 Main function
 **********************************************************/
 $(document).ready(function() {
+    console.log(window.localStorage);
     addEventListeners();
 });
 
@@ -143,8 +144,7 @@ function getPasswordInput() {
 Steps to take when a log in attempt was successful
 **********************************************************/
 function loginSuccessful(apiResponse) {
-    window.localStorage.setItem('userID', apiResponse.id);
-    
+    window.localStorage.setItem('userID', JSON.parse(apiResponse).id);    
     window.location.href = 'home.php';
 }
 

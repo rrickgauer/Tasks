@@ -50,7 +50,6 @@ function addListeners() {
         getEventsInRange(m_WeekDates.first.toSQLDate(), m_WeekDates.last.toSQLDate(), displayWeeklyEvents);
     });
 
-    // $('body').on('change', '.board-item-checkbox input', toggleEventCompleted);
     
     $('body').on('keypress', e_newTaskInput, function(e) {
         if (e.keyCode == 13) {
@@ -110,6 +109,8 @@ function setUser() {
         window.location.href = 'login.php';
     }
 
+    console.log(window.localStorage);
+
     m_User = new User(window.localStorage.getItem('userID'));
 }
 
@@ -158,12 +159,15 @@ function getEventsInRange(a_startsOn, a_endsOn, a_actionSuccess, a_actionError) 
         starts_on: a_startsOn,
         ends_on: a_endsOn,
     }
+
+    console.log(Utilities.getUserIdFromLocalStorage());
     
     // send the request to the api
     $.ajax({
         headers: {"X-USER-ID" :  m_User.userID},
         url: Constants.API_URLS.RECURRENCES,
         type: "GET",
+        dataType: "json",
         data: dateRanges,
         success: a_actionSuccess,
         error: a_actionError,
@@ -177,6 +181,9 @@ Takes a week's worth of event recurrences received from the
 API and displays them for viewing.
 **********************************************************/
 function displayWeeklyEvents(a_events) {
+
+    console.log(a_events);
+
     const vRecurrencesSun   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(Constants.WEEKDAY_VALUES.SUNDAY));
     const vRecurrencesMon   = new DailyRecurrences(m_WeekDates.getDateInTheWeek(Constants.WEEKDAY_VALUES.MONDAY));
     const vRecurrencesTues  = new DailyRecurrences(m_WeekDates.getDateInTheWeek(Constants.WEEKDAY_VALUES.TUESDAY));

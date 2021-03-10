@@ -89,6 +89,7 @@ class ModalEvent
             headers: {"X-USER-ID": self.userID},
             url: apiUrl,
             type: "GET",
+            dataType: "json",
             success: function(response) {
                 actionSuccess(response, self);
             },
